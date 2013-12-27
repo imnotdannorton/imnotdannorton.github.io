@@ -1,0 +1,86 @@
+<!DOCTYPE html >
+<html>
+	<head>
+		
+		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<!--<script type="text/javascript" async src="http://assets.pinterest.com/js/pinit.js"></script>-->
+		<script type="text/javascript">
+			var pins = ['234890936788910971', '191403052887450135', '9359111697395161', '9359111697301174'];
+			$( document ).ready(function() {
+				writePins();
+				$('.pinMe').on('click', callPinned, event.preventDefault());
+				$('.prev').on('click', scrollPins);
+				$('.next').on('click', scrollPins);
+				$('.addTag').on("click", updatePins);
+			});
+			function updatePins(){
+				var newPin = $("#myTag").val();
+				pins.push(newPin);
+				$("#myTag").val('');
+				$('#pins').html('');
+				writePins();
+			}
+			function writePins(){
+				$.ajax({ url: 'http://assets.pinterest.com/js/pinit.js', dataType: 'script', cache:true});
+				for(i=0; i<pins.length; i++){
+				 	var pinID = pins[i];
+				 	console.log(pinID);
+				 	$('#pins').append('<div class="pinMe"><a data-pin-do="embedPin" href="http://www.pinterest.com/pin/'+pinID+'"/></a></div>');
+				 }
+			}
+			function callPinned(e){
+				console.log(e.target + " Pinned");
+				//use this event for tracking
+			}
+			function scrollPins(e){
+				e.preventDefault();
+				console.log(e.target);
+				if ($(e.target).attr('class') == 'next'){
+					$('#pins').animate({'margin-left':'-=240'});
+					//console.log('prev');
+				}
+				if ($(e.target).attr('class') == 'prev') {
+					$('#pins').animate({'margin-left':'+=240'});
+					//console.log('prev');
+				};
+			}
+		</script>
+		<style type="text/css">
+			@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,800);
+			body{
+				background:#DDD; 
+			}
+			.pinMe{
+				display: inline-block;
+				margin:0 10px 10px 0;
+			}
+			#pinScroller{
+				width: 650px;
+				margin: 10px auto;
+				font-family: 'Open Sans';
+				background: #fff;
+				padding: 20px;
+				overflow: hidden;
+			}
+			#pins{
+				position: relative;
+				display: block;
+				max-height: 700px;
+				width: 2000px;
+				left: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="pinScroller">
+			<h1>Pin It!</h1>
+			<p>Check out these pins and add them to your board.</p>
+			<div id="pins">
+			</div>
+			<a href="#" class="prev">&laquo;Prev</a> / <a href="#" class="next">Next&raquo;</a><br/> add pin: <input type="text" id="myTag" name="newTag"><input type="submit" class="addTag" value="Add Tag">
+		</div>
+		 
+		<div id="board"></div>
+	
+	</body>
+</html>
