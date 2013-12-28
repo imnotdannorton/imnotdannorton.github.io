@@ -25,13 +25,13 @@
 				for(i=0; i<pins.length; i++){
 				 	var pinID = pins[i];
 				 	console.log(pinID);
-				 	$('#pins').append('<div class="pinMe" id="pin_'+ 68117013087867124+'"><a data-pin-do="embedPin" href="http://www.pinterest.com/pin/'+pinID+'"/></a></div>');
+				 	$('#pins').append('<div class="pinMe" id="pin_'+ pinID +'"><a data-pin-do="embedPin" href="http://www.pinterest.com/pin/'+pinID+'"/></a></div>');
 				 }
 			}
 			function callPinned(e){
-				var clickedPin = $(e.target).attr('class').substring(5);
+				var clickedPin = $(e.target).closest('.pinMe').attr('id').substring(5);
 				console.log(clickedPin + " Pinned");
-
+				//console.log($(e.target).closest('div').attr('class'));
 				//use this event for tracking
 			}
 			function scrollPins(e){
