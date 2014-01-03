@@ -6,12 +6,17 @@
 		<!--<script type="text/javascript" async src="http://assets.pinterest.com/js/pinit.js"></script>-->
 		<script type="text/javascript">
 			var pins = ['234890936788910971', '191403052887450135', '9359111697395161', '9359111697301174'];
+			var board = true;
+			var boardURL = "http://www.pinterest.com/dannorton/swaggerjack-this/";
 			$( document ).ready(function() {
 				writePins();
 				$('.pinMe').on('click', callPinned, event.preventDefault());
 				$('.prev').on('click', scrollPins);
 				$('.next').on('click', scrollPins);
 				$('.addTag').on("click", updatePins);
+				if(board){
+					buildBoard();
+				}
 			});
 			function updatePins(){
 				var newPin = $("#myTag").val();
@@ -28,6 +33,10 @@
 				 	$('#pins').width((240*(i+1)) + (10*i)); 
 				 	$('#pins').append('<div class="pinMe" id="pin_'+ pinID +'"><a data-pin-do="embedPin" href="http://www.pinterest.com/pin/'+pinID+'"/></a></div>');
 				 }
+			}
+			function buildBoard(){
+				//$('#pins').hide();
+				$('#board').append('<a data-pin-do="embedBoard" href="'+ boardURL +'" <a data-pin-do="embedBoard" href="http://www.pinterest.com/pinterest/pin-pets/"></a>');
 			}
 			function callPinned(e){
 				var clickedPin = $(e.target).closest('.pinMe').attr('id').substring(5);
@@ -79,6 +88,12 @@
 				width: 2000px;
 				left: 20px;
 			}
+			#board{
+				text-align: center;
+				padding-top: 20px;
+				margin-top: 10px;
+				border-top: 1px solid #cd1d1f;
+			}
 		</style>
 	</head>
 	<body>
@@ -88,9 +103,10 @@
 			<div id="pins">
 			</div>
 			<a href="#" class="prev">&laquo;Prev</a> / <a href="#" class="next">Next&raquo;</a><br/> add pin: <input type="text" id="myTag" name="newTag"><input type="submit" class="addTag" value="Add Tag">
+		<div id="board"></div>
 		</div>
 		 
-		<div id="board"></div>
+		
 	
 	</body>
 </html>
