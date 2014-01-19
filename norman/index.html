@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>The Life of Norman</title>
+  <style>
+  @import url(http://fonts.googleapis.com/css?family=Ledger);
+  @import url(http://fonts.googleapis.com/css?family=Abril+Fatface);
+  body{
+    margin: 0;
+    padding: 0;
+    background: #000;
+  }
+  img {
+    height: 100px;
+    float: left;
+  }
+  #wrapper{
+    width: 100%;
+    min-height: 800px;
+    text-align: center;
+    position: absolute;
+    z-index: -10;
+    top: 0;
+    margin: 0px auto;
+    display: block;
+    -webkit-filter: blur(13px);
+    -moz-filter: blur(13px);
+    -o-filter: blur(13px);
+    -ms-filter: blur(13px);
+    filter: blur(13px);
+  }
+  #content{
+    background: rgba(255, 255, 255, .8);
+    padding: 20px;
+    font-family: 'Ledger', serif;
+    width: 60%;
+    border-radius: 3px;
+    margin: 100px auto;
+    text-align: center;
+    display: none;
+  }
+  #content h1{
+    font-family: 'Abril Fatface', serif;
+    font-size: 36px;
+    letter-spacing: 2px;
+    margin-top: 0px;
+  }
+  #content a{
+    font-style: italic;
+    font-size: 12px;
+    text-decoration: none;
+    color: #2A4B8C;
+  }
+  #content a:hover{
+    color:#F28379;
+  }
+  .nav a{
+    border-radius: 3px;
+    background: rgba(255, 255, 255, .8);
+    padding: 20px;
+    margin: 5px;
+    font-family: 'Abril Fatface', serif;
+    text-decoration: none;
+    color: #2A4B8C;
+  }
+  .nav a:hover{
+    color:#F28379;
+  }
+  footer{
+    text-align: center;
+    bottom: 0px;
+    width: 100%;
+    position: fixed;
+    margin-bottom: 30px;
+  }
+  </style>
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+</head>
+<body>
+ 
+<div id="wrapper">
+</div>
+<div id="content">
+</div>
+
+<footer class="nav">
+   <a href="#" class="prev">Previous</a>
+   <a href="#" class="next">Next</a>
+</footer>
+<script>
+//var main = {};
+var posts = [];
+var currentPost = 0;
+var googleImgQuery = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&callback=?&q=";
+
+function getPosts() {
+  var reddit = "http://www.reddit.com/r/lifeofnorman/new.json?sort=new";
+  $.getJSON(reddit, function( data ) { 
+    posts = data.data.children; 
+    console.log(posts);
+    renderPost(0);
+  });
+
+  $(".nav a").on('click', newPost);
+}
+function renderPost(id){
+    imgBg(posts[id].data.title.replace("Norman", ""));
+    date = Date(posts[id].data.created_utc).slice(0, 15);
+    link = "http://reddit.com" + posts[id].data.permalink; 
+    $("#content").html("<h1>"+posts[id].data.title+"</h1><p>"+posts[id].data.selftext +"</p><a href='"+ link +"'>" + date + "</a>");
+    $("#content").css('display', 'none').fadeIn("slow");
+    
+   if(id == posts.length-1){
+      $(".next").hide();
+   }else{
+      $(".next").show();
+   }
+   if(id == 0){
+      $(".prev").hide();
+   }else{
+      $(".prev").show();
+   }
+}
+function newPost(e){
+        e.preventDefault();
+        console.log(e.target);
+        if ($(e.target).attr('class') == 'next'){
+          currentPost++;
+        }
+        if ($(e.target).attr('class') == 'prev') {
+          if (currentPost > 0){
+            currentPost--;
+          }
+        };
+       renderPost(currentPost);
+}
+function imgBg(query){
+  var imageReq = googleImgQuery+escape(query);
+  //console.log(imageReq);
+  $.getJSON(imageReq, function( data ) { 
+    var imgResult = data.responseData.results[0].unescapedUrl;
+    //console.log(imgResult);
+    $("#wrapper").css({'background':'url(' + imgResult + ') no-repeat top center', 'display':'none', 'background-size':'cover'}).fadeIn(300);;
+    //console.log($("#wrapper").css('background-image'));
+  });
+}
+$(document).ready(getPosts());
+</script>
+ 
+</body>
+</html>
