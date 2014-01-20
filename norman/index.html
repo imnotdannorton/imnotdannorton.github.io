@@ -71,7 +71,7 @@
     text-align: center;
     bottom: 0px;
     width: 100%;
-    margin-bottom: 30px;
+    /*margin-bottom: 30px;*/
   }
   </style>
   <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
@@ -108,9 +108,11 @@ function getPosts() {
 }
 function renderPost(id){
     imgBg(posts[id].data.title.replace("Norman", ""));
-    date = Date(posts[id].data.created_utc).slice(0, 15);
+    mydate = posts[24].data.created_utc;
+    date = new Date(mydate*1000);
+
     link = "http://reddit.com" + posts[id].data.permalink; 
-    $("#content").html("<h1>"+posts[id].data.title+"</h1><p>"+posts[id].data.selftext +"</p><a href='"+ link +"'>" + date + "</a>");
+    $("#content").html("<h1>"+posts[id].data.title+"</h1><p>"+posts[id].data.selftext +"</p><a href='"+ link +"'>" + posts[id].data.author+ " - " + date.toString().slice(0,15) + "</a>");
     $("#content").css('display', 'none').fadeIn("slow");
     
    if(id == posts.length-1){
