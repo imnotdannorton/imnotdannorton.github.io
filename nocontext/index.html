@@ -4,8 +4,7 @@
   <meta charset="utf-8">
   <title>No Context</title>
   <style>
-  @import url(http://fonts.googleapis.com/css?family=Ledger);
-  @import url(http://fonts.googleapis.com/css?family=Abril+Fatface);
+  @import url(http://fonts.googleapis.com/css?family=Roboto:400,300);
   body{
     margin: 0;
     padding: 0;
@@ -31,80 +30,117 @@
     filter: blur(13px);
   }
   #content{
-    background: rgba(255, 255, 255, .8);
     padding: 20px;
-    font-family: 'Ledger', serif;
-    width: 60%;
+    font-family: 'Roboto', sans-serif;
+    width: 80%;
     border-radius: 3px;
-    margin: 5% auto;
+    margin: 15% auto;
     text-align: center;
     display: none;
   }
   #content h1{
-    font-family: 'Abril Fatface', serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 36px;
-    letter-spacing: 2px;
     margin-top: 0px;
+    color: #fff;
+    text-shadow:0 0 3px #000;
   }
   #content a{
     font-style: italic;
     font-size: 12px;
     text-decoration: none;
-    color: #2A4B8C;
+    color: #FF4C4C;
   }
   #content a:hover{
     color:#F28379;
   }
+ 
   .nav a{
-    border-radius: 3px;
-    background: rgba(255, 255, 255, .8);
-    padding: 20px;
-    margin: 5px;
-    font-family: 'Abril Fatface', serif;
+    display: inline-block;
+    padding: 20px 200px;
+    font-size: 1.3em;
+    font-family: 'Roboto', sans-serif;
     text-decoration: none;
     color: #2A4B8C;
+    margin: 5px;
+    background: rgba(255, 255, 255, .8);
   }
   .nav a:hover{
-    color:#F28379;
+    color:#FF4C4C;
+    background: rgba(0, 0, 0, .8);
   }
   footer{
     text-align: center;
     bottom: 0px;
+    position: fixed;
     width: 100%;
     /*margin-bottom: 30px;*/
   }
   </style>
   <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript" src="query-string/query-string.js"></script>
   <meta name="viewport" content="width=device-width">
 
 </head>
 <body>
  
 <div id="wrapper">
-</div>
+ </div>
 <div id="content">
 </div>
 
-<footer class="nav">
-   <a href="#" class="prev">Previous</a>
-   <a href="#" class="next">Next</a>
-</footer>
+<footer class='nav'><a href="#" class="prev">&laquo; Prev</a> <a href="#" class="next">Next &raquo;</a></footer>
+
+
 <script>
 //var main = {};
 var posts = [];
 var currentPost = 0;
-var googleImgQuery = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&callback=?&q=";
+var googleImgQuery = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&as_filetype=gif&imgtype=animated&tbs=itp:animated&callback=?&q=";
+var sub = '';
+var postId = '';
+var activePost = 0;
+ 
+  if(getParameterByName('r') != ''){
+    sub = getParameterByName('r');
+    //console.log()
+  }else{
+    sub = 'topgear';
+  }
+  if(getParameterByName('post') != ''){
+    postId = getParameterByName('post');
+    console.log(postId);
+  }
 
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
 function getPosts() {
-  var reddit = "http://www.reddit.com/r/nocontext/new.json?sort=new";
+ 
+  var reddit = "http://www.reddit.com/r/"+ sub +"/new.json?sort=new";
+
   $.getJSON(reddit, function( data ) { 
     posts = data.data.children; 
     console.log(posts);
-    renderPost(0);
+    if (postId != ''){
+      activePost = search(postId, 'posts');
+    }
+    renderPost(activePost);
   });
 
-  $(".nav a").on('click', newPost);
+  $("footer a").on('click', newPost);
+}
+function search(nameKey, myArray){
+    for (var i=0; i < posts.length; i++) {
+        if (posts[i].data.id === nameKey) {
+            console.log(i);
+            return i;
+        }
+    }
 }
 function renderPost(id){
     imgBg(posts[id].data.title);
@@ -112,7 +148,7 @@ function renderPost(id){
     date = new Date(mydate*1000);
 
     link = "http://reddit.com" + posts[id].data.permalink; 
-    $("#content").html("<h1>"+posts[id].data.title+"</h1><a href='"+ link +"'>" + posts[id].data.author+ " - " + date.toString().slice(0,15) + "</a>");
+    $("#content").html("<h1>"+posts[id].data.title+"</h1><a href='"+ link +"'>- " + posts[id].data.author+ " - " + date.toString().slice(0,15) + "</a>");
     $("#content").css('display', 'none').fadeIn("slow");
     
    if(id == posts.length-1){
@@ -125,19 +161,43 @@ function renderPost(id){
    }else{
       $(".prev").show();
    }
+   //updateUrl();
 }
+function updateUrl(newPost){
+  var url = window.location.href.split('?');
+  var parsed = queryString.parse(url[1]);
+  console.log(parsed);
+// {foo: 'bar'
+parsed.r = sub;
+parsed.post = newPost;
+console.log(url[0] + '?' + queryString.stringify(parsed));
+window.location.assign(url[0] + '?' + queryString.stringify(parsed))
+// http://sindresorhus.com?foo=unicorn&ilike=pizza
+}
+$(document).keydown(function(e){
+    if (e.keyCode == 39) { 
+      activePost++;
+      updateUrl(posts[activePost].data.id);
+    }
+     if (e.keyCode == 37) { 
+        if (activePost > 0){
+          activePost--;
+        };
+      updateUrl(posts[activePost].data.id);
+    }
+});
 function newPost(e){
         //e.preventDefault();
-        console.log(e.target);
+        //console.log(e.target);
         if ($(e.target).attr('class') == 'next'){
-          currentPost++;
+          activePost++;
         }
         if ($(e.target).attr('class') == 'prev') {
-          if (currentPost > 0){
-            currentPost--;
-          }
+          if (activePost > 0){
+          activePost--;
+          };
         };
-       renderPost(currentPost);
+        updateUrl(posts[activePost].data.id);
 }
 function imgBg(query){
   var imageReq = googleImgQuery+escape(query);
