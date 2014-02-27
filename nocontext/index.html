@@ -23,11 +23,11 @@
     top: 0;
     margin: 0px auto;
     display: block;
-    -webkit-filter: blur(13px);
-    -moz-filter: blur(13px);
-    -o-filter: blur(13px);
-    -ms-filter: blur(13px);
-    filter: blur(13px);
+    -webkit-filter: blur(7px);
+    -moz-filter: blur(7px);
+    -o-filter: blur(7px);
+    -ms-filter: blur(7px);
+    filter: blur(7px);
   }
   #content{
     padding: 20px;
@@ -113,6 +113,8 @@
 var posts = [];
 var currentPost = 0;
 var googleImgQuery = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&as_filetype=gif&imgtype=animated&tbs=itp:animated&callback=?&q=";
+var staticImgQuery = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&callback=?&q=";
+
 var sub = '';
 var postId = '';
 var activePost = 0;
@@ -217,8 +219,9 @@ function newPost(e){
 function imgBg(query){
   var imageReq = googleImgQuery+escape(query);
   $.getJSON(imageReq, function( data ) { 
+    // TODO: return image, if it returns null, use static image request
     var imgResult = data.responseData.results[0].unescapedUrl;
-    $("#wrapper").css({'background':'url(' + imgResult + ') no-repeat top center', 'display':'none', 'background-size':'cover'}).fadeIn(300);;
+    $("#wrapper").css({'background':'url(' + imgResult + ') no-repeat top center', 'display':'none', 'background-size':'cover'}).fadeIn(300);
   });
 }
 $(document).ready(getPosts());
