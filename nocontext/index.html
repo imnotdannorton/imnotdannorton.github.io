@@ -296,7 +296,7 @@ function imgBg(query){
   });
   function staticRequest(){
     $.getJSON(imageReqStatic, function( data ) { 
-           if (data.responseData.results[0] == null|| data.responseData == null) {
+           if (data.responseData == null || data.responseData.results[0] == '') {
             imgResult = 'fallback.jpg';
            }else{
             imgResult = data.responseData.results[0].unescapedUrl;
