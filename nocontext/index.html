@@ -285,7 +285,7 @@ function imgBg(query){
   var imgResult = '';
   $.getJSON(imageReq, function( data ) { 
     // TODO: return image, if it returns null, use static image request
-    if (data.responseData.results[0] == null){
+    if (data.responseData == null){
        staticRequest();
     }else{    
       imgResult = data.responseData.results[0].unescapedUrl;
