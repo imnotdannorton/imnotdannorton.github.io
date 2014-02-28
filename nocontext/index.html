@@ -286,7 +286,7 @@ function imgBg(query){
   $.getJSON(imageReq, function( data ) { 
     // TODO: return image, if it returns null, use static image request
     console.log(data);
-    if (data.responseData == null || data.responseData.results[0] == ''){
+    if (data.responseData == null || data.responseData.results.length == 0){
        staticRequest();
     }else{    
       imgResult = data.responseData.results[0].unescapedUrl;
@@ -296,7 +296,7 @@ function imgBg(query){
   });
   function staticRequest(){
     $.getJSON(imageReqStatic, function( data ) { 
-           if (data.responseData == null || data.responseData.results[0] == '') {
+           if (data.responseData == null || data.responseData.results.length == 0) {
             imgResult = 'fallback.jpg';
            }else{
             imgResult = data.responseData.results[0].unescapedUrl;
