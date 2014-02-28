@@ -14,6 +14,25 @@
     height: 100px;
     float: left;
   }
+   @-webkit-keyframes loading {
+    from{
+        -webkit-transform: rotate(0deg);
+    }
+    to{
+        -webkit-transform: rotate(360deg);
+    }
+}
+  #loading{
+    position: absolute;
+   top: 10px;
+   left: 10px;
+   width: 20px;
+   height: 20px;
+   background: #fff;
+  -webkit-animation: loading 2s linear infinite;
+
+  }
+
   #wrapper{
     width: 100%;
     min-height: 800px;
@@ -99,7 +118,19 @@
 </script>
 </head>
 <body>
- 
+
+<div id='loading'></div>
+ <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=477453389032108";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
 <div id="wrapper">
  </div>
 <div id="content">
@@ -167,8 +198,7 @@ function renderPost(id){
     link = "http://reddit.com" + posts[id].data.permalink; 
     $("#content").html("<h1>"+posts[id].data.title+"</h1><a href='"+ link +"'>- " + posts[id].data.author+ " - " + date.toString().slice(0,15) + "</a>");
     $("#content").css('display', 'none').fadeIn("slow");
-    
-   if(id == posts.length-1){
+  if(id == posts.length-1){
       $(".next").hide();
    }else{
       $(".next").show();
@@ -218,11 +248,30 @@ function newPost(e){
 }
 function imgBg(query){
   var imageReq = googleImgQuery+escape(query);
+  var imageReqStatic = staticImgQuery+escape(query);
+  var imgResult = '';
   $.getJSON(imageReq, function( data ) { 
     // TODO: return image, if it returns null, use static image request
-    var imgResult = data.responseData.results[0].unescapedUrl;
-    $("#wrapper").css({'background':'url(' + imgResult + ') no-repeat top center', 'display':'none', 'background-size':'cover'}).fadeIn(300);
+    if (data.responseData.results[0] == null){
+       staticRequest();
+    }else{    
+      imgResult = data.responseData.results[0].unescapedUrl;
+      $('#loading').hide();
+      $("#wrapper").css({'background':'url(' + imgResult + ') no-repeat top center', 'display':'none', 'background-size':'cover'}).fadeIn(300); 
+    }
   });
+  function staticRequest(){
+    $.getJSON(imageReqStatic, function( data ) { 
+           if (data.responseData.results[0] == null) {
+            imgResult = 'fallback.jpg';
+           }else{
+            imgResult = data.responseData.results[0].unescapedUrl;
+          }
+          $('#loading').hide();
+          console.log('static!!!');
+          $("#wrapper").css({'background':'url(' + imgResult + ') no-repeat top center', 'display':'none', 'background-size':'cover'}).fadeIn(300); 
+       });
+  }
 }
 $(document).ready(getPosts());
 </script>
