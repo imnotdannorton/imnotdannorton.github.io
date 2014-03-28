@@ -209,12 +209,32 @@ function getPosts() {
     console.log(posts);
     if (postId != ''){
       activePost = search(postId, 'posts');
+      if(!activePost){
+        getPost(postId);
+      } else {
+        renderPost(activePost);
+      }
     }
-    renderPost(activePost);
+    
   });
 
   $("footer a").on('click', newPost);
 }
+
+function getPost(id) {
+ 
+  var reddit = "http://www.reddit.com/r/"+ sub +"/"+id+".json";
+
+  $.getJSON(reddit, function( data ) { 
+    post = data.data.children; 
+    if (postId != ''){
+      activePost = post[0];
+      renderPost(activePost);
+    }
+  });
+
+}
+
 function search(nameKey, myArray){
     for (var i=0; i < posts.length; i++) {
         if (posts[i].data.id === nameKey) {
@@ -222,6 +242,7 @@ function search(nameKey, myArray){
             return i;
         }
     }
+    return false;
 }
 function renderPost(id){
     imgBg(posts[id].data.title);
