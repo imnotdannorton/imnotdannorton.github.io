@@ -227,7 +227,7 @@ function getPost(id) {
 
   $.getJSON(reddit, function( data ) { 
     console.log(data);
-    post = data.data.children; 
+    post = data[0].data.children; 
     if (postId != ''){
       activePost = post[0];
       renderPost(activePost);
