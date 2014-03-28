@@ -225,11 +225,14 @@ function getPost(id) {
  
   var reddit = "http://www.reddit.com/r/"+ sub +"/"+id+".json";
 
-  $.getJSON(reddit, function( data ) { 
-    console.log(data[0]);
-    post = data[0].data.children; 
+  $.getJSON(reddit, function( postData ) { 
+  
+    post = postData[0].data.children[0]; 
+    posts.push(post);
+    console.log(posts);
+
     if (postId != ''){
-      activePost = post[0];
+      activePost = posts.length-1;
       renderPost(activePost);
     }
   });
@@ -246,6 +249,7 @@ function search(nameKey, myArray){
     return false;
 }
 function renderPost(id){
+  console.log(posts[id]);
     imgBg(posts[id].data.title);
     mydate = posts[24].data.created_utc;
     date = new Date(mydate*1000);
