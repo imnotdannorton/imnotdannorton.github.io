@@ -19,6 +19,10 @@ $routeProvider.when('/:subReddit/:postId', {
     templateUrl: 'page.html',
     controller: 'noContextController',
     reloadOnSearch: false
+  }).when('/', {
+    templateUrl: 'page.html',
+    controller: 'noContextController',
+    reloadOnSearch: false
   });
 
 });
