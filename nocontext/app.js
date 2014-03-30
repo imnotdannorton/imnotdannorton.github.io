@@ -11,11 +11,11 @@ angular.module('noContext',['ngRoute'])
 .config( function($routeProvider, $locationProvider) {
 //$locationProvider.html5Mode(true);
 
-$routeProvider.when('/nocontext/:subReddit/:postId', {
+$routeProvider.when('/:subReddit/:postId', {
     templateUrl: 'page.html',
     controller: 'noContextController',
     reloadOnSearch: false
-  }).when('/nocontext/:subReddit', {
+  }).when('/:subReddit', {
     templateUrl: 'page.html',
     controller: 'noContextController',
     reloadOnSearch: false
