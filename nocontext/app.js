@@ -9,7 +9,7 @@ var STATIC_IMAGES_URL = "https://ajax.googleapis.com/ajax/services/search/images
 
 angular.module('noContext',['ngRoute'])
 .config( function($routeProvider, $locationProvider) {
-$locationProvider.html5Mode(true);
+//$locationProvider.html5Mode(true);
 
 $routeProvider.when('/nocontext/:subReddit/:postId', {
     templateUrl: 'page.html',
