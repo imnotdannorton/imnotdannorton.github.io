@@ -41,7 +41,7 @@ directiveModule.directive('content', function() {
   };
 });
 
-var noContextController = function($scope,$http,$timeout,$sce,$routeParams,$location){
+var noContextController = function($scope,$http,$timeout,$sce,$routeParams,$location,$document){
   $scope.posts = [];
   $scope.sortBy = "new";
   $scope.activePost = null;
@@ -120,7 +120,8 @@ var noContextController = function($scope,$http,$timeout,$sce,$routeParams,$loca
 
   $scope.getSubreddits = function(){
  
-    $.getJSON("http://www.reddit.com/subreddits/mine/subscriber.json", function( postData ) { 
+    $.getJSON("http://www.reddit.com/reddits/mine.json", function( postData ) { 
+      console.log(postData);
       if(typeof postData.data !== 'undefined'){
         var subreddits = postData.data.children; 
         console.log(subreddits);
@@ -174,7 +175,6 @@ var noContextController = function($scope,$http,$timeout,$sce,$routeParams,$loca
   $scope.previous = function(){
     if($scope.activePost>0){
       $scope.activePost--;
-
     }
   }
 
@@ -184,19 +184,29 @@ var noContextController = function($scope,$http,$timeout,$sce,$routeParams,$loca
     }
   }
 
+
+
  if(typeof $scope.subReddit !== 'undefined'){
     $scope.loading();
     $scope.getPosts();
   }
+  //$scope.getSubreddits();
 
   
-  $(document).keydown(function(e){
-    if (e.keyCode == 39) { 
-      $scope.next();
-      
+  $document.keydown(function(e){
+
+    if (e.keyCode === 39) { 
+      if($scope.activePost<$scope.posts.length-1){
+        $scope.activePost++;
+        $scope.$apply();
+      }
     }
-    if (e.keyCode == 37) { 
-        $scope.previous();
+      
+    if (e.keyCode === 37) { 
+      if($scope.activePost>0){
+        $scope.activePost--;
+        $scope.$apply();
+      }
     }
   });
 
