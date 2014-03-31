@@ -1,9 +1,9 @@
-
 var DEFAULT_SUBREDDIT = 'topgear';
 var ANIMATED_IMAGES_URL = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&as_filetype=gif&imgtype=animated&tbs=itp:animated&callback=?&q=";
 var STATIC_IMAGES_URL = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&callback=?&q=";
 
 /**
+ * @Author Dan Norton
  * @Author Jeff Bachand
  */
 
