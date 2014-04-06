@@ -170,7 +170,7 @@ var noContextController = function($scope,$http,$timeout,$sce,$routeParams,$loca
     $("content").show();
     $("div#loading").hide();
     if( $(".nav a").css("padding") == "20px 50px"){
-       $("#wrapper").css({'background':'url(' + imgResult + ') no-repeat top center', 'display':'none', 'background-size':'contain'}).fadeIn(300);
+       $("#wrapper").css({'background':'url(' + imgResult + ') no-repeat top center', 'display':'none', 'background-size':'100%'}).fadeIn(300);
     }else{
        $("#wrapper").css({'background':'url(' + imgResult + ') no-repeat top center', 'display':'none', 'background-size':'cover'}).fadeIn(300);
     }  
