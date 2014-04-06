@@ -169,7 +169,11 @@ var noContextController = function($scope,$http,$timeout,$sce,$routeParams,$loca
   $scope.doneLoading = function(imgResult){
     $("content").show();
     $("div#loading").hide();
-    $("#wrapper").css({'background':'url(' + imgResult + ') no-repeat top center', 'display':'none', 'background-size':'cover'}).fadeIn(300);
+    if( $(".nav a").css("padding") == "20px 50px"){
+       $("#wrapper").css({'background':'url(' + imgResult + ') no-repeat top center', 'display':'none', 'background-size':'contain'}).fadeIn(300);
+    }else{
+       $("#wrapper").css({'background':'url(' + imgResult + ') no-repeat top center', 'display':'none', 'background-size':'cover'}).fadeIn(300);
+    }  
   }
 
   $scope.previous = function(){
