@@ -100,7 +100,16 @@
   content a:hover{
     color:#F28379;
   }
- 
+ .sharing{
+    float: right;
+    margin-right: 10px;
+    background: rgba(0,0,0, .9);
+    padding: 20px;
+ }
+ .sharing a{
+    color: #fff;
+    font-size: 24px;
+ }
   .nav a{
     display: inline-block;
     padding: 20px 200px;
