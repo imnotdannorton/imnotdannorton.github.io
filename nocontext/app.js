@@ -44,13 +44,13 @@ directiveModule.directive('content', function() {
 directiveModule.directive('fbShare', function(){
   return{
     restrict:'E', 
-    template:'<a href=https://www.facebook.com/sharer/sharer.php?u='+window.location.href+'" target="_blank"><i class="fa fa-facebook"></i></a>'
+    template:'<a href=https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href)+'" target="_blank"><i class="fa fa-facebook"></i></a>'
   }
 });
 directiveModule.directive('tweetShare', function(){
   return{
     restrict:'E', 
-    template:'<a href="https://twitter.com/intent/tweet?text=here%20we%20go&url='+window.location.href+'&via=dannorton" target="_blank"><i class="fa fa-twitter"></i></a>'
+    template:'<a href="https://twitter.com/intent/tweet?text=here%20we%20go&url='+ encodeURIComponent(window.location.href)+'&via=dannorton" target="_blank"><i class="fa fa-twitter"></i></a>'
   }
 });
 var noContextController = function($scope,$http,$timeout,$sce,$routeParams,$location,$document){

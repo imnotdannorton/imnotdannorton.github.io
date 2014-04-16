@@ -100,13 +100,13 @@
   content a:hover{
     color:#F28379;
   }
- .sharing{
+ #sharing{
     float: right;
     margin-right: 10px;
     background: rgba(0,0,0, .9);
     padding: 20px;
  }
- .sharing a{
+ #sharing a{
     color: #fff;
     font-size: 24px;
  }
