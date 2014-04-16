@@ -44,7 +44,7 @@ directiveModule.directive('content', function() {
 directiveModule.directive('fbShare', function(){
   return{
     restrict:'E', 
-    template:'<a href=https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href)+'" target="_blank"><i class="fa fa-facebook"></i></a>'
+    template:'<a href="https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href)+'" target="_blank"><i class="fa fa-facebook"></i></a>'
   }
 });
 directiveModule.directive('tweetShare', function(){
