@@ -33,10 +33,10 @@ directiveModule.directive('content', function() {
   return{
      restrict: 'E',
           template: '<h1>{{posts[activePost].data.title}}</h1><a target="_blank" href="http://www.reddit.com{{posts[activePost].data.permalink}}">- {{posts[activePost].data.author}} - {{posts[activePost].data.created}}</a>',
-          link: function(scope, elem, attrs) {
+          link: function(scope, elem, attrs, location) {
               elem.bind('click', function() {
                 //share it!
-                console.log("sharing "+$scope.location);
+                console.log("sharing "+$location);
               });
             }
   };
