@@ -36,7 +36,7 @@ directiveModule.directive('content', function() {
           link: function(scope, elem, attrs, location) {
               elem.bind('click', function() {
                 //share it!
-                console.log(window.location);
+                console.log(window.location.href);
               });
             }
   };
