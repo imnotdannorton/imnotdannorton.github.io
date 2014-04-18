@@ -57,6 +57,7 @@ var noContextController = function($scope,$http,$timeout,$sce,$routeParams,$loca
   $scope.posts = [];
   $scope.sortBy = "new";
   $scope.activePost = null;
+  $scope.myReddits = [];
   if(typeof $routeParams.subReddit === 'undefined'){
     $location.path('/'+DEFAULT_SUBREDDIT);
   }
@@ -64,7 +65,6 @@ var noContextController = function($scope,$http,$timeout,$sce,$routeParams,$loca
   $scope.postId = $routeParams.postId;
   console.log('subreddit: '+ $scope.subReddit);
   console.log('post: '+$scope.postId);
-  $scope.getSubreddits();
   $scope.$watch('activePost', function(newPost){
     if(typeof $scope.posts[newPost] !== 'undefined'){
       $scope.loading();
@@ -136,7 +136,8 @@ var noContextController = function($scope,$http,$timeout,$sce,$routeParams,$loca
       console.log(postData);
       if(typeof postData.data !== 'undefined'){
         var subreddits = postData.data.children; 
-        console.log(subreddits);
+        $scope.myReddits = postData.data.children;
+        console.log(myReddits);
       }
     });
 
@@ -206,7 +207,7 @@ var noContextController = function($scope,$http,$timeout,$sce,$routeParams,$loca
     $scope.loading();
     $scope.getPosts();
   }
-  //$scope.getSubreddits();
+  $scope.getSubreddits();
 
   
   $document.keydown(function(e){

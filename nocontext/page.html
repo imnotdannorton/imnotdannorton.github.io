@@ -1,5 +1,10 @@
 <div id='loading'></div>
 <div id="wrapper"></div>
 <div id="sharing"><tweet-share></tweet-share><fb-share></fb-share></div>
+<div id="myreddits" ng-if="myReddits>0">
+	<select ng-options="reddit in myReddits">
+		<option>{{reddit.display_name}}</option>
+	</select>
+</div>
 <content></content>
 <footer class='nav'><a href="" ng-if="activePost>0" ng-click="previous()" class="prev">&laquo; Prev</a> <a href="" ng-if="activePost<posts.length-1" ng-click="next()" class="next">Next &raquo;</a></footer>
