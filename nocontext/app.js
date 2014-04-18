@@ -133,7 +133,7 @@ var noContextController = function($scope,$http,$timeout,$sce,$routeParams,$loca
   $scope.getSubreddits = function(){
  
     $.getJSON("http://www.reddit.com/subreddits/mine/subscriber.json", function( postData ) { 
-      console.log(postData);
+      console.log(postData.data.children);
       if(typeof postData.data !== 'undefined'){
         var subreddits = postData.data.children; 
         $scope.myReddits = postData.data.children;
