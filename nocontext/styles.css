@@ -138,11 +138,17 @@
       padding: 20px 50px;
       font-size: 1em;
     }
+    content h1{
+      text-shadow:0 0 2px #000;
+    -moz-text-shadow:0 0 2px #000;
+    -webkit-text-shadow:0 0 2px #000;
+    -webkit-font-smoothing: antialiased;
+    }
     #wrapper{
-      -webkit-filter: blur(5px);
-    -moz-filter: blur(5px);
-    -o-filter: blur(5px);
-    -ms-filter: blur(5px);
-    filter: blur(5px);
+      -webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -o-filter: blur(3px);
+    -ms-filter: blur(3px);
+    filter: blur(3px);
     }
   }
