@@ -64,7 +64,7 @@ var noContextController = function($scope,$http,$timeout,$sce,$routeParams,$loca
   $scope.postId = $routeParams.postId;
   console.log('subreddit: '+ $scope.subReddit);
   console.log('post: '+$scope.postId);
-
+  getSubreddits();
   $scope.$watch('activePost', function(newPost){
     if(typeof $scope.posts[newPost] !== 'undefined'){
       $scope.loading();
