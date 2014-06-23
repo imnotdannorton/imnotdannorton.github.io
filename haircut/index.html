@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+	<style type="text/css">
+		* {
+		    outline: none;
+		}
+		.head{
+			background-color: #F3C1A4;
+			width: 400px;
+			height: 200px;
+			border-radius: 150px 150px 0 0 ;
+			margin: 50px auto 0;
+			border-top: 50px solid #222;
+			border-left: 10px solid #222;
+			border-right: 10px solid #222;
+			border-spacing: 2px 0;
+
+		}
+		.nose{
+			border-right:3px solid #000; 
+			border-bottom:3px solid #000;
+			width: 20px;
+			height: 40px;
+			left:170px;
+			position: relative;
+			transform:rotate(-15deg);
+			-moz-transform:rotate(-15deg);
+			-webkit-transform:rotate(-15deg);
+		}
+		.chin{
+			background-color: #F3C1A4;
+			border-radius: 0 0 200px 200px;
+			width: 400px;
+			height: 300px;
+			margin: 0px auto;
+		}
+		.wrapper{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			text-align: center;
+		}
+		.eye{
+			background: #fff;
+			width: 150px;
+			text-align: center;
+			height: 70px;
+			border-radius: 70px;
+			display: inline-block;
+		}
+		.iris{
+			width: 40px;
+			height: 40px;
+			background-color: blue;
+			border-radius: 20px;
+			margin: 20px;
+			display: inline-block;
+		}
+		.eyes{
+			top: 70px;
+			position: relative;
+			text-align: left;
+			padding: 0 20px;
+		}
+		.right{ 
+			float: right;
+		}
+		.mouth{
+			display: inline-block;
+			border-radius: 100px;
+			border-top: 20px solid #fff;
+			border-bottom: 0px solid #fff;
+			border-left: none;
+			border-right: none;
+			width: 200px;
+			height: 180px;
+			margin-top: 50px;
+		}
+		button{
+			background-color: #ff8500;
+			border-radius: 4px;
+			color: #fff;
+			border: none;
+			margin: 20px;
+			padding: 10px 20px;
+			font-size: 20px;
+			box-shadow: none;
+			cursor: pointer;
+		}
+		button:active, button:hover{
+			background-color: #E07500;
+		}
+		body{
+			background-color: #A4D6F3;
+		}
+	</style>
+	  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+	  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="head">
+			
+			<div class="eyes"> 
+				<div class="eye">
+					<div class="iris"></div>
+				</div>
+				<div class="eye right">
+					<div class="iris"></div>
+				</div>
+				<div class="nose"></div>
+			</div>
+			
+		</div>
+		<div class="chin">
+			<div class="mouth"></div>
+		</div>
+			<button class="snip">SNIP SNIP</button>
+	</div>
+	<script type="text/javascript">
+	var haircut = function(){
+		$('.head').animate({'borderTopWidth':'10px', 'borderLeftWidth':'3px', 'borderRightWidth':'3px' }, 1000);
+		$('.mouth').animate({'borderTopWidth':'0px', 'borderBottomWidth':'20px', 'margin-top':'0px' }, 1000);
+	}
+	$('.snip').on('click', haircut);
+	</script>
+</body>
+</html>
