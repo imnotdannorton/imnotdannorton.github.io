@@ -1,0 +1,63 @@
+
+  <script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      var player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        events: {
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+    function onPlayerStateChange(state){
+      /*
+      -1 (unstarted)
+      0 (ended)
+      1 (playing)
+      2 (paused)
+      3 (buffering)
+      5 (video cued).
+      */
+      console.log('changed state : ' + state);
+    }
+
+  </script>
+  
+<div ng-controller="artistController" class="artistMain">
+    <div class="heroImage">
+        <img ng-src="{{artist.images[0].url}}">
+    </div>
+    <div class="artistStats">
+        <div class="nameWrap">
+         <h1>{{artist.first_name}}<br>{{artist.last_name}}</h1>
+         <h2>{{artist.group}}</h2>
+         <h3><a ng-href="#/products/{{artist.products[0].id}}">{{artist.products[0].name}}</a></h3>
+        </div>
+        <div class="media">
+            <div class="vidThumb" ng-repeat="vid in artist.videos">
+                <img ng-src="http://i.ytimg.com/vi/{{vid.url}}/default.jpg">
+                <i class="fa fa-play-circle" toggle-video="{{vid.url}}"></i>
+            </div>
+            <div class="imgThumb" ng-repeat="img in artist.images">
+                <img  ng-src="{{img.url}}" toggle-image="{{img.url}}" ng-click="currentImage($index)">
+            </div>
+        </div>
+        <ul ng-if="social.length > 0" class="social">
+            <li ng-if="socialLinks.facebook"><i class="fa fa-facebook-square"></i> /{{socialLinks.facebook}}</li>
+            <li ng-if="socialLinks.twitter"><i class="fa fa-twitter-square"></i> @{{socialLinks.twitter}}</li>
+            <li ng-if="socialLinks.youtube"><i class="fa fa-youtube-square"></i> /{{socialLinks.youtube}}</li>
+            <li ng-if="socialLinks.instagram"><i class="fa fa-instagram"></i> @{{socialLinks.instagram}}</li>
+            <li ng-if="socialLinks.web"><a ng-href="http://www.facebook.com/{{socialLinks.web}}"><i class="fa fa-link"></i> {{socialLinks.web}}</a></li>
+        </ul>
+    </div>
+    
+    <p>{{artist.quote}}</p>
+    <fb-comments data-href="" data-numposts="5" data-colorscheme="light" maxwidth="900"></fb-comments>
+</div>
+<div id="artistBg" ng-if='currentImage'></div>

@@ -1,0 +1,87 @@
+.artistMain{
+  /*padding-top: 10px;*/
+  position: relative;
+}
+.artistMain .heroImage{
+  width: 100%;
+  display: inline-block;
+  height: auto;
+}
+.artistMain .heroImage img{
+  max-width: 100%;
+}
+.artistMain .nameWrap{
+  color: #fff;
+  background-color: #000;
+  vertical-align: top;
+  width: 100%;
+  padding: 10px;
+}
+.artistMain ul.social{
+  font-size: 1.3em;
+}
+.artistStats{
+  display: inline-block;
+  width: 30%;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+.artistStats h1{
+  color: #fff;
+  margin: 5px 0;
+  line-height: 36px;
+}
+.artistStats h2{
+  font-style: italic;
+   margin: 5px 0;
+   font-weight: 500;
+}
+.artistStats h3{
+   margin: 5px 0;
+}
+.artistStats h3 a, .artistStats h3 a:visited{
+  color: #ffcb00;
+}
+.media{
+  display: inline-block;
+  padding: 10px;
+  background-color: #fff;
+  width: 100%;
+}
+.vidThumb:hover, .imgThumb:hover{
+  cursor: pointer;
+}
+.vidThumb i{
+  position: absolute;
+  z-index: 10;
+  left: 0px;
+  top: 0px;
+  color: #fff;
+  padding: 15px 20px;
+  font-size: 30px;
+}
+.vidThumb, .imgThumb{
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  border-radius: 4px;
+  text-align: center;
+  overflow: hidden;
+  margin-right: 5px;
+  float: left;
+}
+.vidThumb img, .imgThumb img{
+  max-height: 100%;
+}
+#artistBg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -20;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  -webkit-filter: blur(4px);
+}

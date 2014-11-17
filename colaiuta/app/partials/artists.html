@@ -1,0 +1,9 @@
+<div ng-controller="artistController" class="homeWrapper">
+	<h1>ARTISTS</h1>
+	<div ng-repeat="artist in artists"><a ng-href="#/artists/{{artist.id}}"><h3>{{artist.first_name}} {{artist.last_name}}</h3></a>
+		
+		<em>{{artist.group}}</em>
+		<span>{{artist.products[0]}}</span>
+	</div>
+	
+</div>
