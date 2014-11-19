@@ -75,7 +75,7 @@ angular.module('vaterDotcom.directives', []).
        // $('.bigImg').css('margin-left', offsetLeft); 
         //console.log(-offsetLeft);
        });
-       $(elem).on('mousemove', function(){
+       $(elem).on('mousemove', function(event){
         var panScale = $('.bigImg').width() / $(elem).width();
         var vertOffset = ($('#zoom').height() - $('.bigImg').height())/2;
         var offsetLeft = event.pageX - $(elem).offset().left;
@@ -91,7 +91,7 @@ angular.module('vaterDotcom.directives', []).
         $('.bigImg').css({'margin-left': offsetLeft, 'margin-top':vertOffset}); 
         //console.log();
        });
-       $(elem).on('mouseleave', function(){
+       $(elem).on('mouseleave', function(event){
         if(visible){
           $('#zoom').hide(); 
           visible = false;
