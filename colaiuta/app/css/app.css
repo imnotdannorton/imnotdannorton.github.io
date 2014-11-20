@@ -6,6 +6,9 @@ body{
 }
 a{
   text-decoration: none;
+  transition:.3s all linear;
+  -moz-transition:.3s all linear;
+  -webkit-transition:.3s all linear;
 }
 ul{
   list-style-type: none;
@@ -103,6 +106,43 @@ border-color: #000 transparent transparent;
   font-size: 24px;
   font-weight: 300;
   letter-spacing: 1px;
+}
+@-webkit-keyframes LOGOLOOP {
+  0%   { opacity: 0; }
+  50%  {opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@-webkit-keyframes LEFTLOOP {
+  0%   { opacity: 0; top:40px; left: 300px;}
+  50%  { opacity: 1; top:0px; left:0;}
+  100% { opacity: 0; top:-40px; left: -300px;}
+}
+.loadingWrapper{
+  background-color: rgba(255, 255, 255, .8);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.loadingWrapper .holder .left{
+  display: inline-block;
+  position: absolute;
+  -webkit-animation:LOGOLOOP 3s infinite;
+  -webkit-transform:rotate(-45deg);
+  
+}
+.loadingWrapper .holder .logo{
+  -webkit-animation:LOGOLOOP 3s infinite;
+  display: inline-block;
+}
+.loadingWrapper .holder .right{
+  -webkit-transform:rotate(45deg);
+  display: inline-block;
+}
+.loadingWrapper .holder{
+  position: relative;
+  margin: 200px auto;
+  width: 100px;
 }
 .contentWrapper{
   margin: 60px auto;
@@ -205,9 +245,11 @@ border-color: #000 transparent transparent;
 .angular-google-map-container { height: 400px; }
 footer{
   width: 100%;
-  background-color: #000;
+  background-color: #171717;
   color: #fff;
   padding: 1%;
+  position: relative;
+  bottom: 0;
 }
 footer ul.social{
   display: inline-block;
@@ -217,4 +259,10 @@ footer ul.social li{
   display: inline-block;
   float: left;
   margin: 0 5px;
+}
+footer ul.social li a, footer ul.social li a:visited{
+  color: #fff;
+}
+footer ul.social li a:hover{
+  color: #ffcb00; 
 }

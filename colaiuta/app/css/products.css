@@ -114,6 +114,13 @@ p.prodDesc{
   display: inline-block;
   vertical-align: top;
 }
+.buyNow p{
+  padding: 10px;
+  margin: .3em;
+}
+.buyNow p a{
+  color: #ffcb00;
+}
 .buyNow h2{
   color: #ffcb00;
   border-bottom:1px solid #000;
