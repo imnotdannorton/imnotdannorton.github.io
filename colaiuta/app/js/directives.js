@@ -22,6 +22,18 @@ angular.module('vaterDotcom.directives', []).
     	}
     };
   })
+  .directive('toggleSidebar', function($rootScope) {
+    return {
+      restrict:'A',
+      link:function(scope, elem, attrs){
+        elem.bind('click', function(e){
+          if( window.innerWidth <= 480){
+            $('#mobileNav').toggleClass('active');
+          }
+        });
+      }
+    };
+  })
   .directive('randomBg', function($rootScope){
     return{
       restrict:'A',
@@ -43,7 +55,12 @@ angular.module('vaterDotcom.directives', []).
         scope.toggleVideo = attrs['toggleVideo'];
         elem.bind('click', function(e){
           $('.heroImage').html('<iframe width="100%" height="480" id="player" src="//www.youtube.com/embed/'+scope.toggleVideo+'" frameborder="0" allowfullscreen></iframe>');
+          $('iframe #player').on('click', function(){
+            console.log('clicked vid');
+            $('.artistStats').toggle();
+          });
         });
+
         
       }
     }
@@ -65,7 +82,7 @@ angular.module('vaterDotcom.directives', []).
       restrict:'A',
       link: function(scope, elem, attrs){
         var visible = false;
-       $(elem).on('mouseover', function(event){
+       $(elem).on('mouseenter', function(event){
         //var offsetLeft = event.pageX;
         //offsetLeft = -offsetLeft;
         if(visible == false){
@@ -91,7 +108,7 @@ angular.module('vaterDotcom.directives', []).
         $('.bigImg').css({'margin-left': offsetLeft, 'margin-top':vertOffset}); 
         //console.log();
        });
-       $(elem).on('mouseleave', function(event){
+       $(elem).on('mouseleave', function(){
         if(visible){
           $('#zoom').hide(); 
           visible = false;
@@ -140,11 +157,12 @@ angular.module('vaterDotcom.directives', []).
         } else {
           scope.page = attrs.page;
         }
-        if (!attrs.maxwidth || attrs.maxwidth==='') {
+        /*if (!attrs.maxwidth || attrs.maxwidth==='') {
           scope.maxWidth = $(elem).parent().width() - 20;
         }else{
-          scope.maxWidth = attrs.maxwidth;
-        }
+          scope.maxWidth = $(elem).parent().width() - 20;
+        }*/
+        scope.maxWidth = $(elem).parent().width() - 20;
         //mobile check
         if( window.innerWidth < 400){
           scope.maxWidth = 300;

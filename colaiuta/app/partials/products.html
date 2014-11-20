@@ -2,7 +2,6 @@
 	<h1>PRODUCTS</h1>
 	Find: <input ng-model="find">
 	<hr/>
-	{{PRODUCT_IMAGE_PATH}}
 	<div ng-repeat="product in products | filter:find" class="product">
 
 		<div class="imgHolder"><img ng-src="{{imgPath}}{{product.images[0].name}}_Thumb.jpg"></div>

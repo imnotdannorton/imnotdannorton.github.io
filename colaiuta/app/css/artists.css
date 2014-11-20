@@ -1,11 +1,33 @@
+.artistGridCell{
+  display: inline-block;
+  margin: .4em;
+  max-width:300px; 
+}
+.artistGridCell .artistImgThumb{
+  width: 120px;
+  height: 120px;
+  border-radius:5px;
+  overflow: hidden;
+  text-align: center;
+}
+.artistGridCell .artistImgThumb img{
+  max-height: 100%;
+  margin: 0px auto;
+}
 .artistMain{
   /*padding-top: 10px;*/
+
   position: relative;
+}
+.artistsMain{
+  padding: 0 20px;
 }
 .artistMain .heroImage{
   width: 100%;
   display: inline-block;
+  background-color: #f4f4f4;
   height: auto;
+  box-shadow: 0 0 16px rgba(0,0,0,.3) inset;
 }
 .artistMain .heroImage img{
   max-width: 100%;
@@ -18,7 +40,31 @@
   padding: 10px;
 }
 .artistMain ul.social{
-  font-size: 1.3em;
+  font-size: 1.6em;
+  display: inline-block;
+  background-color: #FFF;
+  padding: 10px;
+  width: 100%;
+}
+.artistMain ul.social a{
+  color: #000;
+}
+.artistmain ul.social li a:hover{
+  color: #ffcb00; 
+}
+.artistMain .shareThis{
+  font-weight: 100;
+  font-size: 1.4em;
+  font-style: italic;
+  color: #000;
+  background-color: #fff;
+  width: 100%;
+  padding: 10px;
+  border-top:1px solid #000;
+  text-align: center;
+}
+.artistMain .shareThis i{
+  margin: 2px 4px 0 2px;
 }
 .artistStats{
   display: inline-block;
@@ -26,6 +72,8 @@
   position: absolute;
   right: 20px;
   top: 20px;
+  z-index: 20;
+  box-shadow: 10px 0 16px rgba(0,0,0,.3);
 }
 .artistStats h1{
   color: #fff;
@@ -70,6 +118,7 @@
   text-align: center;
   overflow: hidden;
   margin-right: 5px;
+  margin-top: 5px;
   float: left;
 }
 .vidThumb img, .imgThumb img{

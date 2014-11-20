@@ -1,0 +1,42 @@
+#mobileNav{
+  background-color: rgba(23, 23, 23, 0.95);
+  height: 100%;
+  padding-top: 0px;
+  position: fixed;
+  font-size: 24px;
+  color: #fff;
+  font-weight: 100;
+  margin-left: -300px;
+  transition:.3s all linear;
+  -moz-transition:.3s all linear;
+  -webkit-transition:.3s all linear;
+  width: 200px;
+  padding: 20px;
+}
+#mobileNav.active{
+  margin-left: 0;
+}
+#mobileNav ul li{
+  padding: 5px;
+  border-bottom: 1px solid #303030;
+}
+#mobileNav ul li:last-child{
+  border-bottom: 0;
+}
+#mobileNav a{
+  color: #fff;
+}
+#mobileNav a:hover{
+  color: #ffcb00; 
+}
+@media screen and (max-width:480px){
+  #logo:hover{
+    cursor: pointer;
+  }
+  #header ul{
+    display: none;
+  }
+  .productsMain .product{
+    width: 100%;
+  }
+}

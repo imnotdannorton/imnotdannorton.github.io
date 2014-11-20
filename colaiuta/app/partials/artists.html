@@ -1,9 +1,13 @@
-<div ng-controller="artistController" class="homeWrapper">
+<div ng-controller="artistController" class="homeWrapper artistsMain">
 	<h1>ARTISTS</h1>
-	<div ng-repeat="artist in artists"><a ng-href="#/artists/{{artist.id}}"><h3>{{artist.first_name}} {{artist.last_name}}</h3></a>
+	Find: <input ng-model="find">
+	<hr/>
+	<div ng-repeat="artist in artists | filter:find" class="artistGridCell"><a ng-href="#/artists/{{artist.id}}">
+	<div ng-if="artist.images[0].url" class="artistImgThumb"><img ng-src="{{artist.images[0].url}}"></div>
+	<h3>{{artist.first_name}} {{artist.last_name}}</h3></a>
 		
 		<em>{{artist.group}}</em>
-		<span>{{artist.products[0]}}</span>
+		<span>{{artist.products[0].name}}</span>
 	</div>
 	
 </div>

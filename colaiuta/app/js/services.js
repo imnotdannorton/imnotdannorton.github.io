@@ -8,47 +8,59 @@
 console.log("services");
 angular.module('vaterDotcom').service('productService', ['$http', '$rootScope', function($http, $rootScope) {
   	this.fetchProducts = function(){
+      $rootScope.loading = true;
   		$http({
   		method:'GET',
   		url:'http://dev.beneship.com:3002/products.json'
 	  	}).success(function(data){
 	  		//console.log(data);
+        $rootScope.loading = false;
 	  		$rootScope.$broadcast('productsSuccess', data);
 	  	}).error(function(data, status){
+        $rootScope.loading = false;
 	  		//console.log("oops: "+data+"error: "+status);
 	  	});	
   	};
   	this.fetchProduct = function(id){
+      $rootScope.loading = true;
   		$http({
   		method:'GET',
   		url:'http://dev.beneship.com:3002/products/'+id+'.json'
 	  	}).success(function(data){
 	  		//console.log(data);
+        $rootScope.loading = false;
 	  		$rootScope.$broadcast('productSuccess', data);
 	  	}).error(function(data, status){
+        $rootScope.loading = false;
 	  		console.log("Artist oops: "+data+"error: "+status);
 	  	});	
   	};
   }]).service('artistService', ['$http', '$rootScope', function($http, $rootScope) {
   	this.fetchArtists = function(){
+      $rootScope.loading = true;
   		$http({
   		method:'GET',
   		url:'http://dev.beneship.com:3002/artists.json'
 	  	}).success(function(data){
 	  		//console.log(data);
+        $rootScope.loading = false;
 	  		$rootScope.$broadcast('artistsSuccess', data);
 	  	}).error(function(data, status){
+        $rootScope.loading = false;
 	  		console.log("Artist oops: "+data+"error: "+status);
 	  	});	
   	};
   	this.fetchArtist = function(id){
+      $rootScope.loading = true;
   		$http({
   		method:'GET',
   		url:'http://dev.beneship.com:3002/artists/'+id+'.json'
 	  	}).success(function(data){
 	  		//console.log(data);
+        $rootScope.loading = false;
 	  		$rootScope.$broadcast('artistSuccess', data);
 	  	}).error(function(data, status){
+        $rootScope.loading = false;
 	  		console.log("Artist oops: "+data+"error: "+status);
 	  	});	
   	};
