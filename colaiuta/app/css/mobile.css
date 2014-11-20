@@ -36,7 +36,46 @@
   #header ul{
     display: none;
   }
+  #storeLocator{
+    width: 100%;
+    height: 120px;
+    margin-right: 0;
+    margin-bottom: .3em;
+  }
+  #tweets{
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: .3em;
+  }
+  #insta{
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: .3em;
+  }
+  .contentWrapper{
+    width: 100%;
+  }
+  .featureHolder{
+    margin: 0 0 .3em 0;
+  }
   .productsMain .product{
     width: 100%;
+  }
+  .artistStats{
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    right: 0;
+    top: 0;
+    box-shadow: none;
+  }
+  .artistMain ul.social{
+  font-size: 1.6em;
+  display: inline-block;
+  background-color: #FFF;
+  width: 100%;
+  }
+  .artistMain .shareThis{
+    text-align: left;
   }
 }
