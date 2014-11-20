@@ -12,6 +12,7 @@
   -webkit-transition:.3s all linear;
   width: 200px;
   padding: 20px;
+  z-index: 99;
 }
 #mobileNav.active{
   margin-left: 0;
