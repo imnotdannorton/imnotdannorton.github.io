@@ -1,3 +1,6 @@
+.burger{
+  display: none;
+}
 #mobileNav{
   background-color: rgba(23, 23, 23, 0.95);
   height: 100%;
@@ -31,8 +34,18 @@
   color: #ffcb00; 
 }
 @media screen and (max-width:480px){
-  #logo:hover{
-    cursor: pointer;
+  .burger{
+    display: block;
+    position: absolute;
+    padding: 14px;
+    font-size: 24px;
+  }
+  #logo{
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    display: inline;
+    margin: 0;
   }
   #header ul{
     display: none;
@@ -57,6 +70,7 @@
     width: 100%;
   }
   .featureHolder{
+    width: 100%;
     margin: 0 0 .3em 0;
   }
   .productsMain .product{
@@ -78,5 +92,22 @@
   }
   .artistMain .shareThis{
     text-align: left;
+  }
+  .productStats .shareLinks{
+    position: relative;
+    right: 0;
+  }
+  .productStats .dimensions{
+    margin-left: 0;
+    border-left: 0;
+  }
+  p.prodDesc{
+    width: 90%;
+    display: inline-block;
+    margin: 5px;
+    padding: 5px;
+  }
+  .buyNow{
+    width: 100%;
   }
 }
