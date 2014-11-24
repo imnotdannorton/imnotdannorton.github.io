@@ -1,0 +1,113 @@
+.burger{
+  display: none;
+}
+#mobileNav{
+  background-color: rgba(23, 23, 23, 0.95);
+  height: 100%;
+  padding-top: 0px;
+  position: fixed;
+  font-size: 24px;
+  color: #fff;
+  font-weight: 100;
+  margin-left: -300px;
+  transition:.3s all linear;
+  -moz-transition:.3s all linear;
+  -webkit-transition:.3s all linear;
+  width: 200px;
+  padding: 20px;
+  z-index: 99;
+}
+#mobileNav.active{
+  margin-left: 0;
+}
+#mobileNav ul li{
+  padding: 5px;
+  border-bottom: 1px solid #303030;
+}
+#mobileNav ul li:last-child{
+  border-bottom: 0;
+}
+#mobileNav a{
+  color: #fff;
+}
+#mobileNav a:hover{
+  color: #ffcb00; 
+}
+@media screen and (max-width:480px){
+  .burger{
+    display: block;
+    position: absolute;
+    padding: 14px;
+    font-size: 24px;
+  }
+  #logo{
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    display: inline;
+    margin: 0;
+  }
+  #header ul{
+    display: none;
+  }
+  #storeLocator{
+    width: 100%;
+    height: 120px;
+    margin-right: 0;
+    margin-bottom: .3em;
+  }
+  #tweets{
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: .3em;
+  }
+  #insta{
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: .3em;
+  }
+  .contentWrapper{
+    width: 100%;
+  }
+  .featureHolder{
+    width: 100%;
+    margin: 0 0 .3em 0;
+  }
+  .productsMain .product{
+    width: 100%;
+  }
+  .artistStats{
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    right: 0;
+    top: 0;
+    box-shadow: none;
+  }
+  .artistMain ul.social{
+  font-size: 1.6em;
+  display: inline-block;
+  background-color: #FFF;
+  width: 100%;
+  }
+  .artistMain .shareThis{
+    text-align: left;
+  }
+  .productStats .shareLinks{
+    position: relative;
+    right: 0;
+  }
+  .productStats .dimensions{
+    margin-left: 0;
+    border-left: 0;
+  }
+  p.prodDesc{
+    width: 90%;
+    display: inline-block;
+    margin: 5px;
+    padding: 5px;
+  }
+  .buyNow{
+    width: 100%;
+  }
+}

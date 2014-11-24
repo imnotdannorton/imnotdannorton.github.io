@@ -1,0 +1,136 @@
+.artistGridCell{
+  display: inline-block;
+  margin: .4em;
+  max-width:300px; 
+}
+.artistGridCell .artistImgThumb{
+  width: 120px;
+  height: 120px;
+  border-radius:5px;
+  overflow: hidden;
+  text-align: center;
+}
+.artistGridCell .artistImgThumb img{
+  max-height: 100%;
+  margin: 0px auto;
+}
+.artistMain{
+  /*padding-top: 10px;*/
+
+  position: relative;
+}
+.artistsMain{
+  padding: 0 20px;
+}
+.artistMain .heroImage{
+  width: 100%;
+  display: inline-block;
+  background-color: #f4f4f4;
+  height: auto;
+  box-shadow: 0 0 16px rgba(0,0,0,.3) inset;
+}
+.artistMain .heroImage img{
+  max-width: 100%;
+}
+.artistMain .nameWrap{
+  color: #fff;
+  background-color: #000;
+  vertical-align: top;
+  width: 100%;
+  padding: 10px;
+}
+.artistMain ul.social{
+  font-size: 1.6em;
+  display: inline-block;
+  background-color: #FFF;
+  padding: 10px;
+  width: 100%;
+}
+.artistMain ul.social a{
+  color: #000;
+}
+.artistmain ul.social li a:hover{
+  color: #ffcb00; 
+}
+.artistMain .shareThis{
+  font-weight: 100;
+  font-size: 1.4em;
+  font-style: italic;
+  color: #000;
+  background-color: #fff;
+  width: 100%;
+  padding: 10px;
+  border-top:1px solid #000;
+  text-align: center;
+}
+.artistMain .shareThis i{
+  margin: 2px 4px 0 2px;
+}
+.artistStats{
+  display: inline-block;
+  width: 30%;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  z-index: 20;
+  box-shadow: 10px 0 16px rgba(0,0,0,.3);
+}
+.artistStats h1{
+  color: #fff;
+  margin: 5px 0;
+  line-height: 36px;
+}
+.artistStats h2{
+  font-style: italic;
+   margin: 5px 0;
+   font-weight: 500;
+}
+.artistStats h3{
+   margin: 5px 0;
+}
+.artistStats h3 a, .artistStats h3 a:visited{
+  color: #ffcb00;
+}
+.media{
+  display: inline-block;
+  padding: 10px;
+  background-color: #fff;
+  width: 100%;
+}
+.vidThumb:hover, .imgThumb:hover{
+  cursor: pointer;
+}
+.vidThumb i{
+  position: absolute;
+  z-index: 10;
+  left: 0px;
+  top: 0px;
+  color: #fff;
+  padding: 15px 20px;
+  font-size: 30px;
+}
+.vidThumb, .imgThumb{
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  border-radius: 4px;
+  text-align: center;
+  overflow: hidden;
+  margin-right: 5px;
+  margin-top: 5px;
+  float: left;
+}
+.vidThumb img, .imgThumb img{
+  max-height: 100%;
+}
+#artistBg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -20;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  -webkit-filter: blur(4px);
+}

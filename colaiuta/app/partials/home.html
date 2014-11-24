@@ -1,0 +1,31 @@
+<div ng-contoller="homepageController" class="homeWrapper">
+	<iframe width="100%" height="480" src="//www.youtube.com/embed/e6Oz2CQLfKA" frameborder="0" allowfullscreen></iframe>
+
+	<div ng-repeat="feature in features" class="featureHolder">
+	<span item-type="{{feature.type}}" type="{{feature.type}}"></span>
+		<a ng-href="#/features/{{feature.id}}">
+			<div class="featureImg">
+
+				<img ng-src="{{ARTIST_IMG_PATH}}{{feature.img}}">
+			</div>
+			<h3>{{feature.title}}</h3>
+		</a>
+	</div>
+	<div id="featuredProd">{{ARTIST_IMG_PATH}}</div>
+	
+	<div id="storeLocator">
+		<i class="fa fa-map-marker"></i>
+		<h3>Find Vater Near You</h3>
+	</div>
+	<div id="tweets">
+		<i class="fa fa-twitter-square"></i>
+		<p>@vaterdrumsticks tweets go here</p>
+	</div>
+	<div id="insta">
+		<i class="fa fa-instagram"></i>
+		<a ng-href="{{instaLink}}">
+			<img ng-src="{{instaPic}}"/>
+		</a>{{instaText}}
+	</div>
+</div>
+<div id="homeBg" random-bg></div>
