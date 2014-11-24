@@ -1,0 +1,47 @@
+<div ng-controller="ProductCtrl" class="productSingle">
+    <div id="zoom"><img ng-src="//vater.s3.amazonaws.com/products_fullres/Vater_{{product.images[0].name}}.jpg" class="bigImg"></div>
+    <div class="heroImage" hover-zoom><img ng-src="//vater.s3.amazonaws.com/products_fullres/Vater_{{product.images[0].name}}.jpg"></div>
+    <div class="productStats">
+        <div class="nameWrap">
+         <h1>{{product.name}}</h1><br/>
+         <h3>{{product.product_code}}</h3>
+         <!-- <div class='complete-share'>
+             <a class="fb" href="https://www.facebook.com/sharer/sharer.php?u={{trustedFbUrl}}" target="_blank"><i track-share-click='FB_SHARE' class="fa fa-facebook" url='{{trustedFbUrl}}'></i></a>
+
+             <a class="tw" href="https://twitter.com/share?url={{trustedTwUrl}}&text={{twText}}" target="_blank"><i track-share-click='TWITTER_SHARE' class="fa fa-twitter" url='{{trustedTwUrl}}' text='{{twText}}'></i></a>
+
+             <a  class="gp" href="https://plus.google.com/share?url={{trustedGpUrl}}" target="_blank"><i track-share-click='GOOGLE_PLUS_SHARE' class="fa fa-google-plus" url='{{trustedGpUrl}}'></i></a>
+
+             <a class="pn" href="http://www.pinterest.com/pin/create/button?url={{trustedPnUrl}}&description={{pnText}}&media={{trustImage}}" target="_blank"><iclass="fa fa-pinterest" url='{{trustedPnUrl}}'  text='{{pnText}}' image='{{trustImage}}'></i></a>
+        </div>-->
+        </div>
+        <div class="dimensions" ng-if="product.dimensions_length && product.dimensions_diameter">
+            <ul>
+                <li><span class="stat">Length</span><div class="statbox">{{product.dimensions_length}}" | {{toCentimeters(product.dimensions_length)}}cm</div></li>
+                <li><span class="stat">Grip</span><div class="statbox">{{product.dimensions_diameter}}" | {{toCentimeters(product.dimensions_diameter)}}cm</div></li>
+            </ul>
+        </div>
+        <div class="shareLinks">
+            <p>Share This:</p>
+            <ul class="social">
+                <li><i class="fa fa-facebook-square"></i></li>
+                <li><i class="fa fa-instagram"></i></li>
+                <li><i class="fa fa-twitter-square"></i></li>
+                <li><i class="fa fa-youtube-square"></i></li>
+            </ul>
+        </div>
+    </div>
+    <p class="prodDesc" ng-bind-html="product.description">
+    </p>
+    <div class="buyNow">
+    <p>DOWNLOAD HI-RES: <a ng-href="//vater.s3.amazonaws.com/products_fullres/Vater_{{product.images[0].name}}.jpg" target="_blank">JPG</a> / <a ng-href="//vater.s3.amazonaws.com/products_fullres/Vater_{{product.images[0].name}}.tif" target="_blank">TIFF</a></p>
+     <h2>Buy Now</h2>
+    </div>
+    <section class="prodArtists" ng-if='product.artists.length > 0'>
+     <h2>{{product.name}} Artists</h2>
+     <div ng-repeat="artist in product.artists" class="artist"><a ng-href="#/artists/{{artist.id}}"><img ng-if="artist.image" ng-src="{{artist.image}}"> {{artist.first_name}} {{artist.last_name}}</a></div>
+    </section>
+    <p></p>
+    <fb-comments data-href="" data-numposts="5" data-colorscheme="light"></fb-comments>
+</div>
+<div id="homeBg" random-bg></div>

@@ -1,0 +1,14 @@
+<div class="homeWrapper" id="dealerWrap">
+	<h1>Find A Dealer Near You:</h1> 
+	Search: <input ng-model="find">
+	<!--<section id="map" ng-controller="dealerController" >
+ 	 <div  ui-map="myMap" ui-options="mapOptions" class="map-canvas" 
+        ui-event="{'map-click': 'addMarker($event, $params)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }"
+  ></div>
+</section>-->
+	<ui-gmap-google-map center="map.center" zoom="map.zoom">
+		<ui-gmap-marker ng-repeat='location in locations | filter:find' coords="location.coords" idKey="location.id" icon="map.icon" title="location.city"></ui-gmap-marker>
+	</ui-gmap-google-map>
+
+</div>
+<div id="homeBg" random-bg></div>

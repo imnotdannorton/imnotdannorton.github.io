@@ -1,0 +1,34 @@
+<div class="artistMain">
+    <div class="heroImage">
+        <img ng-src="{{artist.images[0].url}}">
+    </div>
+    <div class="artistStats">
+        <div class="nameWrap">
+         <h1>{{artist.first_name}}<br>{{artist.last_name}}</h1>
+         <h2>{{artist.group}}</h2>
+         <h3><a ng-href="#/products/{{artist.products[0].id}}">{{artist.products[0].name}}</a></h3>
+        </div>
+        <div class="media">
+            <div class="vidThumb" ng-repeat="vid in artist.videos">
+                <img ng-src="http://i.ytimg.com/vi/{{vid.url}}/default.jpg">
+                <i class="fa fa-play-circle" toggle-video="{{vid.url}}"></i>
+            </div>
+            <div class="imgThumb" ng-repeat="img in artist.images">
+                <img  ng-src="{{img.url}}" toggle-image="{{img.url}}" ng-click="currentImage($index)">
+            </div>
+        </div>
+        <ul ng-if="social.length > 0" class="social">
+            <li ng-if="socialLinks.facebook"><a ng-href="http://facebook.com/{{socialLinks.facebook}}" target="_blank"><i class="fa fa-facebook-square"></i> /{{socialLinks.facebook}}</a></li>
+            <li ng-if="socialLinks.twitter"><a ng-href="http://twitter.com/{{socialLinks.twitter}}" target="_blank"><i class="fa fa-twitter-square"></i> @{{socialLinks.twitter}}</a></li>
+            <li ng-if="socialLinks.youtube"><a ng-href="http://youtube.com/{{socialLinks.youtube}}" target="_blank"><i class="fa fa-youtube-square"></i> /{{socialLinks.youtube}}</li>
+            <li ng-if="socialLinks.instagram"><a ng-href="http://instagram.com/{{socialLinks.instagram}}" target="_blank"><i class="fa fa-instagram"></i> @{{socialLinks.instagram}}</li>
+            <li ng-if="socialLinks.web"><a ng-href="http://{{socialLinks.web}}" target="_blank"><i class="fa fa-link"></i> {{socialLinks.web}}</a></li>
+
+        </ul>
+        <div class="shareThis">SHARE THIS: <i class="fa fa-facebook-square"></i> <i class="fa fa-twitter-square"></i> <i class="fa fa-tumblr-square"></i></div>
+    </div>
+    
+    <p>{{artist.quote}}</p>
+    <fb-comments data-href="" data-numposts="5" data-colorscheme="light"></fb-comments>
+</div>
+<div id="artistBg" ng-if='currentImage'></div>
