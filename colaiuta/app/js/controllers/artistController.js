@@ -1,7 +1,7 @@
 'use strict';
 
 /* Controllers */
-angular.module('vaterDotcom').controller('artistController', ['$scope', '$rootScope', '$location', '$routeParams', 'artistService', function($scope, $rootScope, $location, $routeParams, artistService) {
+angular.module('vaterDotcom').controller('artistController', ['$scope', '$rootScope', '$location', '$routeParams', 'resourcesService', function($scope, $rootScope, $location, $routeParams, resourcesService) {
   	$scope.artistId = $routeParams.id;
     console.log($location);
     $scope.currentLocation = "";
@@ -9,9 +9,9 @@ angular.module('vaterDotcom').controller('artistController', ['$scope', '$rootSc
     $scope.socialLinks = {};
     console.log($scope.id);
     if(typeof $scope.artistId !== 'undefined'){
-      artistService.fetchArtist($scope.artistId);
+      resourcesService.fetchItem('artist', $scope.artistId);
     }else{
-      artistService.fetchArtists();
+      resourcesService.fetchItem('artists');
     }
     $scope.artistImages = [];
     $scope.currentImage = function(index){
@@ -22,7 +22,7 @@ angular.module('vaterDotcom').controller('artistController', ['$scope', '$rootSc
 
   	//artistService.fetchArtist(1);
   	//console.log(productService.fetchProducts);
-  	$rootScope.$on('artistsSuccess', function(event, data){
+  	$scope.$on('artistsSuccess', function(event, data){
   		console.log(event);
   		$scope.artists = data;
   		console.log($scope.artists);

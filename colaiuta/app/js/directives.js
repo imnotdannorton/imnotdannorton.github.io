@@ -86,31 +86,35 @@ angular.module('vaterDotcom.directives', []).
         //var offsetLeft = event.pageX;
         //offsetLeft = -offsetLeft;
         if(visible == false){
-          $('#zoom').show(); 
+          $(elem).siblings('#zoom').show(); 
           visible = true;
         }
        // $('.bigImg').css('margin-left', offsetLeft); 
         //console.log(-offsetLeft);
        });
        $(elem).on('mousemove', function(event){
-        var panScale = $('.bigImg').width() / $(elem).width();
-        var vertOffset = ($('#zoom').height() - $('.bigImg').height())/2;
+        var panScale = $(elem).siblings('#zoom').find('img').width() / $(elem).width();
+        var vertOffset = ($(elem).siblings('#zoom').height() - $(elem).closest('.bigImg').height())/2;
         var offsetLeft = event.pageX - $(elem).offset().left;
+        var offsetTop = event.pageY - vertOffset;
+
+        $(elem).siblings('#zoom').css({'top': offsetTop});
         if ($(elem).width() - offsetLeft > 180) {
-          $('#zoom').css({'left': offsetLeft+180});
+          $(elem).siblings('#zoom').css({'left': offsetLeft+180});
           offsetLeft = -offsetLeft*panScale;
         }else{
-          $('#zoom').css({'left': offsetLeft-180});
+          $(elem).siblings('#zoom').css({'left': offsetLeft-180});
           offsetLeft = -offsetLeft*panScale;
           offsetLeft += 210;
         }
 
-        $('.bigImg').css({'margin-left': offsetLeft, 'margin-top':vertOffset}); 
+
+        $(elem).siblings('#zoom').find('img').css({'margin-left': offsetLeft, 'margin-top':vertOffset}); 
         //console.log();
        });
        $(elem).on('mouseleave', function(){
         if(visible){
-          $('#zoom').hide(); 
+          $(elem).siblings('#zoom').hide(); 
           visible = false;
         }
        });
