@@ -16,6 +16,8 @@ config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/home', {templateUrl: 'partials/home.html', controller: 'HomepageCtrl'});
   $routeProvider.when('/products', {templateUrl: 'partials/products.html', controller: 'ProductCtrl'});
   $routeProvider.when('/products/:id', {templateUrl: 'partials/products_single.html', controller: 'ProductCtrl'});
+
+  $routeProvider.when('/compare?', {templateUrl: 'partials/products_compare.html', controller: 'CompareCtrl'});
   $routeProvider.when('/artists', {templateUrl: 'partials/artists.html', controller: 'artistController'});
   $routeProvider.when('/artists/:id', {templateUrl: 'partials/artists_single.html', controller: 'artistController'});
   $routeProvider.when('/features', {templateUrl: 'partials/features.html', controller: 'featureController'});

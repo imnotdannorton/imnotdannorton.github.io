@@ -1,7 +1,14 @@
-<div ng-controller="ProductCtrl" class="homeWrapper productsMain">
+<div class="homeWrapper productsMain" ng-class="{'loading':loading}">
 	<h1>PRODUCTS</h1>
 	Find: <input ng-model="find">
 	<hr/>
+	<div class="compareHolder" ng-if="compareItems.length >0">
+		<div class="compareItems" ng-repeat="item in compareItems">
+			<h2>{{item.name}}</h2>
+			<h3 ng-bind-html="product.product_code"></h3>
+		</div><br/>
+		<button><a ng-href="{{compareLink}}">Compare &raquo;</a></button>
+	</div>
 	<div ng-repeat="product in products | filter:find" class="product">
 
 		<div class="imgHolder"><img ng-src="{{imgPath}}{{product.images[0].name}}_Thumb.jpg"></div>
@@ -10,6 +17,7 @@
 			<ul>
 				<li ng-bind-html="product.product_code"></li>
 				<li ng-if="product.dimensions_length && product.dimensions_diameter">{{product.dimensions_length}} | {{product.dimensions_diameter}}</li>
+				<li><span class="compare" ng-click="compareThis(product)">Compare This</span></li>
 				<!-- <li ng-bind-html="product.description" class="blurb">{{product.description}}</li>-->
 			</ul>
 		</div>

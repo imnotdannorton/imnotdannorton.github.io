@@ -2,33 +2,36 @@
 
 /* Controllers */
 
-angular.module('vaterDotcom').controller('ProductCtrl', ['$scope', '$rootScope', '$location', '$routeParams',  'productService', 'artistService', 'PRODUCT_IMAGE_PATH', function($scope, $rootScope, $location, $routeParams, productService, artistService, PRODUCT_IMAGE_PATH) {
-  	//$scope.features = ['WOO', 'HEY NOW', 'WHATS THAT?'];
-  	$scope.prodId = $routeParams.id;
+angular.module('vaterDotcom').controller('ProductCtrl', ['$scope', '$rootScope', '$location', '$routeParams',  'resourcesService', 'PRODUCT_IMAGE_PATH', function($scope, $rootScope, $location, $routeParams, resourcesService, PRODUCT_IMAGE_PATH) {
+  	
+    $scope.prodId = $routeParams.id;
+
+    $scope.compareItems = [];
+    $scope.prodLoading = $rootScope.loading;
     $scope.imgPath = PRODUCT_IMAGE_PATH;
     $scope.imgPathLrg = PRODUCT_IMAGE_PATH + '_fullres';
     $scope.showZoom = false;
+    $scope.compareLink = '/app/#/compare?';
+  
+   
   	if(typeof $scope.prodId !== 'undefined'){
-  		productService.fetchProduct($scope.prodId);
-  	}else{
-  		productService.fetchProducts();
+  		resourcesService.fetchItem('product', $scope.prodId);
+     
+    }else{
+  		resourcesService.fetchItem('products');
+     
   	}
-  	$rootScope.$on('productsSuccess', function(event, data){
-  		$scope.products = data;
-      console.log(data);
-  	});
-  	$rootScope.$on('productSuccess', function(event, data){
-  		$scope.product = data;
-      if ($scope.product.artists.length>0) {
-        $scope.processArtists($scope.product.artists);
-      };
-  	 	console.log(data);
-  	});
-    /*$scope.$watch('product.artists', function(newVal, oldVal){
-      console.log('artists updated');
-      console.log(oldVal);
-      console.log(newVal);
-    }, true);*/
+
+    $scope.$on('productSuccess', function(event, data){
+        $scope.product = data;
+        if ($scope.product.artists.length>0) {
+          $scope.processArtists($scope.product.artists);
+        };
+      });
+    $scope.$on('productsSuccess', function(event, data){
+        $scope.products = data;
+        console.log(data);
+      });
 
     $rootScope.$on('artistSuccess', function(event, data){
       for (var i = 0; i < $scope.product.artists.length; i++) {
@@ -39,10 +42,23 @@ angular.module('vaterDotcom').controller('ProductCtrl', ['$scope', '$rootScope',
         }
       };
     });
+    $scope.$watch('prodLoading', function(newVal, oldVal){
+      console.log('updated: '+newVal);
+      console.log('from: '+oldVal);
+    });
+    // compare products
+    $scope.compareThis = function(product){
+      $scope.compareItems.push(product);
+      var idString = ($scope.compareItems.length == 1) ? 'id'+$scope.compareItems.length+'=' : '&id'+$scope.compareItems.length+'=';
+      $scope.compareLink = $scope.compareLink +idString+product.id;
 
+    }
+    $scope.viewComparison = function(){
+
+    }
     $scope.processArtists = function(array){
      for (var i = 0; i < array.length; i++) {
-       artistService.fetchArtist(array[i].id);
+       artistService.fetchItem('artist', array[i].id);
      };
     }
     $scope.toCentimeters = function(value){
