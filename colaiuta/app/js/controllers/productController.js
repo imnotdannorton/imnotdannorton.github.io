@@ -56,6 +56,16 @@ angular.module('vaterDotcom').controller('ProductCtrl', ['$scope', '$rootScope',
     $scope.viewComparison = function(){
 
     }
+    $scope.removeItem = function(id){
+      console.log(id);
+      console.log($scope.compareItems);
+      $scope.compareItems = $scope.compareItems.splice(id, 1);
+      for (var i = 0; i < $scope.compareItems.length; i++) {
+        $scope.compareThis(compareItems[i]);
+      };
+      console.log( $scope.compareLink);
+      $scope.$apply();
+    }
     $scope.processArtists = function(array){
      for (var i = 0; i < array.length; i++) {
        artistService.fetchItem('artist', array[i].id);

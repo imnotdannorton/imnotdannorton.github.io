@@ -4,9 +4,9 @@
 	<hr/>
 	<div class="compareHolder" ng-if="compareItems.length >0">
 		<div class="compareItems" ng-repeat="item in compareItems">
-			<h2>{{item.name}}</h2>
-			<h3 ng-bind-html="product.product_code"></h3>
-
+			<span class="remove" ng-click="removeItem($index)"><i class="fa fa-times"></i></span>
+			<h2>{{item.name}}</h2><br/>
+			<h3 ng-bind-html="item.product_code"></h3>
 		</div><br/>
 		<button><a ng-href="{{compareLink}}">Compare &raquo;</a></button>
 	</div>
