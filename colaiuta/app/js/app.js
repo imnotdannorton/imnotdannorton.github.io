@@ -8,7 +8,7 @@ angular.module('vaterDotcom', [
   'vaterDotcom.filters',
   'vaterDotcom.directives',
   'vaterDotcom.controllers',
-  'google-maps'.ns()
+  'uiGmapgoogle-maps'
 ]).
 config(['$routeProvider', function($routeProvider) {
   //$routeProvider.when('/view1', {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'});
