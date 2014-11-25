@@ -45,6 +45,12 @@
 }
 .compareItems h2{
   display: inline-block;
+  border-bottom: 1px solid #fff;
+  color: #ffcb00;
+  margin: .3em;
+}
+.compareItems h3{
+  display: inline-block;
   color: #fff;
   margin: .3em;
 }

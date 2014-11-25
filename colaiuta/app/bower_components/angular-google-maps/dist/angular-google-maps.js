@@ -1,123 +1,7 @@
-/*! angular-google-maps 2.0.8 2014-11-16
+/*! angular-google-maps 2.0.9 2014-11-18
  *  AngularJS directives for Google Maps
  *  git: https://github.com/angular-ui/angular-google-maps.git
  */
-(function() {
-  String.prototype.contains = function(value, fromIndex) {
-    return this.indexOf(value, fromIndex) !== -1;
-  };
-
-  String.prototype.flare = function(flare) {
-    if (flare == null) {
-      flare = 'uiGmap';
-    }
-    return flare + this;
-  };
-
-  String.prototype.ns = String.prototype.flare;
-
-}).call(this);
-
-
-/*
-    Author Nick McCready
-    Intersection of Objects if the arrays have something in common each intersecting object will be returned
-    in an new array.
- */
-
-(function() {
-  _.intersectionObjects = function(array1, array2, comparison) {
-    var res;
-    if (comparison == null) {
-      comparison = void 0;
-    }
-    res = _.map(array1, (function(_this) {
-      return function(obj1) {
-        return _.find(array2, function(obj2) {
-          if (comparison != null) {
-            return comparison(obj1, obj2);
-          } else {
-            return _.isEqual(obj1, obj2);
-          }
-        });
-      };
-    })(this));
-    return _.filter(res, function(o) {
-      return o != null;
-    });
-  };
-
-  _.containsObject = _.includeObject = function(obj, target, comparison) {
-    if (comparison == null) {
-      comparison = void 0;
-    }
-    if (obj === null) {
-      return false;
-    }
-    return _.any(obj, (function(_this) {
-      return function(value) {
-        if (comparison != null) {
-          return comparison(value, target);
-        } else {
-          return _.isEqual(value, target);
-        }
-      };
-    })(this));
-  };
-
-  _.differenceObjects = function(array1, array2, comparison) {
-    if (comparison == null) {
-      comparison = void 0;
-    }
-    return _.filter(array1, function(value) {
-      return !_.containsObject(array2, value, comparison);
-    });
-  };
-
-  _.withoutObjects = _.differenceObjects;
-
-  _.indexOfObject = function(array, item, comparison, isSorted) {
-    var i, length;
-    if (array == null) {
-      return -1;
-    }
-    i = 0;
-    length = array.length;
-    if (isSorted) {
-      if (typeof isSorted === "number") {
-        i = (isSorted < 0 ? Math.max(0, length + isSorted) : isSorted);
-      } else {
-        i = _.sortedIndex(array, item);
-        return (array[i] === item ? i : -1);
-      }
-    }
-    while (i < length) {
-      if (comparison != null) {
-        if (comparison(array[i], item)) {
-          return i;
-        }
-      } else {
-        if (_.isEqual(array[i], item)) {
-          return i;
-        }
-      }
-      i++;
-    }
-    return -1;
-  };
-
-  _["extends"] = function(arrayOfObjectsToCombine) {
-    return _.reduce(arrayOfObjectsToCombine, function(combined, toAdd) {
-      return _.extend(combined, toAdd);
-    }, {});
-  };
-
-  _.isNullOrUndefined = function(thing) {
-    return _.isNull(thing || _.isUndefined(thing));
-  };
-
-}).call(this);
-
 
 /*
 !
@@ -126,7 +10,7 @@ The MIT License
 Copyright (c) 2010-2013 Google, Inc. http://angularjs.org
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
+of this software and associated documentation files (the 'Software'), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
@@ -135,7 +19,7 @@ furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in
 all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
@@ -154,26 +38,26 @@ Nicholas McCready - https://twitter.com/nmccready
 (function() {
   angular.module('uiGmapgoogle-maps.providers', []);
 
-  angular.module("uiGmapgoogle-maps.wrapped", []);
+  angular.module('uiGmapgoogle-maps.wrapped', []);
 
-  angular.module("uiGmapgoogle-maps.extensions", ["uiGmapgoogle-maps.wrapped", 'uiGmapgoogle-maps.providers']);
+  angular.module('uiGmapgoogle-maps.extensions', ['uiGmapgoogle-maps.wrapped', 'uiGmapgoogle-maps.providers']);
 
-  angular.module("uiGmapgoogle-maps.directives.api.utils", ['uiGmapgoogle-maps.extensions']);
+  angular.module('uiGmapgoogle-maps.directives.api.utils', ['uiGmapgoogle-maps.extensions']);
 
-  angular.module("uiGmapgoogle-maps.directives.api.managers", []);
+  angular.module('uiGmapgoogle-maps.directives.api.managers', []);
 
-  angular.module("uiGmapgoogle-maps.directives.api.options", ["uiGmapgoogle-maps.directives.api.utils"]);
+  angular.module('uiGmapgoogle-maps.directives.api.options', ['uiGmapgoogle-maps.directives.api.utils']);
 
-  angular.module("uiGmapgoogle-maps.directives.api.options.builders", []);
+  angular.module('uiGmapgoogle-maps.directives.api.options.builders', []);
 
-  angular.module("uiGmapgoogle-maps.directives.api.models.child", ["uiGmapgoogle-maps.directives.api.utils", "uiGmapgoogle-maps.directives.api.options", "uiGmapgoogle-maps.directives.api.options.builders"]);
+  angular.module('uiGmapgoogle-maps.directives.api.models.child', ['uiGmapgoogle-maps.directives.api.utils', 'uiGmapgoogle-maps.directives.api.options', 'uiGmapgoogle-maps.directives.api.options.builders']);
 
-  angular.module("uiGmapgoogle-maps.directives.api.models.parent", ["uiGmapgoogle-maps.directives.api.managers", "uiGmapgoogle-maps.directives.api.models.child", 'uiGmapgoogle-maps.providers']);
+  angular.module('uiGmapgoogle-maps.directives.api.models.parent', ['uiGmapgoogle-maps.directives.api.managers', 'uiGmapgoogle-maps.directives.api.models.child', 'uiGmapgoogle-maps.providers']);
 
-  angular.module("uiGmapgoogle-maps.directives.api", ["uiGmapgoogle-maps.directives.api.models.parent"]);
+  angular.module('uiGmapgoogle-maps.directives.api', ['uiGmapgoogle-maps.directives.api.models.parent']);
 
-  angular.module("uiGmapgoogle-maps", ["uiGmapgoogle-maps.directives.api", 'uiGmapgoogle-maps.providers']).factory("uiGmapdebounce", [
-    "$timeout", function($timeout) {
+  angular.module('uiGmapgoogle-maps', ['uiGmapgoogle-maps.directives.api', 'uiGmapgoogle-maps.providers']).factory('uiGmapdebounce', [
+    '$timeout', function($timeout) {
       return function(fn) {
         var nthCall;
         nthCall = 0;
@@ -198,8 +82,8 @@ Nicholas McCready - https://twitter.com/nmccready
 }).call(this);
 
 (function() {
-  angular.module('google-maps.providers'.ns()).factory('MapScriptLoader'.ns(), [
-    '$q', 'uuid'.ns(), function($q, uuid) {
+  angular.module('uiGmapgoogle-maps.providers').factory('uiGmapMapScriptLoader', [
+    '$q', 'uiGmapuuid', function($q, uuid) {
       var getScriptUrl, scriptId;
       scriptId = void 0;
       getScriptUrl = function(options) {
@@ -239,7 +123,7 @@ Nicholas McCready - https://twitter.com/nmccready
         }
       };
     }
-  ]).provider('GoogleMapApi'.ns(), function() {
+  ]).provider('uiGmapGoogleMapApi', function() {
     this.options = {
       china: false,
       v: '3.17',
@@ -251,7 +135,7 @@ Nicholas McCready - https://twitter.com/nmccready
       angular.extend(this.options, options);
     };
     this.$get = [
-      'MapScriptLoader'.ns(), (function(_this) {
+      'uiGmapMapScriptLoader', (function(_this) {
         return function(loader) {
           return loader.load(_this.options);
         };
@@ -263,7 +147,7 @@ Nicholas McCready - https://twitter.com/nmccready
 }).call(this);
 
 (function() {
-  angular.module("google-maps.extensions".ns()).service('ExtendGWin'.ns(), function() {
+  angular.module('uiGmapgoogle-maps.extensions').service('uiGmapExtendGWin', function() {
     return {
       init: _.once(function() {
         if (!(google || (typeof google !== "undefined" && google !== null ? google.maps : void 0) || (google.maps.InfoWindow != null))) {
@@ -327,16 +211,16 @@ Nicholas McCready - https://twitter.com/nmccready
         if (window.MarkerLabel_) {
           window.MarkerLabel_.prototype.setContent = function() {
             var content;
-            content = this.marker_.get("labelContent");
+            content = this.marker_.get('labelContent');
             if (!content || _.isEqual(this.oldContent, content)) {
               return;
             }
-            if (typeof (content != null ? content.nodeType : void 0) === "undefined") {
+            if (typeof (content != null ? content.nodeType : void 0) === 'undefined') {
               this.labelDiv_.innerHTML = content;
               this.eventDiv_.innerHTML = this.labelDiv_.innerHTML;
               this.oldContent = content;
             } else {
-              this.labelDiv_.innerHTML = "";
+              this.labelDiv_.innerHTML = '';
               this.labelDiv_.appendChild(content);
               content = content.cloneNode(true);
               this.eventDiv_.appendChild(content);
@@ -369,6 +253,116 @@ Nicholas McCready - https://twitter.com/nmccready
           };
         }
       })
+    };
+  });
+
+}).call(this);
+
+(function() {
+  angular.module('uiGmapgoogle-maps.extensions').service('uiGmapLodash', function() {
+
+    /*
+        Author Nick McCready
+        Intersection of Objects if the arrays have something in common each intersecting object will be returned
+        in an new array.
+     */
+    this.intersectionObjects = function(array1, array2, comparison) {
+      var res;
+      if (comparison == null) {
+        comparison = void 0;
+      }
+      res = _.map(array1, (function(_this) {
+        return function(obj1) {
+          return _.find(array2, function(obj2) {
+            if (comparison != null) {
+              return comparison(obj1, obj2);
+            } else {
+              return _.isEqual(obj1, obj2);
+            }
+          });
+        };
+      })(this));
+      return _.filter(res, function(o) {
+        return o != null;
+      });
+    };
+    this.containsObject = _.includeObject = function(obj, target, comparison) {
+      if (comparison == null) {
+        comparison = void 0;
+      }
+      if (obj === null) {
+        return false;
+      }
+      return _.any(obj, (function(_this) {
+        return function(value) {
+          if (comparison != null) {
+            return comparison(value, target);
+          } else {
+            return _.isEqual(value, target);
+          }
+        };
+      })(this));
+    };
+    this.differenceObjects = function(array1, array2, comparison) {
+      if (comparison == null) {
+        comparison = void 0;
+      }
+      return _.filter(array1, (function(_this) {
+        return function(value) {
+          return !_this.containsObject(array2, value, comparison);
+        };
+      })(this));
+    };
+    this.withoutObjects = this.differenceObjects;
+    this.indexOfObject = function(array, item, comparison, isSorted) {
+      var i, length;
+      if (array == null) {
+        return -1;
+      }
+      i = 0;
+      length = array.length;
+      if (isSorted) {
+        if (typeof isSorted === "number") {
+          i = (isSorted < 0 ? Math.max(0, length + isSorted) : isSorted);
+        } else {
+          i = _.sortedIndex(array, item);
+          return (array[i] === item ? i : -1);
+        }
+      }
+      while (i < length) {
+        if (comparison != null) {
+          if (comparison(array[i], item)) {
+            return i;
+          }
+        } else {
+          if (_.isEqual(array[i], item)) {
+            return i;
+          }
+        }
+        i++;
+      }
+      return -1;
+    };
+    this["extends"] = function(arrayOfObjectsToCombine) {
+      return _.reduce(arrayOfObjectsToCombine, function(combined, toAdd) {
+        return _.extend(combined, toAdd);
+      }, {});
+    };
+    this.isNullOrUndefined = function(thing) {
+      return _.isNull(thing || _.isUndefined(thing));
+    };
+    return this;
+  });
+
+}).call(this);
+
+(function() {
+  angular.module('uiGmapgoogle-maps.extensions').factory('uiGmapString', function() {
+    return function(str) {
+      this.contains = function(value, fromIndex) {
+        return str.indexOf(value, fromIndex) !== -1;
+      };
+      return this;
     };
   });
 
@@ -507,7 +501,7 @@ Nicholas McCready - https://twitter.com/nmccready
 (function() {
   var __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
-  angular.module("google-maps.directives.api.utils".ns()).factory("BaseObject".ns(), function() {
+  angular.module('uiGmapgoogle-maps.directives.api.utils').factory('uiGmapBaseObject', function() {
     var BaseObject, baseObjectKeywords;
     baseObjectKeywords = ['extended', 'included'];
     BaseObject = (function() {
@@ -558,7 +552,7 @@ Nicholas McCready - https://twitter.com/nmccready
  */
 
 (function() {
-  angular.module("google-maps.directives.api.utils".ns()).factory("ChildEvents".ns(), function() {
+  angular.module('uiGmapgoogle-maps.directives.api.utils').factory('uiGmapChildEvents', function() {
     return {
       onChildCreation: function(child) {}
     };
@@ -567,7 +561,7 @@ Nicholas McCready - https://twitter.com/nmccready
 }).call(this);
 
 (function() {
-  angular.module("google-maps.directives.api.utils".ns()).service("CtrlHandle".ns(), [
+  angular.module('uiGmapgoogle-maps.directives.api.utils').service('uiGmapCtrlHandle', [
     '$q', function($q) {
       var CtrlHandle;
       return CtrlHandle = {
@@ -638,8 +632,8 @@ Nicholas McCready - https://twitter.com/nmccready
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  angular.module("google-maps.directives.api.utils".ns()).factory("FitHelper".ns(), [
-    "BaseObject".ns(), "Logger".ns(), "_async".ns(), function(BaseObject, $log, _async) {
+  angular.module('uiGmapgoogle-maps.directives.api.utils').factory('uiGmapFitHelper', [
+    'uiGmapBaseObject', 'uiGmapLogger', 'uiGmap_async', function(BaseObject, $log, _async) {
       var FitHelper;
       return FitHelper = (function(_super) {
         __extends(FitHelper, _super);
@@ -679,13 +673,13 @@ Nicholas McCready - https://twitter.com/nmccready
 }).call(this);
 
 (function() {
-  angular.module("google-maps.directives.api.utils".ns()).service("GmapUtil".ns(), [
-    "Logger".ns(), "$compile", function(Logger, $compile) {
+  angular.module('uiGmapgoogle-maps.directives.api.utils').service('uiGmapGmapUtil', [
+    'uiGmapLogger', '$compile', function(Logger, $compile) {
       var getCoords, getLatitude, getLongitude, validateCoords;
       getLatitude = function(value) {
         if (Array.isArray(value) && value.length === 2) {
           return value[1];
-        } else if (angular.isDefined(value.type) && value.type === "Point") {
+        } else if (angular.isDefined(value.type) && value.type === 'Point') {
           return value.coordinates[1];
         } else {
           return value.latitude;
@@ -694,7 +688,7 @@ Nicholas McCready - https://twitter.com/nmccready
       getLongitude = function(value) {
         if (Array.isArray(value) && value.length === 2) {
           return value[0];
-        } else if (angular.isDefined(value.type) && value.type === "Point") {
+        } else if (angular.isDefined(value.type) && value.type === 'Point') {
           return value.coordinates[0];
         } else {
           return value.longitude;
@@ -706,7 +700,7 @@ Nicholas McCready - https://twitter.com/nmccready
         }
         if (Array.isArray(value) && value.length === 2) {
           return new google.maps.LatLng(value[1], value[0]);
-        } else if (angular.isDefined(value.type) && value.type === "Point") {
+        } else if (angular.isDefined(value.type) && value.type === 'Point') {
           return new google.maps.LatLng(value.coordinates[1], value.coordinates[0]);
         } else {
           return new google.maps.LatLng(value.latitude, value.longitude);
@@ -721,7 +715,7 @@ Nicholas McCready - https://twitter.com/nmccready
             return true;
           }
         } else if ((coords != null) && (coords != null ? coords.type : void 0)) {
-          if (coords.type === "Point" && _.isArray(coords.coordinates) && coords.coordinates.length === 2) {
+          if (coords.type === 'Point' && _.isArray(coords.coordinates) && coords.coordinates.length === 2) {
             return true;
           }
         }
@@ -738,7 +732,7 @@ Nicholas McCready - https://twitter.com/nmccready
           if (Array.isArray(prevValue) && prevValue.length === 2) {
             prevValue[1] = newLatLon.lat();
             prevValue[0] = newLatLon.lng();
-          } else if (angular.isDefined(prevValue.type) && prevValue.type === "Point") {
+          } else if (angular.isDefined(prevValue.type) && prevValue.type === 'Point') {
             prevValue.coordinates[1] = newLatLon.lat();
             prevValue.coordinates[0] = newLatLon.lng();
           } else {
@@ -779,9 +773,9 @@ Nicholas McCready - https://twitter.com/nmccready
             return options;
           } else {
             if (!defaults) {
-              Logger.error("infoWindow defaults not defined");
+              Logger.error('infoWindow defaults not defined');
               if (!content) {
-                return Logger.error("infoWindow content not defined");
+                return Logger.error('infoWindow content not defined');
               }
             } else {
               return defaults;
@@ -794,7 +788,7 @@ Nicholas McCready - https://twitter.com/nmccready
             ret = defaults.content;
           } else {
             if ($compile != null) {
-              content = content.replace(/^\s+|\s+$/g, "");
+              content = content.replace(/^\s+|\s+$/g, '');
               parsed = content === '' ? '' : $compile(content)(scope);
               if (parsed.length > 0) {
                 ret = parsed[0];
@@ -807,7 +801,7 @@ Nicholas McCready - https://twitter.com/nmccready
         },
         defaultDelay: 50,
         isTrue: function(val) {
-          return angular.isDefined(val) && val !== null && val === true || val === "1" || val === "y" || val === "true";
+          return angular.isDefined(val) && val !== null && val === true || val === '1' || val === 'y' || val === 'true';
         },
         isFalse: function(value) {
           return ['false', 'FALSE', 0, 'n', 'N', 'no', 'NO'].indexOf(value) !== -1;
@@ -825,7 +819,7 @@ Nicholas McCready - https://twitter.com/nmccready
               return false;
             }
             while (i < path.length) {
-              if (!((angular.isDefined(path[i].latitude) && angular.isDefined(path[i].longitude)) || (typeof path[i].lat === "function" && typeof path[i].lng === "function"))) {
+              if (!((angular.isDefined(path[i].latitude) && angular.isDefined(path[i].longitude)) || (typeof path[i].lat === 'function' && typeof path[i].lng === 'function'))) {
                 return false;
               }
               i++;
@@ -835,12 +829,12 @@ Nicholas McCready - https://twitter.com/nmccready
             if (angular.isUndefined(path.coordinates)) {
               return false;
             }
-            if (path.type === "Polygon") {
+            if (path.type === 'Polygon') {
               if (path.coordinates[0].length < 4) {
                 return false;
               }
               array = path.coordinates[0];
-            } else if (path.type === "MultiPolygon") {
+            } else if (path.type === 'MultiPolygon') {
               trackMaxVertices = {
                 max: 0,
                 index: 0
@@ -856,7 +850,7 @@ Nicholas McCready - https://twitter.com/nmccready
               if (array.length < 4) {
                 return false;
               }
-            } else if (path.type === "LineString") {
+            } else if (path.type === 'LineString') {
               if (path.coordinates.length < 2) {
                 return false;
               }
@@ -882,7 +876,7 @@ Nicholas McCready - https://twitter.com/nmccready
               latlng;
               if (angular.isDefined(path[i].latitude) && angular.isDefined(path[i].longitude)) {
                 latlng = new google.maps.LatLng(path[i].latitude, path[i].longitude);
-              } else if (typeof path[i].lat === "function" && typeof path[i].lng === "function") {
+              } else if (typeof path[i].lat === 'function' && typeof path[i].lng === 'function') {
                 latlng = path[i];
               }
               result.push(latlng);
@@ -890,9 +884,9 @@ Nicholas McCready - https://twitter.com/nmccready
             }
           } else {
             array;
-            if (path.type === "Polygon") {
+            if (path.type === 'Polygon') {
               array = path.coordinates[0];
-            } else if (path.type === "MultiPolygon") {
+            } else if (path.type === 'MultiPolygon') {
               trackMaxVertices = {
                 max: 0,
                 index: 0
@@ -904,7 +898,7 @@ Nicholas McCready - https://twitter.com/nmccready
                 }
               }, trackMaxVertices);
               array = path.coordinates[trackMaxVertices.index][0];
-            } else if (path.type === "LineString") {
+            } else if (path.type === 'LineString') {
               array = path.coordinates;
             }
             while (i < array.length) {
@@ -927,7 +921,7 @@ Nicholas McCready - https://twitter.com/nmccready
         getPath: function(object, key) {
           var obj;
           obj = object;
-          _.each(key.split("."), function(value) {
+          _.each(key.split('.'), function(value) {
             if (obj) {
               return obj = obj[value];
             }
@@ -955,7 +949,7 @@ Nicholas McCready - https://twitter.com/nmccready
 }).call(this);
 
 (function() {
-  angular.module("google-maps.directives.api.utils".ns()).service("IsReady".ns(), [
+  angular.module('uiGmapgoogle-maps.directives.api.utils').service('uiGmapIsReady', [
     '$q', '$timeout', function($q, $timeout) {
       var ctr, promises, proms;
       ctr = 0;
@@ -1093,8 +1087,8 @@ Nicholas McCready - https://twitter.com/nmccready
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  angular.module("google-maps.directives.api.utils".ns()).factory("ModelKey".ns(), [
-    "BaseObject".ns(), "GmapUtil".ns(), function(BaseObject, GmapUtil) {
+  angular.module('uiGmapgoogle-maps.directives.api.utils').factory('uiGmapModelKey', [
+    'uiGmapBaseObject', 'uiGmapGmapUtil', function(BaseObject, GmapUtil) {
       var ModelKey;
       return ModelKey = (function(_super) {
         __extends(ModelKey, _super);
@@ -1106,7 +1100,7 @@ Nicholas McCready - https://twitter.com/nmccready
           this.setIdKey = __bind(this.setIdKey, this);
           this.modelKeyComparison = __bind(this.modelKeyComparison, this);
           ModelKey.__super__.constructor.call(this);
-          this.defaultIdKey = "id";
+          this.defaultIdKey = 'id';
           this.idKey = void 0;
         }
 
@@ -1125,7 +1119,7 @@ Nicholas McCready - https://twitter.com/nmccready
           var scope;
           scope = this.scope.coords != null ? this.scope : this.parentScope;
           if (scope == null) {
-            throw "No scope or parentScope set!";
+            throw 'No scope or parentScope set!';
           }
           return GmapUtil.equalCoords(this.evalModelHandle(model1, scope.coords), this.evalModelHandle(model2, scope.coords));
         };
@@ -1198,8 +1192,8 @@ Nicholas McCready - https://twitter.com/nmccready
 }).call(this);
 
 (function() {
-  angular.module("google-maps.directives.api.utils".ns()).factory("ModelsWatcher".ns(), [
-    "Logger".ns(), "_async".ns(), function(Logger, _async) {
+  angular.module('uiGmapgoogle-maps.directives.api.utils').factory('uiGmapModelsWatcher', [
+    'uiGmapLogger', 'uiGmap_async', function(Logger, _async) {
       return {
         figureOutState: function(idKey, scope, childObjects, comparison, callBack) {
           var adds, mappedScopeModelIds, removals, updates;
@@ -1223,18 +1217,18 @@ Nicholas McCready - https://twitter.com/nmccready
                 }
               }
             } else {
-              return Logger.error(" id missing for model " + (m.toString()) + ",\ncan not use do comparison/insertion");
+              return Logger.error(' id missing for model #{m.toString()},\ncan not use do comparison/insertion');
             }
           }).then((function(_this) {
             return function() {
               return _async.each(childObjects.values(), function(c) {
                 var id;
                 if (c == null) {
-                  Logger.error("child undefined in ModelsWatcher.");
+                  Logger.error('child undefined in ModelsWatcher.');
                   return;
                 }
                 if (c.model == null) {
-                  Logger.error("child.model undefined in ModelsWatcher.");
+                  Logger.error('child.model undefined in ModelsWatcher.');
                   return;
                 }
                 id = c.model[idKey];
@@ -1726,8 +1720,8 @@ Nicholas McCready - https://twitter.com/nmccready
 }).call(this);
 
 (function() {
-  angular.module("google-maps".ns()).factory("add-events".ns(), [
-    "$timeout", function($timeout) {
+  angular.module('uiGmapgoogle-maps').factory('uiGmapadd-events', [
+    '$timeout', function($timeout) {
       var addEvent, addEvents;
       addEvent = function(target, eventName, handler) {
         return google.maps.event.addListener(target, eventName, function() {
@@ -1758,8 +1752,8 @@ Nicholas McCready - https://twitter.com/nmccready
 }).call(this);
 
 (function() {
-  angular.module("google-maps".ns()).factory("array-sync".ns(), [
-    "add-events".ns(), function(mapEvents) {
+  angular.module('uiGmapgoogle-maps').factory('uiGmaparray-sync', [
+    'uiGmapadd-events', function(mapEvents) {
       return function(mapArray, scope, pathEval, pathChangedFn) {
         var geojsonArray, geojsonHandlers, geojsonWatcher, isSetFromScope, legacyHandlers, legacyWatcher, mapArrayListener, scopePath, watchListener;
         isSetFromScope = false;
@@ -1808,9 +1802,9 @@ Nicholas McCready - https://twitter.com/nmccready
             }
           };
           geojsonArray;
-          if (scopePath.type === "Polygon") {
+          if (scopePath.type === 'Polygon') {
             geojsonArray = scopePath.coordinates[0];
-          } else if (scopePath.type === "LineString") {
+          } else if (scopePath.type === 'LineString') {
             geojsonArray = scopePath.coordinates;
           }
           geojsonHandlers = {
@@ -1866,7 +1860,7 @@ Nicholas McCready - https://twitter.com/nmccready
             while (i < l) {
               oldValue = oldArray.getAt(i);
               newValue = newPath[i];
-              if (typeof newValue.equals === "function") {
+              if (typeof newValue.equals === 'function') {
                 if (!newValue.equals(oldValue)) {
                   oldArray.setAt(i, newValue);
                   changed = true;
@@ -1881,7 +1875,7 @@ Nicholas McCready - https://twitter.com/nmccready
             }
             while (i < newLength) {
               newValue = newPath[i];
-              if (typeof newValue.lat === "function" && typeof newValue.lng === "function") {
+              if (typeof newValue.lat === 'function' && typeof newValue.lng === 'function') {
                 oldArray.push(newValue);
               } else {
                 oldArray.push(new google.maps.LatLng(newValue.latitude, newValue.longitude));
@@ -1907,9 +1901,9 @@ Nicholas McCready - https://twitter.com/nmccready
           changed = false;
           if (newPath) {
             array;
-            if (scopePath.type === "Polygon") {
+            if (scopePath.type === 'Polygon') {
               array = newPath.coordinates[0];
-            } else if (scopePath.type === "LineString") {
+            } else if (scopePath.type === 'LineString') {
               array = newPath.coordinates;
             }
             i = 0;
@@ -1992,8 +1986,8 @@ Nicholas McCready - https://twitter.com/nmccready
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  angular.module("google-maps.directives.api.options.builders".ns()).service("CommonOptionsBuilder".ns(), [
-    "BaseObject".ns(), "Logger".ns(), function(BaseObject, $log) {
+  angular.module('uiGmapgoogle-maps.directives.api.options.builders').service('uiGmapCommonOptionsBuilder', [
+    'uiGmapBaseObject', 'uiGmapLogger', function(BaseObject, $log) {
       var CommonOptionsBuilder;
       return CommonOptionsBuilder = (function(_super) {
         __extends(CommonOptionsBuilder, _super);
@@ -2020,11 +2014,11 @@ Nicholas McCready - https://twitter.com/nmccready
             forEachOpts = {};
           }
           if (!this.scope) {
-            $log.error("this.scope not defined in CommonOptionsBuilder can not buildOpts");
+            $log.error('this.scope not defined in CommonOptionsBuilder can not buildOpts');
             return;
           }
           if (!this.map) {
-            $log.error("this.map not defined in CommonOptionsBuilder can not buildOpts");
+            $log.error('this.map not defined in CommonOptionsBuilder can not buildOpts');
             return;
           }
           hasModel = _(this.scope).chain().keys().contains('model').value();
@@ -2087,8 +2081,8 @@ Nicholas McCready - https://twitter.com/nmccready
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  angular.module("google-maps.directives.api.options.builders".ns()).factory("PolylineOptionsBuilder".ns(), [
-    "CommonOptionsBuilder".ns(), function(CommonOptionsBuilder) {
+  angular.module('uiGmapgoogle-maps.directives.api.options.builders').factory('uiGmapPolylineOptionsBuilder', [
+    'uiGmapCommonOptionsBuilder', function(CommonOptionsBuilder) {
       var PolylineOptionsBuilder;
       return PolylineOptionsBuilder = (function(_super) {
         __extends(PolylineOptionsBuilder, _super);
@@ -2109,8 +2103,8 @@ Nicholas McCready - https://twitter.com/nmccready
 
       })(CommonOptionsBuilder);
     }
-  ]).factory("ShapeOptionsBuilder".ns(), [
-    "CommonOptionsBuilder".ns(), function(CommonOptionsBuilder) {
+  ]).factory('uiGmapShapeOptionsBuilder', [
+    'uiGmapCommonOptionsBuilder', function(CommonOptionsBuilder) {
       var ShapeOptionsBuilder;
       return ShapeOptionsBuilder = (function(_super) {
         __extends(ShapeOptionsBuilder, _super);
@@ -2132,8 +2126,8 @@ Nicholas McCready - https://twitter.com/nmccready
 
       })(CommonOptionsBuilder);
     }
-  ]).factory("PolygonOptionsBuilder".ns(), [
-    "ShapeOptionsBuilder".ns(), function(ShapeOptionsBuilder) {
+  ]).factory('uiGmapPolygonOptionsBuilder', [
+    'uiGmapShapeOptionsBuilder', function(ShapeOptionsBuilder) {
       var PolygonOptionsBuilder;
       return PolygonOptionsBuilder = (function(_super) {
         __extends(PolygonOptionsBuilder, _super);
@@ -2154,8 +2148,8 @@ Nicholas McCready - https://twitter.com/nmccready
 
       })(ShapeOptionsBuilder);
     }
-  ]).factory("RectangleOptionsBuilder".ns(), [
-    "ShapeOptionsBuilder".ns(), function(ShapeOptionsBuilder) {
+  ]).factory('uiGmapRectangleOptionsBuilder', [
+    'uiGmapShapeOptionsBuilder', function(ShapeOptionsBuilder) {
       var RectangleOptionsBuilder;
       return RectangleOptionsBuilder = (function(_super) {
         __extends(RectangleOptionsBuilder, _super);
@@ -2174,8 +2168,8 @@ Nicholas McCready - https://twitter.com/nmccready
 
       })(ShapeOptionsBuilder);
     }
-  ]).factory("CircleOptionsBuilder".ns(), [
-    "ShapeOptionsBuilder".ns(), function(ShapeOptionsBuilder) {
+  ]).factory('uiGmapCircleOptionsBuilder', [
+    'uiGmapShapeOptionsBuilder', function(ShapeOptionsBuilder) {
       var CircleOptionsBuilder;
       return CircleOptionsBuilder = (function(_super) {
         __extends(CircleOptionsBuilder, _super);
@@ -3593,8 +3587,8 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  angular.module("google-maps.directives.api.models.parent".ns()).factory("MapTypeParentModel".ns(), [
-    "BaseObject".ns(), "Logger".ns(), '$timeout', function(BaseObject, Logger, $timeout) {
+  angular.module('uiGmapgoogle-maps.directives.api.models.parent').factory('uiGmapMapTypeParentModel', [
+    'uiGmapBaseObject', 'uiGmapLogger', function(BaseObject, Logger) {
       var MapTypeParentModel;
       MapTypeParentModel = (function(_super) {
         __extends(MapTypeParentModel, _super);
@@ -3610,7 +3604,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
           this.refreshMapType = __bind(this.refreshMapType, this);
           this.createMapType = __bind(this.createMapType, this);
           if (this.attrs.options == null) {
-            this.$log.info("options attribute for the map-type directive is mandatory. Map type creation aborted!!");
+            this.$log.info('options attribute for the map-type directive is mandatory. Map type creation aborted!!');
             return;
           }
           this.id = this.gMap.overlayMapTypesCount = this.gMap.overlayMapTypesCount + 1 || 0;
@@ -3622,7 +3616,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
           if (this.doShow && (this.gMap != null)) {
             this.showOverlay();
           }
-          this.scope.$watch("show", (function(_this) {
+          this.scope.$watch('show', (function(_this) {
             return function(newValue, oldValue) {
               if (newValue !== oldValue) {
                 _this.doShow = newValue;
@@ -3634,7 +3628,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
               }
             };
           })(this), true);
-          this.scope.$watch("options", (function(_this) {
+          this.scope.$watch('options', (function(_this) {
             return function(newValue, oldValue) {
               if (!_.isEqual(newValue, oldValue)) {
                 return _this.refreshMapType();
@@ -3642,7 +3636,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
             };
           })(this), true);
           if (angular.isDefined(this.attrs.refresh)) {
-            this.scope.$watch("refresh", (function(_this) {
+            this.scope.$watch('refresh', (function(_this) {
               return function(newValue, oldValue) {
                 if (!_.isEqual(newValue, oldValue)) {
                   return _this.refreshMapType();
@@ -3650,7 +3644,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
               };
             })(this), true);
           }
-          this.scope.$on("$destroy", (function(_this) {
+          this.scope.$on('$destroy', (function(_this) {
             return function() {
               _this.hideOverlay();
               return _this.mapType = null;
@@ -3664,7 +3658,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
           } else if (this.scope.options.getTileUrl != null) {
             this.mapType = new google.maps.ImageMapType(this.scope.options);
           } else {
-            this.$log.info("options should provide either getTile or getTileUrl methods. Map type creation aborted!!");
+            this.$log.info('options should provide either getTile or getTileUrl methods. Map type creation aborted!!');
             return;
           }
           if (this.attrs.id && this.scope.id) {
@@ -4243,8 +4237,8 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  angular.module("google-maps.directives.api.models.parent".ns()).factory("RectangleParentModel".ns(), [
-    "Logger".ns(), "GmapUtil".ns(), "EventsHelper".ns(), "RectangleOptionsBuilder".ns(), function($log, GmapUtil, EventsHelper, Builder) {
+  angular.module('uiGmapgoogle-maps.directives.api.models.parent').factory('uiGmapRectangleParentModel', [
+    'uiGmapLogger', 'uiGmapGmapUtil', 'uiGmapEventsHelper', 'uiGmapRectangleOptionsBuilder', function($log, GmapUtil, EventsHelper, Builder) {
       var RectangleParentModel;
       return RectangleParentModel = (function(_super) {
         __extends(RectangleParentModel, _super);
@@ -4319,14 +4313,14 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
             return function() {
               fit();
               _this.removeEvents(myListeners);
-              myListeners.push(google.maps.event.addListener(rectangle, "dragstart", function() {
+              myListeners.push(google.maps.event.addListener(rectangle, 'dragstart', function() {
                 return dragging = true;
               }));
-              myListeners.push(google.maps.event.addListener(rectangle, "dragend", function() {
+              myListeners.push(google.maps.event.addListener(rectangle, 'dragend', function() {
                 dragging = false;
                 return updateBounds();
               }));
-              return myListeners.push(google.maps.event.addListener(rectangle, "bounds_changed", function() {
+              return myListeners.push(google.maps.event.addListener(rectangle, 'bounds_changed', function() {
                 if (dragging) {
                   return;
                 }
@@ -4346,7 +4340,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
           if (bounds != null) {
             init();
           }
-          scope.$watch("bounds", (function(newValue, oldValue) {
+          scope.$watch('bounds', (function(newValue, oldValue) {
             var isNew;
             if (_.isEqual(newValue, oldValue) && (bounds != null) || dragging) {
               return;
@@ -4381,7 +4375,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
           this.watchProps(this.props);
           if (attrs.events != null) {
             listeners = this.setEvents(rectangle, scope, scope);
-            scope.$watch("events", (function(_this) {
+            scope.$watch('events', (function(_this) {
               return function(newValue, oldValue) {
                 if (!_.isEqual(newValue, oldValue)) {
                   if (listeners != null) {
@@ -4392,7 +4386,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
               };
             })(this));
           }
-          scope.$on("$destroy", (function(_this) {
+          scope.$on('$destroy', (function(_this) {
             return function() {
               return clear();
             };
@@ -4413,8 +4407,8 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  angular.module("google-maps.directives.api.models.parent".ns()).factory("SearchBoxParentModel".ns(), [
-    "BaseObject".ns(), "Logger".ns(), "EventsHelper".ns(), '$timeout', '$http', '$templateCache', function(BaseObject, Logger, EventsHelper, $timeout, $http, $templateCache) {
+  angular.module('uiGmapgoogle-maps.directives.api.models.parent').factory('uiGmapSearchBoxParentModel', [
+    'uiGmapBaseObject', 'uiGmapLogger', 'uiGmapEventsHelper', '$timeout', '$http', '$templateCache', function(BaseObject, Logger, EventsHelper, $timeout, $http, $templateCache) {
       var SearchBoxParentModel;
       SearchBoxParentModel = (function(_super) {
         __extends(SearchBoxParentModel, _super);
@@ -4437,7 +4431,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
           this.addAsMapControl = __bind(this.addAsMapControl, this);
           this.init = __bind(this.init, this);
           if (this.attrs.template == null) {
-            this.$log.error("template attribute for the search-box directive is mandatory. Places Search Box creation aborted!!");
+            this.$log.error('template attribute for the search-box directive is mandatory. Places Search Box creation aborted!!');
             return;
           }
           controlDiv = angular.element('<div></div>');
@@ -4460,7 +4454,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
           })(this));
           this.listeners = this.setEvents(this.searchBox, this.scope, this.scope);
           this.$log.info(this);
-          this.scope.$watch("options", (function(_this) {
+          this.scope.$watch('options', (function(_this) {
             return function(newValue, oldValue) {
               if (angular.isObject(newValue)) {
                 if (newValue.bounds != null) {
@@ -4469,7 +4463,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
               }
             };
           })(this), true);
-          return this.scope.$on("$destroy", (function(_this) {
+          return this.scope.$on('$destroy', (function(_this) {
             return function() {
               return _this.searchBox = null;
             };
@@ -4491,7 +4485,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
 
         SearchBoxParentModel.prototype.setBounds = function(bounds) {
           if (angular.isUndefined(bounds.isEmpty)) {
-            this.$log.error("Error: SearchBoxParentModel setBounds. Bounds not an instance of LatLngBounds.");
+            this.$log.error('Error: SearchBoxParentModel setBounds. Bounds not an instance of LatLngBounds.');
           } else {
             if (bounds.isEmpty() === false) {
               if (this.searchBox != null) {
@@ -4524,8 +4518,8 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  angular.module("google-maps.directives.api.models.parent".ns()).factory("WindowsParentModel".ns(), [
-    "IWindowParentModel".ns(), "ModelsWatcher".ns(), "PropMap".ns(), "WindowChildModel".ns(), "Linked".ns(), "_async".ns(), "Logger".ns(), '$timeout', '$compile', '$http', '$templateCache', '$interpolate', 'uiGmapPromise', function(IWindowParentModel, ModelsWatcher, PropMap, WindowChildModel, Linked, _async, $log, $timeout, $compile, $http, $templateCache, $interpolate, uiGmapPromise) {
+  angular.module('uiGmapgoogle-maps.directives.api.models.parent').factory('uiGmapWindowsParentModel', [
+    'uiGmapIWindowParentModel', 'uiGmapModelsWatcher', 'uiGmapPropMap', 'uiGmapWindowChildModel', 'uiGmapLinked', 'uiGmap_async', 'uiGmapLogger', '$timeout', '$compile', '$http', '$templateCache', '$interpolate', 'uiGmapPromise', function(IWindowParentModel, ModelsWatcher, PropMap, WindowChildModel, Linked, _async, $log, $timeout, $compile, $http, $templateCache, $interpolate, uiGmapPromise) {
       var WindowsParentModel;
       WindowsParentModel = (function(_super) {
         __extends(WindowsParentModel, _super);
@@ -4632,7 +4626,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
         };
 
         WindowsParentModel.prototype.watchDestroy = function(scope) {
-          return scope.$on("$destroy", (function(_this) {
+          return scope.$on('$destroy', (function(_this) {
             return function() {
               _this.firstWatchModels = true;
               _this.firstTime = true;
@@ -4670,7 +4664,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
           }
           modelsNotDefined = angular.isUndefined(this.linked.scope.models);
           if (modelsNotDefined && (this.markersScope === void 0 || (((_ref = this.markersScope) != null ? _ref.markerModels : void 0) === void 0 || ((_ref1 = this.markersScope) != null ? _ref1.models : void 0) === void 0))) {
-            this.$log.error("No models to create windows from! Need direct models or models derrived from markers!");
+            this.$log.error('No models to create windows from! Need direct models or models derrived from markers!');
             return;
           }
           if (this.gMap != null) {
@@ -4761,7 +4755,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
                       var gMarker, _ref;
                       gMarker = (_ref = scope[modelsPropToIterate][modelToAdd[_this.idKey]]) != null ? _ref.gMarker : void 0;
                       if (!gMarker) {
-                        throw "Gmarker undefined";
+                        throw 'Gmarker undefined';
                       }
                       return _this.createWindow(modelToAdd, gMarker, _this.gMap);
                     }, doChunk);
@@ -4769,7 +4763,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
                 }).then(function() {
                   return _this.existingPieces = void 0;
                 })["catch"](function(e) {
-                  return $log.error("Error while pieceMealing Windows!");
+                  return $log.error('Error while pieceMealing Windows!');
                 });
               };
             })(this));
@@ -4806,7 +4800,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
           opts = this.createWindowOptions(gMarker, childScope, fakeElement.html(), this.DEFAULTS);
           child = new WindowChildModel(model, childScope, opts, this.isIconVisibleOnClick, gMap, (_ref = this.markersScope) != null ? (_ref1 = _ref.markerModels[model[this.idKey]]) != null ? _ref1.scope : void 0 : void 0, fakeElement, false, true);
           if (model[this.idKey] == null) {
-            this.$log.error("Window model has no id to assign a child to. This is required for performance. Please assign id, or redirect id to a different key.");
+            this.$log.error('Window model has no id to assign a child to. This is required for performance. Please assign id, or redirect id to a different key.');
             return;
           }
           this.windows.put(model[this.idKey], child);
@@ -4964,7 +4958,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   angular.module('uiGmapgoogle-maps.directives.api').factory('uiGmapApiFreeDrawPolygons', [
-    "uiGmapLogger", 'uiGmapBaseObject', "uiGmapCtrlHandle", "uiGmapDrawFreeHandChildModel", function($log, BaseObject, CtrlHandle, DrawFreeHandChildModel) {
+    'uiGmapLogger', 'uiGmapBaseObject', 'uiGmapCtrlHandle', 'uiGmapDrawFreeHandChildModel', 'uiGmapLodash', function($log, BaseObject, CtrlHandle, DrawFreeHandChildModel, uiGmapLodash) {
       var FreeDrawPolygons;
       return FreeDrawPolygons = (function(_super) {
         __extends(FreeDrawPolygons, _super);
@@ -4992,10 +4986,10 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
             return function(map) {
               var freeHand, listener;
               if (!scope.polygons) {
-                return $log.error("No polygons to bind to!");
+                return $log.error('No polygons to bind to!');
               }
               if (!_.isArray(scope.polygons)) {
-                return $log.error("Free Draw Polygons must be of type Array!");
+                return $log.error('Free Draw Polygons must be of type Array!');
               }
               freeHand = new DrawFreeHandChildModel(map, scope.originalMapOpts);
               listener = void 0;
@@ -5012,7 +5006,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
                       firstTime = false;
                       return;
                     }
-                    removals = _.differenceObjects(oldValue, newValue);
+                    removals = uiGmapLodash.differenceObjects(oldValue, newValue);
                     return removals.forEach(function(p) {
                       return p.setMap(null);
                     });
@@ -5139,8 +5133,8 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  angular.module("google-maps.directives.api".ns()).factory("IMarker".ns(), [
-    "Logger".ns(), "BaseObject".ns(), "CtrlHandle".ns(), function(Logger, BaseObject, CtrlHandle) {
+  angular.module('uiGmapgoogle-maps.directives.api').factory('uiGmapIMarker', [
+    'uiGmapLogger', 'uiGmapBaseObject', 'uiGmapCtrlHandle', function(Logger, BaseObject, CtrlHandle) {
       var IMarker;
       return IMarker = (function(_super) {
         __extends(IMarker, _super);
@@ -5163,7 +5157,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
         function IMarker() {
           this.$log = Logger;
           this.restrict = 'EMA';
-          this.require = '^' + 'GoogleMap'.ns();
+          this.require = '^' + 'uiGmapGoogleMap';
           this.priority = -1;
           this.transclude = true;
           this.replace = true;
@@ -5841,8 +5835,8 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  angular.module("google-maps.directives.api".ns()).factory("Polygon".ns(), [
-    "IPolygon".ns(), "$timeout", "array-sync".ns(), "PolygonChildModel".ns(), function(IPolygon, $timeout, arraySync, PolygonChild) {
+  angular.module('uiGmapgoogle-maps.directives.api').factory('uiGmapPolygon', [
+    'uiGmapIPolygon', '$timeout', 'uiGmaparray-sync', 'uiGmapPolygonChildModel', function(IPolygon, $timeout, arraySync, PolygonChild) {
       var Polygon;
       return Polygon = (function(_super) {
         __extends(Polygon, _super);
@@ -5881,8 +5875,8 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  angular.module("google-maps.directives.api".ns()).factory("Polyline".ns(), [
-    "IPolyline".ns(), "$timeout", "array-sync".ns(), "PolylineChildModel".ns(), function(IPolyline, $timeout, arraySync, PolylineChildModel) {
+  angular.module('uiGmapgoogle-maps.directives.api').factory('uiGmapPolyline', [
+    'uiGmapIPolyline', '$timeout', 'uiGmaparray-sync', 'uiGmapPolylineChildModel', function(IPolyline, $timeout, arraySync, PolylineChildModel) {
       var Polyline;
       return Polyline = (function(_super) {
         __extends(Polyline, _super);
@@ -5894,7 +5888,7 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
 
         Polyline.prototype.link = function(scope, element, attrs, mapCtrl) {
           if (angular.isUndefined(scope.path) || scope.path === null || !this.validatePath(scope.path)) {
-            this.$log.error("polyline: no valid path attribute found");
+            this.$log.error('polyline: no valid path attribute found');
             return;
           }
           return IPolyline.mapPromise(scope, mapCtrl).then((function(_this) {
@@ -5917,8 +5911,8 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  angular.module("google-maps.directives.api".ns()).factory("Polylines".ns(), [
-    "IPolyline".ns(), "$timeout", "array-sync".ns(), "PolylinesParentModel".ns(), function(IPolyline, $timeout, arraySync, PolylinesParentModel) {
+  angular.module('uiGmapgoogle-maps.directives.api').factory('uiGmapPolylines', [
+    'uiGmapIPolyline', '$timeout', 'uiGmaparray-sync', 'uiGmapPolylinesParentModel', function(IPolyline, $timeout, arraySync, PolylinesParentModel) {
       var Polylines;
       return Polylines = (function(_super) {
         __extends(Polylines, _super);
@@ -5933,11 +5927,11 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
 
         Polylines.prototype.link = function(scope, element, attrs, mapCtrl) {
           if (angular.isUndefined(scope.path) || scope.path === null) {
-            this.$log.error("polylines: no valid path attribute found");
+            this.$log.error('polylines: no valid path attribute found');
             return;
           }
           if (!scope.models) {
-            this.$log.error("polylines: no models found to create from");
+            this.$log.error('polylines: no models found to create from');
             return;
           }
           return mapCtrl.getScope().deferred.promise.then((function(_this) {
@@ -5956,8 +5950,8 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
 }).call(this);
 
 (function() {
-  angular.module("google-maps.directives.api".ns()).factory("Rectangle".ns(), [
-    "Logger".ns(), "GmapUtil".ns(), "IRectangle".ns(), "RectangleParentModel".ns(), function($log, GmapUtil, IRectangle, RectangleParentModel) {
+  angular.module('uiGmapgoogle-maps.directives.api').factory('uiGmapRectangle', [
+    'uiGmapLogger', 'uiGmapGmapUtil', 'uiGmapIRectangle', 'uiGmapRectangleParentModel', function($log, GmapUtil, IRectangle, RectangleParentModel) {
       return _.extend(IRectangle, {
         link: function(scope, element, attrs, mapCtrl) {
           return mapCtrl.getScope().deferred.promise.then((function(_this) {
@@ -5977,8 +5971,8 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  angular.module("uiGmapgoogle-maps.directives.api").factory("uiGmapWindow", [
-    "uiGmapIWindow", "uiGmapGmapUtil", "uiGmapWindowChildModel", function(IWindow, GmapUtil, WindowChildModel) {
+  angular.module('uiGmapgoogle-maps.directives.api').factory('uiGmapWindow', [
+    'uiGmapIWindow', 'uiGmapGmapUtil', 'uiGmapWindowChildModel', 'uiGmapLodash', function(IWindow, GmapUtil, WindowChildModel, uiGmapLodash) {
       var Window;
       return Window = (function(_super) {
         __extends(Window, _super);
@@ -6028,9 +6022,9 @@ Original idea from: http://stackoverflow.com/questions/22758950/google-map-drawi
           if (mapCtrl != null) {
             childWindow = new WindowChildModel({}, scope, opts, isIconVisibleOnClick, mapCtrl, markerScope, element);
             this.childWindows.push(childWindow);
-            scope.$on("$destroy", (function(_this) {
+            scope.$on('$destroy', (function(_this) {
               return function() {
-                _this.childWindows = _.withoutObjects(_this.childWindows, [childWindow], function(child1, child2) {
+                _this.childWindows = uiGmapLodash.withoutObjects(_this.childWindows, [childWindow], function(child1, child2) {
                   return child1.scope.$id === child2.scope.$id;
                 });
                 return _this.childWindows.length = 0;
@@ -6219,8 +6213,8 @@ This directive creates a new scope.
  */
 
 (function() {
-  angular.module("google-maps".ns()).directive("Marker".ns(), [
-    "$timeout", "Marker".ns(), function($timeout, Marker) {
+  angular.module('uiGmapgoogle-maps').directive('uiGmapMarker', [
+    '$timeout', 'uiGmapMarker', function($timeout, Marker) {
       return new Marker($timeout);
     }
   ]);
@@ -6235,7 +6229,7 @@ The MIT License
 Copyright (c) 2010-2013 Google, Inc. http://angularjs.org
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
+of this software and associated documentation files (the 'Software'), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
@@ -6244,7 +6238,7 @@ furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in
 all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
@@ -6273,8 +6267,8 @@ This directive creates a new scope.
  */
 
 (function() {
-  angular.module("google-maps".ns()).directive("Markers".ns(), [
-    "$timeout", "Markers".ns(), function($timeout, Markers) {
+  angular.module('uiGmapgoogle-maps').directive('uiGmapMarkers', [
+    '$timeout', 'uiGmapMarkers', function($timeout, Markers) {
       return new Markers($timeout);
     }
   ]);
@@ -6316,8 +6310,8 @@ Rick Huizinga - https://plus.google.com/+RickHuizinga
  */
 
 (function() {
-  angular.module("google-maps".ns()).directive("Polygon".ns(), [
-    'Polygon'.ns(), function(Polygon) {
+  angular.module('uiGmapgoogle-maps').directive('uiGmapPolygon', [
+    'uiGmapPolygon', function(Polygon) {
       return new Polygon();
     }
   ]);
@@ -6332,8 +6326,8 @@ Rick Huizinga - https://plus.google.com/+RickHuizinga
  */
 
 (function() {
-  angular.module("google-maps".ns()).directive("Circle".ns(), [
-    "Circle".ns(), function(Circle) {
+  angular.module('uiGmapgoogle-maps').directive("uiGmapCircle", [
+    "uiGmapCircle", function(Circle) {
       return Circle;
     }
   ]);
@@ -6416,8 +6410,8 @@ Nicholas McCready - https://twitter.com/nmccready
  */
 
 (function() {
-  angular.module("google-maps".ns()).directive("Polylines".ns(), [
-    "Polylines".ns(), function(Polylines) {
+  angular.module('uiGmapgoogle-maps').directive('uiGmapPolylines', [
+    'uiGmapPolylines', function(Polylines) {
       return new Polylines();
     }
   ]);
@@ -6529,7 +6523,7 @@ The MIT License
 Copyright (c) 2010-2013 Google, Inc. http://angularjs.org
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
+of this software and associated documentation files (the 'Software'), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
@@ -6538,7 +6532,7 @@ furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in
 all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
@@ -6567,23 +6561,23 @@ This directive creates a new scope.
 (function() {
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-  angular.module("uiGmapgoogle-maps").directive("uiGmapLayer", [
-    "$timeout", "uiGmapLogger", "uiGmapLayerParentModel", function($timeout, Logger, LayerParentModel) {
+  angular.module('uiGmapgoogle-maps').directive('uiGmapLayer', [
+    '$timeout', 'uiGmapLogger', 'uiGmapLayerParentModel', function($timeout, Logger, LayerParentModel) {
       var Layer;
       Layer = (function() {
         function Layer() {
           this.link = __bind(this.link, this);
           this.$log = Logger;
-          this.restrict = "EMA";
-          this.require = '^' + 'GoogleMap'.ns();
+          this.restrict = 'EMA';
+          this.require = '^' + 'uiGmapGoogleMap';
           this.priority = -1;
           this.transclude = true;
-          this.template = '<span class=\"angular-google-map-layer\" ng-transclude></span>';
+          this.template = '<span class=\'angular-google-map-layer\' ng-transclude></span>';
           this.replace = true;
           this.scope = {
-            show: "=show",
-            type: "=type",
-            namespace: "=namespace",
+            show: '=show',
+            type: '=type',
+            namespace: '=namespace',
             options: '=options',
             onCreated: '&oncreated'
           };
@@ -6665,8 +6659,8 @@ This directive creates a new scope.
 }).call(this);
 
 (function() {
-  angular.module("google-maps".ns()).directive("DrawingManager".ns(), [
-    "DrawingManager".ns(), function(DrawingManager) {
+  angular.module('uiGmapgoogle-maps').directive("uiGmapDrawingManager", [
+    "uiGmapDrawingManager", function(DrawingManager) {
       return DrawingManager;
     }
   ]);
@@ -6675,18 +6669,14 @@ This directive creates a new scope.
 
 
 /*
-angular-google-maps
-https://github.com/nlaplante/angular-google-maps
-
 @authors
 Nicholas McCready - https://twitter.com/nmccready
-
  * Brunt of the work is in DrawFreeHandChildModel
  */
 
 (function() {
-  angular.module('google-maps'.ns()).directive('FreeDrawPolygons'.ns(), [
-    'ApiFreeDrawPolygons'.ns(), function(FreeDrawPolygons) {
+  angular.module('uiGmapgoogle-maps').directive('uiGmapFreeDrawPolygons', [
+    'uiGmapApiFreeDrawPolygons', function(FreeDrawPolygons) {
       return new FreeDrawPolygons();
     }
   ]);
@@ -6747,7 +6737,7 @@ This directive creates a new scope.
           this.link = __bind(this.link, this);
           this.$log = Logger;
           this.restrict = "EMA";
-          this.require = '^' + 'GoogleMap'.ns();
+          this.require = '^' + 'uiGmapGoogleMap';
           this.priority = -1;
           this.transclude = true;
           this.template = '<span class=\"angular-google-map-layer\" ng-transclude></span>';
@@ -6799,18 +6789,18 @@ This directive creates a new scope.
 (function() {
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-  angular.module("google-maps".ns()).directive("SearchBox".ns(), [
-    "GoogleMapApi".ns(), "Logger".ns(), "SearchBoxParentModel".ns(), '$http', '$templateCache', '$compile', function(GoogleMapApi, Logger, SearchBoxParentModel, $http, $templateCache, $compile) {
+  angular.module('uiGmapgoogle-maps').directive('uiGmapSearchBox', [
+    'uiGmapGoogleMapApi', 'uiGmapLogger', 'uiGmapSearchBoxParentModel', '$http', '$templateCache', '$compile', function(GoogleMapApi, Logger, SearchBoxParentModel, $http, $templateCache, $compile) {
       var SearchBox;
       SearchBox = (function() {
         function SearchBox() {
           this.link = __bind(this.link, this);
           this.$log = Logger;
-          this.restrict = "EMA";
-          this.require = '^' + 'GoogleMap'.ns();
+          this.restrict = 'EMA';
+          this.require = '^' + 'uiGmapGoogleMap';
           this.priority = -1;
           this.transclude = true;
-          this.template = '<span class=\"angular-google-map-search\" ng-transclude></span>';
+          this.template = '<span class=\'angular-google-map-search\' ng-transclude></span>';
           this.replace = true;
           this.scope = {
             template: '=template',
@@ -6849,7 +6839,8 @@ This directive creates a new scope.
   ]);
 
 }).call(this);
-;angular.module("google-maps.wrapped".ns()).service("uuid".ns(), function() {
+;angular.module('uiGmapgoogle-maps.wrapped')
+.service('uiGmapuuid', function() {
   //BEGIN REPLACE
   /*
  Version: core-1.0
@@ -6859,13 +6850,15 @@ function UUID(){}UUID.generate=function(){var a=UUID._gri,b=UUID._ha;return b(a(
 
   //END REPLACE
 return UUID;
-});;// wrap the utility libraries needed in ./lib
+});
+;// wrap the utility libraries needed in ./lib
 // http://google-maps-utility-library-v3.googlecode.com/svn/
-angular.module('google-maps.wrapped'.ns()).service('GoogleMapsUtilV3'.ns(), function () {
+angular.module('uiGmapgoogle-maps.wrapped')
+.service('uiGmapGoogleMapsUtilV3', function () {
   return {
     init: _.once(function () {
       //BEGIN REPLACE
-      /*! angular-google-maps 2.0.8 2014-11-16
+      /*! angular-google-maps 2.0.9 2014-11-18
  *  AngularJS directives for Google Maps
  *  git: https://github.com/angular-ui/angular-google-maps.git
  */
@@ -9913,12 +9906,14 @@ MarkerWithLabel.prototype.setMap = function (theMap) {
       window.MarkerWithLabel = MarkerWithLabel;
     })
   };
-});;/**
+});
+;/**
  * Performance overrides on MarkerClusterer custom to Angular Google Maps
  *
  * Created by Petr Bruna ccg1415 and Nick McCready on 7/13/14.
  */
-angular.module('google-maps.extensions'.ns()).service('ExtendMarkerClusterer'.ns(), function () {
+angular.module('uiGmapgoogle-maps.extensions')
+.service('uiGmapExtendMarkerClusterer',['uiGmapLodash', function (uiGmapLodash) {
   return {
     init: _.once(function () {
       (function () {
@@ -9999,7 +9994,7 @@ angular.module('google-maps.extensions'.ns()).service('ExtendMarkerClusterer'.ns
               marker.setMap(null);
             }
 
-//  this.updateIcon_();
+            //this.updateIcon_();
             return true;
           };
 
@@ -10010,7 +10005,7 @@ angular.module('google-maps.extensions'.ns()).service('ExtendMarkerClusterer'.ns
            * @return {boolean} True if the marker has already been added.
            */
           NgMapCluster.prototype.isMarkerAlreadyAdded_ = function (marker) {
-            return _.isNullOrUndefined(this.markers_.get(marker.key));
+            return uiGmapLodash.isNullOrUndefined(this.markers_.get(marker.key));
           };
 
 
@@ -10103,9 +10098,9 @@ angular.module('google-maps.extensions'.ns()).service('ExtendMarkerClusterer'.ns
                * @param {MarkerClusterer} mc The MarkerClusterer whose markers are being clustered.
                * @event
                */
-              google.maps.event.trigger(this, "clusteringbegin", this);
+              google.maps.event.trigger(this, 'clusteringbegin', this);
 
-              if (typeof this.timerRefStatic !== "undefined") {
+              if (typeof this.timerRefStatic !== 'undefined') {
                 clearTimeout(this.timerRefStatic);
                 delete this.timerRefStatic;
               }
@@ -10154,7 +10149,7 @@ angular.module('google-maps.extensions'.ns()).service('ExtendMarkerClusterer'.ns
                * @param {MarkerClusterer} mc The MarkerClusterer whose markers are being clustered.
                * @event
                */
-              google.maps.event.trigger(this, "clusteringend", this);
+              google.maps.event.trigger(this, 'clusteringend', this);
             }
           };
 
@@ -10249,15 +10244,15 @@ angular.module('google-maps.extensions'.ns()).service('ExtendMarkerClusterer'.ns
 
             // Add the map event listeners
             this.listeners_ = [
-                google.maps.event.addListener(this.getMap(), "zoom_changed", function () {
+                google.maps.event.addListener(this.getMap(), 'zoom_changed', function () {
                     cMarkerClusterer.resetViewport_(false);
-                    // Workaround for this Google bug: when map is at level 0 and "-" of
-                    // zoom slider is clicked, a "zoom_changed" event is fired even though
-                    // the map doesn't zoom out any further. In this situation, no "idle"
+                    // Workaround for this Google bug: when map is at level 0 and '-' of
+                    // zoom slider is clicked, a 'zoom_changed' event is fired even though
+                    // the map doesn't zoom out any further. In this situation, no 'idle'
                     // event is triggered so the cluster markers that have been removed
                     // do not get redrawn. Same goes for a zoom in at maxZoom.
-                    if (this.getZoom() === (this.get("minZoom") || 0) || this.getZoom() === this.get("maxZoom")) {
-                        google.maps.event.trigger(this, "idle");
+                    if (this.getZoom() === (this.get('minZoom') || 0) || this.getZoom() === this.get('maxZoom')) {
+                        google.maps.event.trigger(this, 'idle');
                     }
                 })
             ];
@@ -10269,4 +10264,4 @@ angular.module('google-maps.extensions'.ns()).service('ExtendMarkerClusterer'.ns
       }).call(this);
     })
   };
-});
+}]);
