@@ -75,7 +75,7 @@ angular.module('vaterDotcom').controller('ProductCtrl', ['$scope', '$rootScope',
       $scope.buildComparison();
     }
     $scope.buildComparison = function(){
-      $scope.compareLink = '/compare?';
+      $scope.compareLink = '#/compare?';
       for (var i = 0; i < $scope.compareItems.length; i++) {
       var idString = (i+1 == 1) ? 'id'+(i+1)+'=' : '&id'+(i+1)+'=';
       $scope.compareLink = $scope.compareLink +idString+$scope.compareItems[i].id;
