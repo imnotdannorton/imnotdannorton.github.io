@@ -20,7 +20,7 @@
 			<h2>{{item.name}}</h2><br/>
 			<h3 ng-bind-html="item.product_code"></h3>
 		</div><br/>
-		<button><a ng-href="{{compareLink}}">Compare &raquo;</a></button>
+		<button><a ng-click="viewCompare()">Compare &raquo;</a></button>
 	</div>
 	<div ng-repeat="product in products | filter:find | orderBy:sortby:reverse " class="product">
 

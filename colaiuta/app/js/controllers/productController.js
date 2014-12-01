@@ -75,13 +75,16 @@ angular.module('vaterDotcom').controller('ProductCtrl', ['$scope', '$rootScope',
       $scope.buildComparison();
     }
     $scope.buildComparison = function(){
-      $scope.compareLink = 'app/#/compare?';
+      $scope.compareLink = '/compare?';
       for (var i = 0; i < $scope.compareItems.length; i++) {
       var idString = (i+1 == 1) ? 'id'+(i+1)+'=' : '&id'+(i+1)+'=';
       $scope.compareLink = $scope.compareLink +idString+$scope.compareItems[i].id;
       };
       console.log( $scope.compareLink);
 
+    }
+    $scope.viewCompare = function(){
+      $location.path($scope.compareLink);
     }
     $scope.removeItem = function(id){
       console.log(id);
