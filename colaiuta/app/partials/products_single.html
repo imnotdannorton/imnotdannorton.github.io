@@ -1,10 +1,10 @@
-<div ng-controller="ProductCtrl" class="productSingle">
+<div class="productSingle">
     <div id="zoom"><img ng-src="//vater.s3.amazonaws.com/products_fullres/Vater_{{product.images[0].name}}.jpg" class="bigImg"></div>
     <div class="heroImage" hover-zoom><img ng-src="//vater.s3.amazonaws.com/products_fullres/Vater_{{product.images[0].name}}.jpg"></div>
     <div class="productStats">
         <div class="nameWrap">
          <h1>{{product.name}}</h1><br/>
-         <h3>{{product.product_code}}</h3>
+         <h3 ng-bind-html="product.product_code"></h3>
          <!-- <div class='complete-share'>
              <a class="fb" href="https://www.facebook.com/sharer/sharer.php?u={{trustedFbUrl}}" target="_blank"><i track-share-click='FB_SHARE' class="fa fa-facebook" url='{{trustedFbUrl}}'></i></a>
 

@@ -40,6 +40,8 @@
   font-size: 1.4em;
   padding: 10px 20px;
   margin: .3em 0;
+  font-family: 'Source Sans Pro';
+  font-weight: 100;
 }
 .compareHolder button a{
   color: #fff;
@@ -84,6 +86,28 @@
 }
 .product .details{
   display: inline-block;
+}
+.product .details .compare{
+  display: none;
+}
+.product .details .compare:hover{
+  cursor: pointer;
+  color: #ffcb00;
+}
+.swap{
+  display: inline-block;
+}
+.swap span{
+  border-radius: 4px; 
+  padding: 4px 8px;
+  display: inline-block;
+  font-size: .6em;
+}
+.swap .selected{
+  background-color: #000;
+  color: #ffcb00;
+  border-radius: 4px; 
+  padding: 4px 8px;
 }
 .productSingle #zoom{
   display: none;
