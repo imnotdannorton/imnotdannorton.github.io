@@ -7,8 +7,8 @@ angular.module('vaterDotcom', [
   'ngSanitize',
   'vaterDotcom.filters',
   'vaterDotcom.directives',
-  'vaterDotcom.controllers',
-  'google-maps'.ns()
+  'vaterDotcom.controllers'
+  //'google-maps'.ns()
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/home', {templateUrl: 'partials/home.html', controller: 'HomepageCtrl'});
