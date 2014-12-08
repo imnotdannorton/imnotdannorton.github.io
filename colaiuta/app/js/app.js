@@ -8,20 +8,19 @@ angular.module('vaterDotcom', [
   'vaterDotcom.filters',
   'vaterDotcom.directives',
   'vaterDotcom.controllers',
-  'uiGmapgoogle-maps'
+  'google-maps'.ns()
 ]).
 config(['$routeProvider', function($routeProvider) {
-  //$routeProvider.when('/view1', {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'});
-  //$routeProvider.when('/view2', {templateUrl: 'partials/partial2.html', controller: 'MyCtrl2'});
   $routeProvider.when('/home', {templateUrl: 'partials/home.html', controller: 'HomepageCtrl'});
   $routeProvider.when('/products', {templateUrl: 'partials/products.html', controller: 'ProductCtrl'});
   $routeProvider.when('/products/:id', {templateUrl: 'partials/products_single.html', controller: 'ProductCtrl'});
-
   $routeProvider.when('/compare?', {templateUrl: 'partials/products_compare.html', controller: 'CompareCtrl'});
   $routeProvider.when('/artists', {templateUrl: 'partials/artists.html', controller: 'artistController'});
   $routeProvider.when('/artists/:id', {templateUrl: 'partials/artists_single.html', controller: 'artistController'});
   $routeProvider.when('/features', {templateUrl: 'partials/features.html', controller: 'featureController'});
   $routeProvider.when('/dealers', {templateUrl: 'partials/dealers.html', controller: 'dealerController'});
+  $routeProvider.when('/manufacturing', {templateUrl: 'partials/manufacturing.html'});
+  $routeProvider.when('/stickselect', {templateUrl: 'partials/stickselect.html'});
   $routeProvider.otherwise({redirectTo: '/', templateUrl:'partials/home.html', controller: 'HomepageCtrl'});
  
 }]);

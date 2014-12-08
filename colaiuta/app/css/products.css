@@ -216,7 +216,9 @@ section.prodArtists h2{
  font-weight: 300;
 }
 section.prodArtists .artist{
-  width: 120px;
+  width: 150px;
+  margin: .2em;
+  display: inline-block;
 }
 section.prodArtists .artist img{
   max-width: 100%;

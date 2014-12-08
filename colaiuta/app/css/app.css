@@ -297,7 +297,7 @@ footer{
   background-color: #171717;
   color: #fff;
   padding: 1%;
-  position: absolute;
+  position: relative;
   bottom: 0;
 }
 footer ul.social{
