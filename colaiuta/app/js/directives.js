@@ -22,6 +22,22 @@ angular.module('vaterDotcom.directives', []).
     	}
     };
   })
+  .directive('product', function($rootScope){
+    return{
+      restrict:'C',
+      link:function(scope,elem, attrs){
+         // show/hide compare links
+       $(elem).on('mouseenter', function(event){
+        console.log('hovering');
+        $(elem).find('.compare').fadeIn(200);
+       });
+       $(elem).on('mouseleave', function(event){
+        $(elem).find('.compare').hide();
+       });
+     }
+    }
+   
+  })
   .directive('toggleSidebar', function($rootScope) {
     return {
       restrict:'A',
@@ -94,9 +110,9 @@ angular.module('vaterDotcom.directives', []).
        });
        $(elem).on('mousemove', function(event){
         var panScale = $(elem).siblings('#zoom').find('img').width() / $(elem).width();
-        var vertOffset = ($(elem).siblings('#zoom').height() - $(elem).closest('.bigImg').height())/2;
+        var vertOffset = ($(elem).siblings('#zoom').height() - $(elem).siblings('#zoom').find('img').height())/2;
         var offsetLeft = event.pageX - $(elem).offset().left;
-        var offsetTop = event.pageY - vertOffset;
+        var offsetTop = event.pageY - $(elem).siblings('#zoom').height()/2;
 
         $(elem).siblings('#zoom').css({'top': offsetTop});
         if ($(elem).width() - offsetLeft > 180) {
@@ -107,8 +123,6 @@ angular.module('vaterDotcom.directives', []).
           offsetLeft = -offsetLeft*panScale;
           offsetLeft += 210;
         }
-
-
         $(elem).siblings('#zoom').find('img').css({'margin-left': offsetLeft, 'margin-top':vertOffset}); 
         //console.log();
        });

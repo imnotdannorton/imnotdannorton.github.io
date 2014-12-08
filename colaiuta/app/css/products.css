@@ -26,9 +26,10 @@
 .compareItems{
   background-color: #000;
   display: inline-block;
-  padding: 4px;
+  padding: 4px 18px 0px 4px;
   margin: 4px;
   height: 130px;
+  position: relative;
 }
 .compareHolder button{
   clear: both;
@@ -39,6 +40,8 @@
   font-size: 1.4em;
   padding: 10px 20px;
   margin: .3em 0;
+  font-family: 'Source Sans Pro';
+  font-weight: 100;
 }
 .compareHolder button a{
   color: #fff;
@@ -53,6 +56,7 @@
   display: inline-block;
   color: #fff;
   margin: .3em;
+  font-weight: 100;
 }
 .compareItems .imgHolder{
   -ms-transform: rotate(90deg); /* IE 9 */
@@ -61,7 +65,14 @@
   position: relative;
   left: -127px;
 }
-
+.compareItems .remove{
+  color: #fff;
+  font-size: 1.2em;
+  display: inline-block;
+  position: absolute;
+  right: 30px;
+  top: -5px;
+}
 .product .imgHolder, .compareItems .imgHolder{
   padding: 10px 20px 0;
   background-color: #000;
@@ -75,6 +86,28 @@
 }
 .product .details{
   display: inline-block;
+}
+.product .details .compare{
+  display: none;
+}
+.product .details .compare:hover{
+  cursor: pointer;
+  color: #ffcb00;
+}
+.swap{
+  display: inline-block;
+}
+.swap span{
+  border-radius: 4px; 
+  padding: 4px 8px;
+  display: inline-block;
+  font-size: .6em;
+}
+.swap .selected{
+  background-color: #000;
+  color: #ffcb00;
+  border-radius: 4px; 
+  padding: 4px 8px;
 }
 .productSingle #zoom{
   display: none;

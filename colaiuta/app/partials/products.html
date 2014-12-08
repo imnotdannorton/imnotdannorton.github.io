@@ -1,16 +1,35 @@
 <div class="homeWrapper productsMain" ng-class="{'loading':loading}">
 	<h1>PRODUCTS</h1>
-	Find: <input ng-model="find">
+	Find: <input ng-model="find"> 
+	Sort By: 
+	<select ng-model="sortby">
+		<option value="name">Name</option>
+		<option value="dimensions_length">Length</option>
+		<!--<option value="-dimensions_length" ng-if="sortby == '-dimensions_length'">Length</option>-->
+		<option value="dimensions_diameter">Grip</option>
+		<!--<option value="-dimensions_diameter" ng-if="sortby == '-dimensions_diameter'">Grip</option>-->
+		<option value="category_id">Category</option>
+	</select>
+	<div class="swap">
+		<span ng-class="{selected:!reverse}" ng-click="reverse = !reverse">Ascending</span><span ng-click="reverse = true"ng-class="{selected:reverse}">Descending</span>
+	</div>
 	<hr/>
 	<div class="compareHolder" ng-if="compareItems.length >0">
+<<<<<<< HEAD
 		<div class="compareItems" ng-repeat="item in compareItems">
 			<h2>{{item.name}}</h2>
 			<h3 ng-bind-html="item.product_code"></h3>
 
+=======
+		<div class="compareItems" ng-repeat="item in compareItems track by item.id">
+			<span class="remove" ng-click="removeItem($index)"><i class="fa fa-times"></i></span>
+			<h2>{{item.name}}</h2><br/>
+			<h3 ng-bind-html="item.product_code"></h3>
+>>>>>>> 5b53a4feac23bdd27fcb981ae8fbc9f3d77fcd61
 		</div><br/>
-		<button><a ng-href="{{compareLink}}">Compare &raquo;</a></button>
+		<button><a ng-click="viewCompare()">Compare &raquo;</a></button>
 	</div>
-	<div ng-repeat="product in products | filter:find" class="product">
+	<div ng-repeat="product in products | filter:find | orderBy:sortby:reverse " class="product">
 
 		<div class="imgHolder"><img ng-src="{{imgPath}}{{product.images[0].name}}_Thumb.jpg"></div>
 		<div class="details">

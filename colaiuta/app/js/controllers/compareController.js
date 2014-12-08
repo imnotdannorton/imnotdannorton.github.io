@@ -30,6 +30,13 @@ angular.module('vaterDotcom').controller('CompareCtrl', ['$scope', '$rootScope',
        // $scope.buildComparison($scope.compareItems);
     }
     $scope.$on('productSuccess', function(event, data){
+        if(data.product_code.indexOf('Nylon') > -1){
+            data.product_code.replace('<br>', '/');
+            data.images[0].name += '_w';
+          //console.log($scope.product.images[0].name); 
+        }
+
+
           $scope.compareObjects.push(data);
           console.log( $scope.compareObjects.length);
       });
