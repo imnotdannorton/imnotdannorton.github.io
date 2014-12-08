@@ -43,6 +43,7 @@ angular.module('vaterDotcom').controller('artistController', ['$scope', '$rootSc
 
     $scope.prepLinks = function(array){
       angular.forEach(array, function(value,key){
+        value = value.replace('site: ', '');
         console.log(array + ' : ' + value);
         //if(!this[value]){
         //this[value]=value;

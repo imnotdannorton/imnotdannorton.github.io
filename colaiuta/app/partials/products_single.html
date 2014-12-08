@@ -39,7 +39,7 @@
     </div>
     <section class="prodArtists" ng-if='product.artists.length > 0'>
      <h2>{{product.name}} Artists</h2>
-     <div ng-repeat="artist in product.artists" class="artist"><a ng-href="#/artists/{{artist.id}}"><img ng-if="artist.image" ng-src="{{artist.image}}"> {{artist.first_name}} {{artist.last_name}}</a></div>
+     <div ng-repeat="artist in product.artists | limitTo:6" class="artist"><a ng-href="#/artists/{{artist.id}}"><img ng-if="artist.image" ng-src="{{artist.image}}"> {{artist.first_name}} {{artist.last_name}}</a></div>
     </section>
     <p></p>
     <fb-comments data-href="" data-numposts="5" data-colorscheme="light"></fb-comments>
