@@ -107,6 +107,19 @@ border-color: #000 transparent transparent;
   font-weight: 300;
   letter-spacing: 1px;
 }
+#header ul.mainNav li ul.subnav{
+  position: absolute;
+  top: 60px;
+  margin-left: -20px;
+  background-color: #010c2d;
+}
+#header ul.mainNav li ul.subnav li{
+  display: block;
+  float: none;
+}
+#header ul.mainNav li ul.subnav.hidden{
+  display:none;
+}
 @-webkit-keyframes LOGOLOOP {
   0%   { opacity: 0; }
   50%  {opacity: 1; }
@@ -243,7 +256,41 @@ border-color: #000 transparent transparent;
   background-repeat: no-repeat;
   -webkit-filter: blur(4px);
 }
-
+.staticMain p{
+  padding: 0;
+}
+.staticMain .tip_shape{
+  display: inline-block;
+  max-width: 31%;
+  vertical-align: top;
+  background-color: #000;
+  color: #fff;
+  height: 120px;
+  margin: .1em 0;
+  padding-right: 1em;
+}
+.staticMain .tip_shape strong{
+  color: #ffcb00;
+}
+.staticMain .tip_shape img, .staticMain .manu_block img{
+  padding: 3px;
+  margin-right: .5em;
+  margin-bottom: 5px;
+  float: left;
+}
+.staticMain .manu_block{
+  max-width: 48%;
+  vertical-align: top;
+  display: inline-block;
+  margin: .2em;
+  font-size: .8em;
+}
+.staticMain .manu_block h2{
+  margin: .2em;
+}
+.staticMain h1 em{
+  font-weight: 300;
+}
 .angular-google-map-container { height: 400px; }
 footer{
   width: 100%;
