@@ -4,7 +4,7 @@
     </div>
     <div class="artistStats">
         <div class="nameWrap">
-         <h1>{{artist.first_name}}<br>{{artist.last_name}}</h1>
+         <h1><span ng-if="artist.first_name">{{artist.first_name}} </span><span ng-if="artist.last_name">{{artist.last_name}}</span></h1>
          <h2>{{artist.group}}</h2>
          <h3><a ng-href="#/products/{{artist.products[0].id}}">{{artist.products[0].name}}</a></h3>
         </div>

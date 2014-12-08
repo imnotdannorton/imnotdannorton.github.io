@@ -1,6 +1,6 @@
 /*product page styles */
 .productsMain{
-  padding: 0 20px;
+  padding: 5px 20px 5px;
   margin-top: 0%;
   transition:.5s all linear;
   -moz-transition:.5s all linear;
@@ -216,7 +216,9 @@ section.prodArtists h2{
  font-weight: 300;
 }
 section.prodArtists .artist{
-  width: 120px;
+  width: 150px;
+  margin: .2em;
+  display: inline-block;
 }
 section.prodArtists .artist img{
   max-width: 100%;

@@ -5,9 +5,8 @@
 	<div ng-repeat="artist in artists | filter:find" class="artistGridCell"><a ng-href="#/artists/{{artist.id}}">
 	<div ng-if="artist.images[0].url" class="artistImgThumb"><img ng-src="{{artist.images[0].url}}"></div>
 	<h3>{{artist.first_name}} {{artist.last_name}}</h3></a>
-		
-		<em>{{artist.group}}</em>
-		<span>{{artist.products[0].name}}</span>
+		<em ng-bind-html="artist.group"></em>
+		<span ng-bind-html="artist.products[0].name"></span>
 	</div>
 	
 </div>

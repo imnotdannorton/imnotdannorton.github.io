@@ -31,16 +31,19 @@ angular.module('vaterDotcom').controller('artistController', ['$scope', '$rootSc
   	$scope.$on('artistSuccess', function(event, data){
   		$scope.artist = data;
       $scope.artistImages = data.images;
-      $scope.social = $scope.artist.social.split(', ');
-
-      $scope.prepLinks($scope.social);
       $scope.currentImage(0);
+      if($scope.artist.social){
+        $scope.social = $scope.artist.social.split(', ');
+        $scope.prepLinks($scope.social); 
+      }
+      
   		
   	 //console.log(data);
   	});
 
     $scope.prepLinks = function(array){
       angular.forEach(array, function(value,key){
+        value = value.replace('site: ', '');
         console.log(array + ' : ' + value);
         //if(!this[value]){
         //this[value]=value;

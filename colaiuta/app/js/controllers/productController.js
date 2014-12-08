@@ -12,7 +12,7 @@ angular.module('vaterDotcom').controller('ProductCtrl', ['$scope', '$rootScope',
     $scope.imgPathLrg = PRODUCT_IMAGE_PATH + '_fullres';
     $scope.showZoom = false;
     $scope.ascending = true;
-    
+    $scope.searchQuery = {};
 
   	if(typeof $scope.prodId !== 'undefined'){
   		resourcesService.fetchItem('product', $scope.prodId);
@@ -70,21 +70,29 @@ angular.module('vaterDotcom').controller('ProductCtrl', ['$scope', '$rootScope',
       };
       console.log($scope.sortby);
     }
-    $scope.compareThis = function(product){
+     $scope.compareThis = function(product){
       $scope.compareItems.push(product);
       $scope.buildComparison();
     }
     $scope.buildComparison = function(){
       $scope.compareLink = '/compare';
-      for (var i = 0; i < $scope.compareItems.length; i++) {
+      angular.forEach($scope.compareItems, function(value, key){
+        //console.log(this)
+        key = key+1;
+        $scope.searchQuery['id'+key] = value.id;
+      });
+
+      /*for (var i = 0; i < $scope.compareItems.length; i++) {
       var idString = (i+1 == 1) ? 'id'+(i+1)+'=' : '&id'+(i+1)+'=';
       $scope.searchQuery = $scope.searchQuery + idString+$scope.compareItems[i].id;
-      };
-      console.log( $scope.compareLink);
+      };*/
+      console.log($scope.searchQuery);
 
     }
     $scope.viewCompare = function(){
-      $location.path($scope.compareLink).search($scope.searchQuery);
+      //$location.search() = {};
+      $location.path('compare').search($scope.searchQuery);
+      
     }
     $scope.removeItem = function(id){
       console.log(id);

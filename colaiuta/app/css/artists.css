@@ -2,6 +2,10 @@
   display: inline-block;
   margin: .4em;
   max-width:300px; 
+  width: 160px;
+}
+.artistGridCell h3{
+  margin: .4em 0;
 }
 .artistGridCell .artistImgThumb{
   width: 120px;
@@ -48,6 +52,7 @@
 }
 .artistMain ul.social a{
   color: #000;
+  font-size: .7em;
 }
 .artistmain ul.social li a:hover{
   color: #ffcb00; 

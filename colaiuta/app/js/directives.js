@@ -13,12 +13,21 @@ angular.module('vaterDotcom.directives', []).
     return {
     	restrict:'A',
     	link:function(scope, elem, attrs){
-    		elem.bind('click', function(e){
+    		//elem.bind('click', function(e){
     			//scope.emit('activeNav', e.target.id);
     			//$rootScope.activeItem(e.target.id);
 
     			//console.log(e.target.id);
-    		});
+    		//});
+         $(elem).on('mouseenter', function(event){
+          //console.log(event.target);
+          $('ul.subnav').addClass('hidden');
+          $(elem).children('ul.subnav').removeClass('hidden');
+        });
+         $(elem).children('ul.subnav').on('mouseleave', function(event){
+          //console.log(event.target);
+          $('ul.subnav').addClass('hidden');
+        });
     	}
     };
   })
@@ -28,7 +37,6 @@ angular.module('vaterDotcom.directives', []).
       link:function(scope,elem, attrs){
          // show/hide compare links
        $(elem).on('mouseenter', function(event){
-        console.log('hovering');
         $(elem).find('.compare').fadeIn(200);
        });
        $(elem).on('mouseleave', function(event){
