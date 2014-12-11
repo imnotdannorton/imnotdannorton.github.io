@@ -55,7 +55,7 @@ angular.module('vaterDotcom').controller('CompareCtrl', ['$scope', '$rootScope',
     // compare products
     $scope.processArtists = function(array){
      for (var i = 0; i < array.length; i++) {
-       artistService.fetchItem('artist', array[i].id);
+       resourcesService.fetchItem('artist', array[i].id);
      };
     }
     $scope.toCentimeters = function(value){

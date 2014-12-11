@@ -28,7 +28,8 @@
         <div class="shareThis">SHARE THIS: <i class="fa fa-facebook-square"></i> <i class="fa fa-twitter-square"></i> <i class="fa fa-tumblr-square"></i></div>
     </div>
     
-    <p>{{artist.quote}}</p>
+    <p ng-bind-html="artist.bio"></p>
+    <p ng-if="artist.quote" class="quote">"<span ng-bind-html="artist.quote"></span>"</p>
     <fb-comments data-href="" data-numposts="5" data-colorscheme="light"></fb-comments>
 </div>
 <div id="artistBg" ng-if='currentImage'></div>

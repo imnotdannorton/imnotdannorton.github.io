@@ -29,11 +29,11 @@ angular.module('vaterDotcom').controller('ProductCtrl', ['$scope', '$rootScope',
           $scope.processArtists($scope.product.artists);
         };
         // Change image path to default to wood
-
+        console.log($scope.product.product_code);
         if($scope.product.product_code.indexOf('Nylon') > -1){
           $scope.product.images[0].name += '_w';
           $scope.product.product_code.replace('<br>', '/');
-          //console.log($scope.product.images[0].name); 
+          console.log($scope.product.images[0].name); 
         }
         window.document.title = 'Vater Percussion | ' + $scope.product.name;
       });
@@ -104,7 +104,7 @@ angular.module('vaterDotcom').controller('ProductCtrl', ['$scope', '$rootScope',
     }
     $scope.processArtists = function(array){
      for (var i = 0; i < array.length; i++) {
-       artistService.fetchItem('artist', array[i].id);
+       resourcesService.fetchItem('artist', array[i].id);
      };
     }
     $scope.toCentimeters = function(value){
