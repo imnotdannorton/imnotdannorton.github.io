@@ -7,7 +7,7 @@
 // In this case it is a simple value service.
 console.log("services");
 angular.module('vaterDotcom').service('resourcesService', ['$http', '$rootScope', function($http, $rootScope) {
-  	$rootScope.loading = true;
+  	//$rootScope.loading = true;
 
     $rootScope.catAliases = {
           "hickory": ["American_Hickory", "Eternal_Black", "Gospel", "Nude", "VXD"],
@@ -61,6 +61,7 @@ angular.module('vaterDotcom').service('resourcesService', ['$http', '$rootScope'
 	  	});	
   	};
     this.fetchByTag = function(type, tags, query){
+      $rootScope.loading = true;
       tags = this.tagAlias(tags);
       var urlRequest = "http://dev.beneship.com:3002/";
       urlRequest = urlRequest+type+'.json'+'?tags='+tags;
@@ -82,6 +83,7 @@ angular.module('vaterDotcom').service('resourcesService', ['$http', '$rootScope'
       }); 
     };
     this.fetchByQuery = function(type, query){
+      $rootScope.loading = true;
       var urlRequest = "http://dev.beneship.com:3002/";
       urlRequest = urlRequest+type+'.json'+'?q='+query;
       
