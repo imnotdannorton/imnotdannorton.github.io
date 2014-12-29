@@ -15,10 +15,17 @@
 	</div>
 	<hr/>
 	<div class="compareHolder" ng-if="compareItems.length >0">
+<<<<<<< HEAD
+		<div class="compareItems" ng-repeat="item in compareItems">
+			<h2>{{item.name}}</h2>
+			<h3 ng-bind-html="item.product_code"></h3>
+
+=======
 		<div class="compareItems" ng-repeat="item in compareItems track by item.id">
 			<span class="remove" ng-click="removeItem($index)"><i class="fa fa-times"></i></span>
 			<h2>{{item.name}}</h2><br/>
 			<h3 ng-bind-html="item.product_code"></h3>
+>>>>>>> 5b53a4feac23bdd27fcb981ae8fbc9f3d77fcd61
 		</div><br/>
 		<button><a ng-click="viewCompare()">Compare &raquo;</a></button>
 	</div>
