@@ -5,6 +5,7 @@
 angular.module('vaterDotcom').controller('ProductCtrl', ['$scope', '$rootScope', '$location', '$routeParams',  'resourcesService', 'PRODUCT_IMAGE_PATH', function($scope, $rootScope, $location, $routeParams, resourcesService, PRODUCT_IMAGE_PATH) {
   	
     $scope.prodId = $routeParams.id;
+    $scope.category = $routeParams.category;
     $scope.sortby = 'name'
     $scope.compareItems = [];
     $scope.prodLoading = $rootScope.loading;
@@ -13,10 +14,60 @@ angular.module('vaterDotcom').controller('ProductCtrl', ['$scope', '$rootScope',
     $scope.showZoom = false;
     $scope.ascending = true;
     $scope.searchQuery = {};
+    /*
+    American Hickory
+    Accessories
+    American_Hickory
+    Bags
+    BassDrum_Mallets
+    BassDrum_Mallets2
+    Beaters
+    ChopBuilderPads
+    Clothing_Accessories
+    ColorWrap
+    Concert_Marimba
+    Concert_Vibraphone
+    Concert_Xylophone
+    Cymbal_Sticks
+    Educational
+    Eternal_Black
+    GongMallet
+    Gospel
+    Int_Players_Design
+    Marching_Marimba
+    Marching_Sticks
+    Marching_Vibraphone
+    Marching_Xylophone
+    Multi_Tenor_Mallets
+    NoiseGuard
+    Nude
+    Players_Design
+    PracticePads
+    Retail
+    Specialty_Sticks
+    Sugar_Maple
+    Timbale_Sticks
+    Timbale_Sticks2
+    Timpani_Mallets
+    VXD
+    Wire_Tap_Brushes
 
+
+
+    */
   	if(typeof $scope.prodId !== 'undefined'){
   		resourcesService.fetchItem('product', $scope.prodId);
-     
+    }
+    if(typeof $scope.category){
+      //console
+      var catString =$scope.category;
+      /*if($scope.category == 'hickory'){
+        catString = 'American_Hickory';
+      } 
+      if($scope.category == 'maple'){
+        catString = 'Sugar_Maple';
+      } */
+      resourcesService.fetchByTag('products', catString);
     }else{
   		resourcesService.fetchItem('products');
      
@@ -29,11 +80,11 @@ angular.module('vaterDotcom').controller('ProductCtrl', ['$scope', '$rootScope',
           $scope.processArtists($scope.product.artists);
         };
         // Change image path to default to wood
-
+        console.log($scope.product.product_code);
         if($scope.product.product_code.indexOf('Nylon') > -1){
           $scope.product.images[0].name += '_w';
           $scope.product.product_code.replace('<br>', '/');
-          //console.log($scope.product.images[0].name); 
+          console.log($scope.product.images[0].name); 
         }
         window.document.title = 'Vater Percussion | ' + $scope.product.name;
       });
@@ -43,7 +94,10 @@ angular.module('vaterDotcom').controller('ProductCtrl', ['$scope', '$rootScope',
         console.log(data);
 
       });
-
+    $scope.$on('productsTag Success', function(event, data){
+      $scope.products = data;
+      
+    });
     $rootScope.$on('artistSuccess', function(event, data){
       for (var i = 0; i < $scope.product.artists.length; i++) {
         if($scope.product.artists[i].id == data.id){
@@ -57,6 +111,13 @@ angular.module('vaterDotcom').controller('ProductCtrl', ['$scope', '$rootScope',
       console.log('updated: '+newVal);
       console.log('from: '+oldVal);
     });
+    /*$(window).on('scroll', function(event){
+      if($('body').scrollTop() > 150){
+        $('.compareHolder').css({'position':'absolute', 'top':'120px', 'background-color':'#fff'});
+      }else{
+
+      }
+    });*/
     // compare products
     $scope.swapSort = function(string){
       if (string.indexOf('-')>-1) {
@@ -104,7 +165,7 @@ angular.module('vaterDotcom').controller('ProductCtrl', ['$scope', '$rootScope',
     }
     $scope.processArtists = function(array){
      for (var i = 0; i < array.length; i++) {
-       artistService.fetchItem('artist', array[i].id);
+       resourcesService.fetchItem('artist', array[i].id);
      };
     }
     $scope.toCentimeters = function(value){

@@ -1,16 +1,45 @@
+.letterToggle{
+  display: inline-block;
+  margin: .2em;
+  padding: .6em;
+}
+.letterToggle:hover{
+  cursor: pointer;
+  background-color: #EEE;
+}
+.letterToggle.active{
+  color: #fff;
+  background-color: #010c2d;
+}
+.btnWrap{
+  display: inline-block;
+  background-color: #010c2d;
+  color: #fff;
+}
+.btnWrap button{
+  background-color: #010c2d;
+  color: #fff;
+  border: none;
+}
+.btnWrap i{
+  float: none;
+}
 .artistGridCell{
   display: inline-block;
-  margin: .4em;
+  margin: .4em .4em .8em;
   max-width:300px; 
   width: 160px;
 }
+.artistGridCell em{
+  display: block;
+}
 .artistGridCell h3{
-  margin: .4em 0;
+  margin: .4em 0 0;
 }
 .artistGridCell .artistImgThumb{
   width: 120px;
   height: 120px;
-  border-radius:5px;
+  /*border-radius:5px;*/
   overflow: hidden;
   text-align: center;
 }
@@ -35,6 +64,7 @@
 }
 .artistMain .heroImage img{
   max-width: 100%;
+  min-height: 400px;
 }
 .artistMain .nameWrap{
   color: #fff;
@@ -67,6 +97,9 @@
   padding: 10px;
   border-top:1px solid #000;
   text-align: center;
+}
+.artistMain p.quote{
+  font-style: italic;
 }
 .artistMain .shareThis i{
   margin: 2px 4px 0 2px;

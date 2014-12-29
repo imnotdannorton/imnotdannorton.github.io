@@ -1,13 +1,6 @@
-<div ng-controller="featureController" class="homeWrapper">
+<div class="homeWrapper">
 	<h1>FEATURES</h1>
-	<div ng-repeat="product in products" class="product">
-		<a href="/{{product.id}}"><h1>{{product.name}}</h1></a>
-		<div class="details">
-			<ul>
-				<li>{{product.product_code}}</li>
-				<li>{{product.length}}</li>
-				<li>{{product.diameter}}</li>
-			</ul>
-		</div>
+	<div ng-repeat="feature in features" class="features" ng-bind-html="feature.content">
+		
 	</div>
 </div>

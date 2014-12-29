@@ -18,8 +18,8 @@
   <link rel="stylesheet" href="css/mobile.css"/>
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-   <script>
-      // 2. This code loads the IFrame Player API code asynchronously.
+  <!-- <script>
+      /* 2. This code loads the IFrame Player API code asynchronously.
       var tag = document.createElement('script');
 
       tag.src = "https://www.youtube.com/iframe_api";
@@ -57,7 +57,7 @@
       function stopVideo() {
         player.stopVideo();
       }
-    </script>
+    </script>-->
 </head>
 <body>
 
@@ -67,6 +67,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
   <div ng-include="'partials/header.html'"></div>
+  
   <div ng-include="'partials/mobileNav.html'"></div>
   <div ng-if="loading" ng-include="'partials/loader.html'"></div>
   <div ng-view class="contentWrapper"></div>
@@ -109,6 +110,7 @@
   <script src="js/controllers/dealerController.js"></script>
   <script src="js/controllers/featureController.js"></script>
   <script src="js/controllers/productController.js"></script>
+  <script src="js/controllers/staticController.js"></script>
   <script src="js/controllers/headerController.js"></script>
   <script src="js/services.js"></script>
   <script src="js/filters.js"></script>

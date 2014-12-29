@@ -150,6 +150,9 @@
   right: 20px;
   position: absolute;
 }
+.productStats .imageLinks{
+  display: inline-block;
+}
 .productStats .shareLinks p{
   margin: 0;
   font-size: 1.4em;
@@ -222,6 +225,7 @@ section.prodArtists .artist{
 }
 section.prodArtists .artist img{
   max-width: 100%;
+  max-height: 120px;
 }
 section.prodArtists .artist a, section.prodArtists .artist a:visited{
   color: #fff;

@@ -5,6 +5,15 @@
 		<li nav-item><a href="" id="home" ng-click="setActiveTab('home');">Home</a></li>
 		<li nav-item><a href="" id="products" ng-click="setActiveTab('products');">Products</a>
 			<ul class="subnav hidden">
+				<li ng-click="redirect('/products/hickory')">Hickory</li>
+				<li ng-click="redirect('/products/maple')">Maple</li>
+				<li ng-click="redirect('/products/playersdesign')">Player's Design</li>
+				<li ng-click="redirect('/products/eternalblack')">Eternal Black</li>
+				<li ng-click="redirect('/products/colorwrap')">Color Wrap</li>
+				<li ng-click="redirect('/products/specialtysticks')">Specialty Sticks</li>
+				<li ng-click="redirect('/products/brushes')">Brushes</li>
+				
+				<li ng-click="redirect('/products/marching')">Marching</li>
 				<li ng-click="redirect('manufacturing')">Manufacturing</li>
 				<li ng-click="redirect('stickselect')">Stick Selection</li>
 			</ul>
@@ -13,4 +22,11 @@
 		<li nav-item><a href="" id="dealers" ng-click="setActiveTab('dealers');">Dealers</a></li>
 		<li nav-item><a href="" id="features" ng-click="setActiveTab('features');">Features</a></li>
 	</ul>
+	<div class="searchBox">
+	<form ng-submit="searchResults(searchField)">
+		<input type="text" class="siteSearch" placeholder="Search Products, Artists, Features" ng-model="searchField"/>
+		<i class="fa fa-search"></i></form>
+	</form>
+	</div>
 </div>
+<div ng-include="'partials/results.html'"></div>

@@ -26,7 +26,7 @@
 
 		<div class="imgHolder"><img ng-src="{{imgPath}}{{product.images[0].name}}_Thumb.jpg"></div>
 		<div class="details">
-		<a ng-href="#/products/{{product.id}}"><h1 ng-bind-html="product.name"></h1></a>
+		<a ng-href="#/product/{{product.id}}"><h1 ng-bind-html="product.name"></h1></a>
 			<ul>
 				<li ng-bind-html="product.product_code"></li>
 				<li ng-if="product.dimensions_length && product.dimensions_diameter">{{product.dimensions_length}} | {{product.dimensions_diameter}}</li>
