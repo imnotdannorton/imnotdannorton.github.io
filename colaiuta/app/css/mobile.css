@@ -40,6 +40,9 @@
     padding: 14px;
     font-size: 24px;
   }
+  .searchBox{
+    display: none;
+  }
   #logo{
     width: 100%;
     text-align: center;
