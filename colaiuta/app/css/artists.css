@@ -128,7 +128,7 @@
   position: absolute;
   right: 20px;
   top: 20px;
-  z-index: 20;
+  z-index: 8;
   box-shadow: 10px 0 16px rgba(0,0,0,.3);
 }
 .artistStats h1{

@@ -24,7 +24,9 @@ angular.module('vaterDotcom').controller('headerController', ['$scope', '$rootSc
     'searchField': ''
   }
   $rootScope.results = {};
-
+  $scope.$on('$routeChangeStart', function(next, current) { 
+   $rootScope.clearResults();
+ });
   $scope.$on('productsSearch Success', function(event, data){
       if(data.length > 0){
         $rootScope.results.products = data;
