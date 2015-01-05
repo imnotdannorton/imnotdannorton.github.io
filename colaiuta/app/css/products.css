@@ -10,10 +10,17 @@
 .productsMain.loading{
   margin-top: 100%;
 }
+.productsMain p{
+  padding: 0;
+}
 .productsMain .product h1{
   font-size: 1.4em;
   display: inline-block;
   margin: 0;
+  max-width: 180px;
+}
+.productsMain .product li{
+  max-width: 180px;
 }
 .productsMain .product{
   vertical-align: top;
@@ -74,11 +81,11 @@
   top: -5px;
 }
 .product .imgHolder, .compareItems .imgHolder{
-  padding: 10px 20px 0;
+  /*padding: 10px 20px 0;
   background-color: #000;
   margin: 4px;
-  display: inline-block;
-  max-width: 100px;
+  display: inline-block;*/
+  max-width:80%;
 }
 .product .imgHolder img, .compareItems .imgHolder img{
   margin: 0px auto;
@@ -150,6 +157,9 @@
   right: 20px;
   position: absolute;
 }
+.productStats .imageLinks{
+  display: inline-block;
+}
 .productStats .shareLinks p{
   margin: 0;
   font-size: 1.4em;
@@ -183,20 +193,32 @@
   display: inline-block;
 }
 p.prodDesc{
-  width: 50%;
+  width: 66%;
   display: inline-block;
   margin: 0;
   padding: 5px 10px;
 }
 
 .buyNow{
-  width: 47%;
+  width: 30%;
   display: inline-block;
   vertical-align: top;
 }
 .buyNow p{
   padding: 10px;
   margin: .3em;
+}
+.buyNow li{
+  display: inline-block;
+  width: 100px;
+  float: left;
+  height: 60px;
+  padding: .2em;
+  margin: .2em;
+  vertical-align: text-top;
+}
+.buyNow li a{
+  /*margin-right: .4em;*/
 }
 .buyNow p a{
   color: #ffcb00;
@@ -222,6 +244,7 @@ section.prodArtists .artist{
 }
 section.prodArtists .artist img{
   max-width: 100%;
+  max-height: 120px;
 }
 section.prodArtists .artist a, section.prodArtists .artist a:visited{
   color: #fff;

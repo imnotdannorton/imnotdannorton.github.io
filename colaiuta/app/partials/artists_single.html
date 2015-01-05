@@ -1,20 +1,21 @@
 <div class="artistMain">
     <div class="heroImage">
-        <img ng-src="{{artist.images[0].url}}">
+        <youtube ng-if="showVid" id="{{vidId}}" width="100%" height="480" current-time="time" controls="1"></youtube>
+        <img ng-hide="showVid" ng-src="{{activeImage}}">
     </div>
     <div class="artistStats">
         <div class="nameWrap">
          <h1><span ng-if="artist.first_name">{{artist.first_name}} </span><span ng-if="artist.last_name">{{artist.last_name}}</span></h1>
          <h2>{{artist.group}}</h2>
-         <h3><a ng-href="#/products/{{artist.products[0].id}}">{{artist.products[0].name}}</a></h3>
+         <h3><a ng-href="#/product/{{artist.products[0].id}}" ng-bind-html='artist.products[0].name'></a></h3>
         </div>
         <div class="media">
-            <div class="vidThumb" ng-repeat="vid in artist.videos">
+            <div class="vidThumb" ng-repeat="vid in artist.videos" ng-click="showVideo(vid.url)">
                 <img ng-src="http://i.ytimg.com/vi/{{vid.url}}/default.jpg">
-                <i class="fa fa-play-circle" toggle-video="{{vid.url}}"></i>
+                <i class="fa fa-play-circle"></i>
             </div>
             <div class="imgThumb" ng-repeat="img in artist.images">
-                <img  ng-src="{{img.url}}" toggle-image="{{img.url}}" ng-click="currentImage($index)">
+                <img  ng-src="{{img.url}}" ng-click="currentImage($index)">
             </div>
         </div>
         <ul ng-if="social.length > 0" class="social">
@@ -29,7 +30,9 @@
     </div>
     
     <p ng-bind-html="artist.bio"></p>
-    <p ng-if="artist.quote" class="quote">"<span ng-bind-html="artist.quote"></span>"</p>
+    <p ng-if="artist.quote" class="quote"><span ng-bind-html="artist.quote"></span></p>
     <fb-comments data-href="" data-numposts="5" data-colorscheme="light"></fb-comments>
+    <div class="storefooter"></div>
+    
 </div>
 <div id="artistBg" ng-if='currentImage'></div>

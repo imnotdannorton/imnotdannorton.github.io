@@ -1,18 +1,62 @@
+.letterToggle{
+  display: inline-block;
+  margin: .2em;
+  padding: .6em;
+}
+.letterToggle:hover{
+  cursor: pointer;
+  background-color: #EEE;
+}
+.letterToggle.active{
+  color: #fff;
+  background-color: #010c2d;
+}
+.btnWrap{
+  display: inline-block;
+  background-color: #010c2d;
+  color: #fff;
+}
+.btnWrap button{
+  background-color: #010c2d;
+  color: #fff;
+  border: none;
+}
+.btnWrap i{
+  float: none;
+}
 .artistGridCell{
   display: inline-block;
-  margin: .4em;
+  margin: 1%;
   max-width:300px; 
-  width: 160px;
+  width: 23%;
+  height: 120px;
+  position: relative;
+}
+.artistGridCell em{
+  display: block;
 }
 .artistGridCell h3{
-  margin: .4em 0;
+  margin: .4em 0 0;
+}
+.artistGridCell .info{
+  color: #fff;
+  position: absolute;
+  z-index: 5;
+  padding: .3em;
+}
+.artistGridCell .info span{
+  color: #ffcb00; 
 }
 .artistGridCell .artistImgThumb{
-  width: 120px;
+  width: 100%;
   height: 120px;
-  border-radius:5px;
+  /*border-radius:5px;*/
   overflow: hidden;
   text-align: center;
+  position: absolute;
+  z-index: 4;
+  background-color: #000;
+  top: 0px;
 }
 .artistGridCell .artistImgThumb img{
   max-height: 100%;
@@ -35,6 +79,7 @@
 }
 .artistMain .heroImage img{
   max-width: 100%;
+  min-height: 400px;
 }
 .artistMain .nameWrap{
   color: #fff;

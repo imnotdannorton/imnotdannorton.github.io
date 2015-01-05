@@ -21,6 +21,9 @@
                 <li><span class="stat">Grip</span><div class="statbox">{{product.dimensions_diameter}}" | {{toCentimeters(product.dimensions_diameter)}}cm</div></li>
             </ul>
         </div>
+        <div class="imageLinks">
+            <p>DOWNLOAD HI-RES: <a ng-href="//vater.s3.amazonaws.com/products_fullres/Vater_{{product.images[0].name}}.jpg" target="_blank">JPG</a> / <a ng-href="//vater.s3.amazonaws.com/products_fullres/Vater_{{product.images[0].name}}.tif" target="_blank">TIFF</a></p>
+        </div>
         <div class="shareLinks">
             <p>Share This:</p>
             <ul class="social">
@@ -34,14 +37,19 @@
     <p class="prodDesc" ng-bind-html="product.description">
     </p>
     <div class="buyNow">
-    <p>DOWNLOAD HI-RES: <a ng-href="//vater.s3.amazonaws.com/products_fullres/Vater_{{product.images[0].name}}.jpg" target="_blank">JPG</a> / <a ng-href="//vater.s3.amazonaws.com/products_fullres/Vater_{{product.images[0].name}}.tif" target="_blank">TIFF</a></p>
-     <h2>Buy Now</h2>
+    
+     <h3>Buy Now:</h3>
+     <ul>
+     <li ng-repeat="vendor in product.salesLinks" ng-if="vendor.name" class="buyNowPartner"><img ng-src="img/{{vendor.logo}}"><br/><span ng-repeat="link in vendor.urls"><a ng-href="{{link.link}}">{{link.type}}</a><span ng-if="vendor.urls.length > 1 && $index == 0"> / </span></span></li>
+     </ul>
     </div>
     <section class="prodArtists" ng-if='product.artists.length > 0'>
      <h2>{{product.name}} Artists</h2>
-     <div ng-repeat="artist in product.artists | limitTo:4" class="artist"><a ng-href="#/artists/{{artist.id}}"><img ng-if="artist.image" ng-src="{{artist.image}}"> {{artist.first_name}} {{artist.last_name}}</a></div>
+     <div ng-repeat="artist in product.artists | limitTo:5" class="artist" ng-if="artist.image"><a ng-href="#/artists/{{artist.id}}"><img ng-src="{{artist.image}}"> {{artist.first_name}} {{artist.last_name}}</a></div>
     </section>
     <p></p>
     <fb-comments data-href="" data-numposts="5" data-colorscheme="light"></fb-comments>
+
 </div>
+ <div class="storefooter"></div>
 <div id="homeBg" random-bg></div>
