@@ -10,6 +10,7 @@ angular.module('vaterDotcom').service('resourcesService', ['$http', '$rootScope'
   	//$rootScope.loading = true;
 
     $rootScope.catAliases = {
+<<<<<<< HEAD
           "hickory": ["American_Hickory", "Gospel", "Nude", "VXD"],
           "eternalblack": "Eternal_Black",
           "maple":["Sugar_Maple","Cymbal_Sticks"],
@@ -20,6 +21,17 @@ angular.module('vaterDotcom').service('resourcesService', ['$http', '$rootScope'
           "colorwrap":"ColorWrap",
           "bags":"Bags",
           "brushes":"Wire_Tap_Brushes",
+=======
+          "hickory": ["American_Hickory", "Eternal_Black", "Gospel", "Nude", "VXD"],
+          "eternalblack": "Eternal_Black",
+          "maple":"Sugar_Maple",
+          "accessories":["Accessories", "Beaters"],
+          "practicepads":["ChopBuilderPads", "NoiseGuard"],
+          "playersdesign":["Players_Design", "Int_Players_Design"],
+          "specialtysticks":"Specialty_Sticks",
+          "colorwrap":"ColorWrap",
+          "bags":"Bags",
+>>>>>>> 920edda3524ab20ca654b947a19a720db6e2a680
           "timbale":"Timbale_Sticks",
           "mallets":["Marching_Marimba", "Marching_Vibraphone", "Marching_Xylophone", "Concert_Marimba", "Concert_Vibraphone", "Concert_Xylophone"],
           "marching":["Marching_Sticks", "Multi_Tenor_Mallets", "BassDrum_Mallets"],
@@ -30,15 +42,20 @@ angular.module('vaterDotcom').service('resourcesService', ['$http', '$rootScope'
     this.tagAlias = function(string){
       console.log(string);
       console.log($rootScope.catAliases[string]);
+<<<<<<< HEAD
       if( $rootScope.catAliases[string] instanceof Array){
         return $rootScope.catAliases[string].join(',');
+=======
+      if( $rootScope.catAliases[string ]instanceof Array){
+        return $rootScope.catAliases[string][0];
+>>>>>>> 920edda3524ab20ca654b947a19a720db6e2a680
       }else{
         return $rootScope.catAliases[string];
       }
     };
 
     this.fetchItem = function(type, id){
-      $rootScope.loading = true;
+
       var urlRequest = "http://dev.beneship.com:3002/";
       $rootScope.loading = true;
       
@@ -61,6 +78,7 @@ angular.module('vaterDotcom').service('resourcesService', ['$http', '$rootScope'
 	  		//console.log("oops: "+data+"error: "+status);
 	  	});	
   	};
+<<<<<<< HEAD
     this.fetchByTag = function(type, tags, query, global){
       $rootScope.loading = true;
       tags = this.tagAlias(tags);
@@ -96,6 +114,34 @@ angular.module('vaterDotcom').service('resourcesService', ['$http', '$rootScope'
       }else{
         urlRequest = urlRequest+type+'.json'+'?q='+query; 
       }
+=======
+    this.fetchByTag = function(type, tags, query){
+      $rootScope.loading = true;
+      tags = this.tagAlias(tags);
+      var urlRequest = "http://dev.beneship.com:3002/";
+      urlRequest = urlRequest+type+'.json'+'?tags='+tags;
+      if(query){
+        urlRequest = urlRequest + '&q=' + query;
+      }
+      console.log(tags);
+      if(query){
+        urlRequest = urlRequest+'&q='+query;
+      }
+      $http({
+      method:'GET',
+      url:urlRequest
+      }).success(function(data){
+        $rootScope.loading = false;
+        $rootScope.$broadcast(type+'Tag Success', data);
+      }).error(function(data, status){
+        $rootScope.loading = false;
+      }); 
+    };
+    this.fetchByQuery = function(type, query){
+      $rootScope.loading = true;
+      var urlRequest = "http://dev.beneship.com:3002/";
+      urlRequest = urlRequest+type+'.json'+'?q='+query;
+>>>>>>> 920edda3524ab20ca654b947a19a720db6e2a680
       
       console.log(query);
       
@@ -104,11 +150,15 @@ angular.module('vaterDotcom').service('resourcesService', ['$http', '$rootScope'
       url:urlRequest
       }).success(function(data){
         $rootScope.loading = false;
+<<<<<<< HEAD
         if(global){
           $rootScope.$broadcast(type+'Search Success', data);
         }else{
          $rootScope.$broadcast(type+'Query Success', data);
         }
+=======
+        $rootScope.$broadcast(type+'Query Success', data);
+>>>>>>> 920edda3524ab20ca654b947a19a720db6e2a680
       }).error(function(data, status){
         $rootScope.loading = false;
       }); 

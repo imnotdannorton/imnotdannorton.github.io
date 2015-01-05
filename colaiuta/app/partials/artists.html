@@ -15,6 +15,7 @@
 	<p ng-if="filteredArtists.length == 0">Cannot Find Matching Artist, Search</p>
 	<div ng-repeat="artist in (filteredArtists = (artists | filter:find))" class="artistGridCell">
 
+<<<<<<< HEAD
 	<!--<div class="artistImgThumb"><img ng-hide="artist.images[0].url" ng-src="img/artist-placeholder.jpg"><a ng-if="artist.images[0].url" ng-href="#/artists/{{artist.id}}"><img ng-if="artist.images[0].url" ng-src="{{artist.images[0].url}}"></a></div>-->
 	<a ng-if="artist.images[0].url" ng-href="#/artists/{{artist.id}}">
 		<div class="info">
@@ -31,6 +32,12 @@
 	<div class="lightBox"></div>
 	<div ng-if="artist.images[0].url" class="artistImgThumb" fullscreen-bg="artist.images[0].url"></div>
 	<div ng-hide="artist.images[0].url" class="artistImgThumb"></div>
+=======
+	<div class="artistImgThumb"><img ng-hide="artist.images[0].url" ng-src="img/artist-placeholder.jpg"><a ng-if="artist.images[0].url" ng-href="#/artists/{{artist.id}}"><img ng-if="artist.images[0].url" ng-src="{{artist.images[0].url}}"></a></div>
+	<h3>{{artist.first_name}} {{artist.last_name}}</h3>
+		<em ng-bind-html="artist.group"></em>
+		<span ng-bind-html="artist.products[0].name"></span>
+>>>>>>> 920edda3524ab20ca654b947a19a720db6e2a680
 	</div>
 	
 </div>

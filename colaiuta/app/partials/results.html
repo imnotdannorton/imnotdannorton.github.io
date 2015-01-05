@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 <div class="results">
 
@@ -10,19 +11,44 @@
 			<ul>
 				<li ng-bind-html="product.product_code"></li>
 				<!-- <li ng-if="product.dimensions_length && product.dimensions_diameter">{{product.dimensions_length}} | {{product.dimensions_diameter}}</li>
+=======
+{{resultsResponse}}
+<div class="results" ng-if="resultsResponse">
+	<h1 ng-if="results.products">PRODUCTS</h1>
+	<div ng-repeat="product in results.products" class="product">
+		<div class="imgHolder"><img ng-src="{{imgPath}}{{product.images[0].name}}_Thumb.jpg"></div>
+		<div class="details">
+		<a ng-href="#/product/{{product.id}}"><h1 ng-bind-html="product.name"></h1></a>
+			<ul>
+				<li ng-bind-html="product.product_code"></li>
+				<li ng-if="product.dimensions_length && product.dimensions_diameter">{{product.dimensions_length}} | {{product.dimensions_diameter}}</li>
+				<li><span class="compare" ng-click="compareThis(product)">Compare This</span></li>
+>>>>>>> 920edda3524ab20ca654b947a19a720db6e2a680
 				<!-- <li ng-bind-html="product.description" class="blurb">{{product.description}}</li>-->
 			</ul>
 		</div>
 	</div>
+<<<<<<< HEAD
 	<h2 ng-if="results.artists">ARTISTS</h2>
+=======
+	<h1 ng-if="results.artists">ARTISTS</h1>
+>>>>>>> 920edda3524ab20ca654b947a19a720db6e2a680
 	<div ng-if="results.artists" ng-repeat="artist in results.artists" class="features">
 		<div class="artistImgThumb"><img ng-hide="artist.images[0].url" ng-src="img/artist-placeholder.jpg"><a ng-if="artist.images[0].url" ng-href="#/artists/{{artist.id}}"><img ng-if="artist.images[0].url" ng-src="{{artist.images[0].url}}"></a></div>
 	<h3>{{artist.first_name}} {{artist.last_name}}</h3>
 		<em ng-bind-html="artist.group"></em>
 		<span ng-bind-html="artist.products[0].name"></span>
 	</div>
+<<<<<<< HEAD
 	<h2 ng-if="results.features">FEATURES</h2>
 	<div ng-repeat="feature in results.features" class="features" ng-bind-html="feature.content">
 		
 	</div>
+=======
+	<h1 ng-if="results.features">FEATURES</h1>
+	<div ng-repeat="feature in results.features" class="features" ng-bind-html="feature.content">
+		
+	</div>
+	{{results}}
+>>>>>>> 920edda3524ab20ca654b947a19a720db6e2a680
 </div>

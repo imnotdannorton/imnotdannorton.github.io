@@ -37,7 +37,6 @@
     <p class="prodDesc" ng-bind-html="product.description">
     </p>
     <div class="buyNow">
-    
      <h3>Buy Now:</h3>
      <ul>
      <li ng-repeat="vendor in product.salesLinks" ng-if="vendor.name" class="buyNowPartner"><img ng-src="img/{{vendor.logo}}"><br/><span ng-repeat="link in vendor.urls"><a ng-href="{{link.link}}">{{link.type}}</a><span ng-if="vendor.urls.length > 1 && $index == 0"> / </span></span></li>

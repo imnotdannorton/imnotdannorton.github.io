@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('vaterDotcom').controller('ProductCtrl', ['$scope', '$rootScope', '$location', '$routeParams',  'resourcesService', 'PRODUCT_IMAGE_PATH', function($scope, $rootScope, $location, $routeParams, resourcesService, PRODUCT_IMAGE_PATH) {
-  	
+    
     $scope.prodId = $routeParams.id;
     $scope.category = $routeParams.category;
     $scope.sortby = 'name'
@@ -69,8 +69,8 @@ angular.module('vaterDotcom').controller('ProductCtrl', ['$scope', '$rootScope',
 
 
     */
-  	if(typeof $scope.prodId !== 'undefined'){
-  		resourcesService.fetchItem('product', $scope.prodId);
+    if(typeof $scope.prodId !== 'undefined'){
+      resourcesService.fetchItem('product', $scope.prodId);
     }
     if(typeof $scope.category){
       //console
@@ -83,9 +83,9 @@ angular.module('vaterDotcom').controller('ProductCtrl', ['$scope', '$rootScope',
       } */
       resourcesService.fetchByTag('products', catString);
     }else{
-  		resourcesService.fetchItem('products');
+      resourcesService.fetchItem('products');
      
-  	}
+    }
 
     $scope.$on('productSuccess', function(event, data){
         $scope.product = data;

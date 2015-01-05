@@ -35,6 +35,9 @@
 .artistGridCell em{
   display: block;
 }
+.artistGridCell em{
+  display: block;
+}
 .artistGridCell h3{
   margin: .4em 0 0;
 }
