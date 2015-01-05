@@ -1,5 +1,7 @@
 'use strict';
 
+'use strict';
+
 /* Controllers */
 
 angular.module('vaterDotcom').controller('headerController', ['$scope', '$rootScope', '$location', '$route', 'resourcesService', 'PRODUCT_IMAGE_PATH', function($scope, $rootScope, $location, $route, resourcesService, PRODUCT_IMAGE_PATH) {
@@ -18,6 +20,8 @@ angular.module('vaterDotcom').controller('headerController', ['$scope', '$rootSc
   }
   $scope.redirect = function(path){
     $rootScope.resultsResponse = false;
+    $('ul.subnav').addClass('hidden');
+    $('#mobileNav.active').removeClass('active');
     $location.path(path);
   }
   $rootScope.fields = {
@@ -36,7 +40,9 @@ angular.module('vaterDotcom').controller('headerController', ['$scope', '$rootSc
         //$scope.$apply();
       }
     });
-  
+  $scope.toggleSubnav = function(){
+    $('ul.subnav').toggleClass('hidden');
+  }
   $scope.$on('artistsSearch Success', function(event, data){
       if(data.length > 0){
       $rootScope.results.artists = data;
