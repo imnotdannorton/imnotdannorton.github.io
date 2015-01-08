@@ -151,8 +151,8 @@ angular.module('vaterDotcom').controller('ProductCtrl', ['$scope', '$rootScope',
 
       console.log($scope.categories);
     });
-    $rootScope.$on('artistSuccess', function(event, data){
-      for (var i = 0; i < $scope.product.artists.length; i++) {
+    $scope.$on('artistSuccess', function(event, data){
+      for (var i = 0; i < 5; i++) {
         if($scope.product.artists[i].id == data.id){
           $scope.product.artists[i] = data;
           if(data.images[0]){
