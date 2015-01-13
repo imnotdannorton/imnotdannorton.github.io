@@ -38,7 +38,7 @@ angular.module('vaterDotcom').service('resourcesService', ['$http', '$rootScope'
 
     this.fetchItem = function(type, id){
 
-      var urlRequest = "http://dev.beneship.com:3002/";
+      var urlRequest = "http://lukather.herokuapp.com/";
       $rootScope.loading = true;
       
       if(id){
@@ -63,7 +63,7 @@ angular.module('vaterDotcom').service('resourcesService', ['$http', '$rootScope'
     this.fetchByTag = function(type, tags, query){
       $rootScope.loading = true;
       tags = this.tagAlias(tags);
-      var urlRequest = "http://dev.beneship.com:3002/";
+      var urlRequest = "http://lukather.herokuapp.com/";
       urlRequest = urlRequest+type+'.json'+'?tags='+tags;
       if(query){
         urlRequest = urlRequest + '&q=' + query;
@@ -84,7 +84,7 @@ angular.module('vaterDotcom').service('resourcesService', ['$http', '$rootScope'
     };
     this.fetchByQuery = function(type, query){
       $rootScope.loading = true;
-      var urlRequest = "http://dev.beneship.com:3002/";
+      var urlRequest = "http://lukather.herokuapp.com/";
       urlRequest = urlRequest+type+'.json'+'?q='+query;
       
       console.log(query);
