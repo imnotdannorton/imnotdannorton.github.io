@@ -14,11 +14,23 @@
 	<hr/>
 	<p ng-if="filteredArtists.length == 0">Cannot Find Matching Artist, Search</p>
 	<div ng-repeat="artist in (filteredArtists = (artists | filter:find))" class="artistGridCell">
-
-	<div class="artistImgThumb"><img ng-hide="artist.images[0].url" ng-src="img/artist-placeholder.jpg"><a ng-if="artist.images[0].url" ng-href="#/artists/{{artist.id}}"><img ng-if="artist.images[0].url" ng-src="{{artist.images[0].url}}"></a></div>
-	<h3>{{artist.first_name}} {{artist.last_name}}</h3>
-		<em ng-bind-html="artist.group"></em>
-		<span ng-bind-html="artist.products[0].name"></span>
+	<!--<div class="artistImgThumb"><img ng-hide="artist.images[0].url" ng-src="img/artist-placeholder.jpg"><a ng-if="artist.images[0].url" ng-href="#/artists/{{artist.id}}"><img ng-if="artist.images[0].url" ng-src="{{artist.images[0].url}}"></a></div>-->
+	<a ng-if="artist.images[0].url" ng-href="#/artists/{{artist.id}}">
+		<div class="info">
+		<h3>{{artist.first_name}} {{artist.last_name}}</h3>
+			<em ng-bind-html="artist.group"></em>
+			<span ng-bind-html="artist.products[0].name"></span>
+		</div>
+	</a>
+	<div class="info" ng-hide="artist.images[0].url">
+		<h3>{{artist.first_name}} {{artist.last_name}}</h3>
+			<em ng-bind-html="artist.group"></em>
+			<span ng-bind-html="artist.products[0].name"></span>
+		</div>
+	<div class="lightBox"></div>
+	<div ng-if="artist.images[0].url" class="artistImgThumb" fullscreen-bg="artist.images[0].url"></div>
+	<div ng-hide="artist.images[0].url" class="artistImgThumb"></div>
 	</div>
 	
 </div>
+<div id="homeBg" random-bg></div>

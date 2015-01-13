@@ -22,10 +22,38 @@
 		<li nav-item><a href="" id="features" ng-click="setActiveTab('features');">Features</a></li>
 	</ul>
 	<div class="searchBox">
-	<form ng-submit="searchResults(searchField)">
-		<input type="text" class="siteSearch" placeholder="Search Products, Artists, Features" ng-model="searchField"/>
+	<form ng-submit="searchResults(fields.searchField)">
+		<input type="text" class="siteSearch" placeholder="Search Products, Artists, Features" ng-model="fields.searchField"/>
 		<i class="fa fa-search"></i></form>
 	</form>
 	</div>
 </div>
+<div class="results" ng-if="resultsResponse">
+
+	<div class="clear" ng-click="clearResults()"><i class="fa fa-times"></i></div>
+	<h1>SEARCH RESULTS:</h1>
+	<h2 ng-if="results.products">PRODUCTS</h2>
+	<div ng-repeat="product in results.products" class="product">
+		<div class="details">
+		<a ng-href="#/product/{{product.id}}"><h3 ng-bind-html="product.name"></h3></a>
+			<ul>
+				<li ng-bind-html="product.product_code"></li>
+				<!-- <li ng-if="product.dimensions_length && product.dimensions_diameter">{{product.dimensions_length}} | {{product.dimensions_diameter}}</li>
+				<!-- <li ng-bind-html="product.description" class="blurb">{{product.description}}</li>-->
+			</ul>
+		</div>
+	</div>
+	<h2 ng-if="results.artists">ARTISTS</h2>
+	<div ng-if="results.artists" ng-repeat="artist in results.artists" class="result">
+		<div class="artistImgThumb"><img ng-hide="artist.images[0].url" ng-src="img/artist-placeholder.jpg"><a ng-if="artist.images[0].url" ng-href="#/artists/{{artist.id}}"><img ng-if="artist.images[0].url" ng-src="{{artist.images[0].url}}"></a></div>
+	<h3>{{artist.first_name}} {{artist.last_name}}</h3>
+		<em ng-bind-html="artist.group"></em>
+		<span ng-bind-html="artist.products[0].name"></span>
+	</div>
+	<h2 ng-if="results.features">FEATURES</h2>
+	<div ng-repeat="feature in results.features" class="result" ng-bind-html="feature.content">
+		
+	</div>
+</div>
+
 <!--<div ng-include="'partials/results.html'"></div>-->

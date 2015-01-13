@@ -16,6 +16,7 @@
   width: 200px;
   padding: 20px;
   z-index: 99;
+  overflow-y:scroll;
 }
 #mobileNav.active{
   margin-left: 0;
@@ -79,6 +80,21 @@
   .productsMain .product{
     width: 100%;
   }
+  .artistGridCell{
+    display: inline-block;
+    margin: 1%;
+    max-width: none;
+    width: 100%;
+    height: 120px;
+    position: relative;
+  }
+  .artistGridCell .info{
+    padding: 1em;
+  }
+  .letterToggle {
+  margin: 0;
+  padding: .4em;
+  }
   .artistStats{
     display: inline-block;
     width: 100%;
@@ -92,6 +108,10 @@
   display: inline-block;
   background-color: #FFF;
   width: 100%;
+  }
+  .artistMain .heroImage img {
+  max-width: 100%;
+  min-height: 100px;
   }
   .artistMain .shareThis{
     text-align: left;

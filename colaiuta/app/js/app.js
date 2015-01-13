@@ -8,7 +8,6 @@ angular.module('vaterDotcom', [
   'vaterDotcom.filters',
   'vaterDotcom.directives',
   'vaterDotcom.controllers'
-  //'google-maps'.ns()
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/home', {templateUrl: 'partials/home.html', controller: 'HomepageCtrl'});
@@ -20,6 +19,7 @@ config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/search', {templateUrl: 'partials/results.html', controller:'headerController'});
   $routeProvider.when('/artists/:id', {templateUrl: 'partials/artists_single.html', controller: 'artistController'});
   $routeProvider.when('/features', {templateUrl: 'partials/features.html', controller: 'featureController'});
+  $routeProvider.when('/feature/:id', {templateUrl: 'partials/features_single.html', controller: 'featureController'});
   $routeProvider.when('/dealers', {templateUrl: 'partials/dealers.html', controller: 'dealerController'});
   $routeProvider.when('/manufacturing', {templateUrl: 'partials/manufacturing.html', controller:'staticController'});
   $routeProvider.when('/stickselect', {templateUrl: 'partials/stickselect.html'});
@@ -30,6 +30,6 @@ config(['$routeProvider', function($routeProvider) {
                     //this prepends uiGmap to 'google-maps', so it is really 'uiGmapgoogle-maps'
 //angular.module('vaterDotcom', ['google-maps'.ns()]);
 angular.module('vaterDotcom').value('ARTIST_IMAGE_PATH', 'http://vater.s3.amazonaws.com/artists/');
-angular.module('vaterDotcom').value('PRODUCT_IMAGE_PATH', 'http://vater.s3.amazonaws.com/products/');
+angular.module('vaterDotcom').value('PRODUCT_IMAGE_PATH', 'http://vater.s3.amazonaws.com/prods_retina/');
 angular.module('vaterDotcom').value('PRODUCT_IMAGE_PATH_HIRES', 'http://vater.s3.amazonaws.com/products_fullres/');
 angular.module('app.ui-map', ['ui.map']);

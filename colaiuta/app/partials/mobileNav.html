@@ -1,7 +1,7 @@
 <div id="mobileNav" ng-controller="headerController" nav-item>
 	<ul>
 		<li><a href="" id="home" ng-click="setActiveTab('home');">Home</a></li>
-		<li><a href="" id="products" ng-click="setActiveTab('products');">Products</a>
+		<li><a href="" id="products" ng-click="toggleSubnav()">Products</a>
 			<ul class="subnav hidden">
 				<li ng-click="redirect('/products/hickory')">Hickory</li>
 				<li ng-click="redirect('/products/maple')">Maple</li>
@@ -10,7 +10,6 @@
 				<li ng-click="redirect('/products/colorwrap')">Color Wrap</li>
 				<li ng-click="redirect('/products/specialtysticks')">Specialty Sticks</li>
 				<li ng-click="redirect('/products/brushes')">Brushes</li>
-				
 				<li ng-click="redirect('/products/marching')">Marching</li>
 				<li ng-click="redirect('manufacturing')">Manufacturing</li>
 				<li ng-click="redirect('stickselect')">Stick Selection</li>

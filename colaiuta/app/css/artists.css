@@ -26,9 +26,14 @@
 }
 .artistGridCell{
   display: inline-block;
-  margin: .4em .4em .8em;
+  margin: 1%;
   max-width:300px; 
-  width: 160px;
+  width: 23%;
+  height: 120px;
+  position: relative;
+}
+.artistGridCell em{
+  display: block;
 }
 .artistGridCell em{
   display: block;
@@ -36,12 +41,25 @@
 .artistGridCell h3{
   margin: .4em 0 0;
 }
+.artistGridCell .info{
+  color: #fff;
+  position: absolute;
+  z-index: 5;
+  padding: .3em;
+}
+.artistGridCell .info span{
+  color: #ffcb00; 
+}
 .artistGridCell .artistImgThumb{
-  width: 120px;
+  width: 100%;
   height: 120px;
   /*border-radius:5px;*/
   overflow: hidden;
   text-align: center;
+  position: absolute;
+  z-index: 4;
+  background-color: #000;
+  top: 0px;
 }
 .artistGridCell .artistImgThumb img{
   max-height: 100%;
@@ -110,7 +128,7 @@
   position: absolute;
   right: 20px;
   top: 20px;
-  z-index: 20;
+  z-index: 8;
   box-shadow: 10px 0 16px rgba(0,0,0,.3);
 }
 .artistStats h1{

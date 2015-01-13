@@ -1,5 +1,5 @@
 <div class="homeWrapper productsMain" ng-class="{'loading':loading}">
-	<h1>PRODUCTS: {{category}}</h1>
+	<!--<h1>PRODUCTS: {{category}}</h1>
 	
 	<hr/>
 	<div class="compareHolder" ng-if="compareItems.length >0">
@@ -9,19 +9,26 @@
 			<h3 ng-bind-html="item.product_code"></h3>
 		</div><br/>
 		<button><a ng-click="viewCompare()">Compare &raquo;</a></button>
-	</div>
-	<div ng-repeat="product in products | filter:find | orderBy:sortby:reverse " class="product">
+	</div>-->
+	<div ng-repeat="(cat,products) in categories">
+	<h1>{{clean(cat)}}</h1>
+	<p ng-if="products.desc" ng-bind-html="products.desc"></p>
+		<div ng-repeat="product in products.products | filter:find | orderBy:sortby:reverse" class="product">
 
-		<div class="imgHolder"><img ng-src="{{imgPath}}{{product.images[0].name}}_Thumb.jpg"></div>
-		<div class="details">
-		<a ng-href="#/product/{{product.id}}"><h1 ng-bind-html="product.name"></h1></a>
-			<ul>
-				<li ng-bind-html="product.product_code"></li>
-				<li ng-if="product.dimensions_length && product.dimensions_diameter">{{product.dimensions_length}} | {{product.dimensions_diameter}}</li>
-				<li><span class="compare" ng-click="compareThis(product)">Compare This</span></li>
-				<!-- <li ng-bind-html="product.description" class="blurb">{{product.description}}</li>-->
-			</ul>
+			<div class="imgHolder"><img ng-src="{{imgPath}}{{product.images[0].name}}@High.png"></div>
+			<div class="details">
+			<a ng-href="#/product/{{product.id}}"><h1 ng-bind-html="product.name"></h1></a>
+				<ul>
+					<li ng-bind-html="product.product_code"></li>
+					<li ng-if="product.dimensions_length && product.dimensions_diameter">{{product.dimensions_length}} | {{product.dimensions_diameter}}</li>
+					<!-- <li><span class="compare" ng-click="compareThis(product)">Compare This</span></li>
+					<!-- <li ng-bind-html="product.description" class="blurb">{{product.description}}</li>-->
+				</ul>
+			</div>
 		</div>
 	</div>
+
 </div>
+<fb-comments data-href="" data-numposts="5" data-colorscheme="light"></fb-comments>
+    <div class="storefooter"></div>
 <div id="homeBg" random-bg></div>

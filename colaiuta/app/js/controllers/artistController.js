@@ -2,7 +2,8 @@
 
 /* Controllers */
 angular.module('vaterDotcom').controller('artistController', ['$scope', '$rootScope', '$location', '$routeParams', 'resourcesService', function($scope, $rootScope, $location, $routeParams, resourcesService) {
-  	$scope.artistId = $routeParams.id;
+    $('body').scrollTop(0);
+    $scope.artistId = $routeParams.id;
     console.log($location);
     $scope.currentLocation = "";
     $scope.artist = {};
@@ -18,7 +19,7 @@ angular.module('vaterDotcom').controller('artistController', ['$scope', '$rootSc
     if(typeof $scope.artistId !== 'undefined'){
       resourcesService.fetchItem('artist', $scope.artistId);
     }else{
-      resourcesService.fetchByQuery('artists', 'A');
+      resourcesService.fetchByQuery('artists', 'A', 'last_name');
     }
     $scope.artistImages = [];
     $scope.currentImage = function(index){
@@ -36,10 +37,11 @@ angular.module('vaterDotcom').controller('artistController', ['$scope', '$rootSc
       $scope.vidId = id;
       console.log($scope.vidId)
     }
-   $scope.findArtists = function(string){
+   $scope.findArtists = function(string, params){
     $rootScope.loading = true;
-    $scope.activeLetter = string[0].toLowerCase();
-    resourcesService.fetchByQuery('artists', string[0]);
+    //$scope.activeLetter = string[0].toLowerCase();
+    resourcesService.fetchByQuery('artists', string, params);
+    $scope.clearFind();
    }
    $scope.clearFind = function(){
     $scope.find = "";
@@ -47,23 +49,23 @@ angular.module('vaterDotcom').controller('artistController', ['$scope', '$rootSc
    $scope.lastNameFilter = function(string){
     $scope.find = "";
     $scope.activeLetter = string;
-    $scope.findArtists(string);
+    $scope.findArtists(string, 'last_name');
    }
-  	//artistService.fetchArtist(1);
-  	//console.log(productService.fetchProducts);
-  	$scope.$on('artistsSuccess', function(event, data){
-  		console.log(event);
-  		$scope.artists = data;
-  		console.log($scope.artists);
-  	 //console.log(data);
-  	});
+    //artistService.fetchArtist(1);
+    //console.log(productService.fetchProducts);
+    $scope.$on('artistsSuccess', function(event, data){
+      console.log(event);
+      $scope.artists = data;
+      console.log($scope.artists);
+     //console.log(data);
+    });
     $scope.$on('artistsQuery Success', function(event, data){
       $rootScope.loading = false;
       $scope.artists = data;
       console.log(data);
     });
-  	$scope.$on('artistSuccess', function(event, data){
-  		$scope.artist = data;
+    $scope.$on('artistSuccess', function(event, data){
+      $scope.artist = data;
       $scope.artistImages = data.images;
       $scope.currentImage(0);
       if($scope.artist.social){
@@ -71,9 +73,9 @@ angular.module('vaterDotcom').controller('artistController', ['$scope', '$rootSc
         $scope.prepLinks($scope.social); 
       }
       
-  		
-  	 //console.log(data);
-  	});
+      
+     //console.log(data);
+    });
 
     $scope.prepLinks = function(array){
       angular.forEach(array, function(value,key){

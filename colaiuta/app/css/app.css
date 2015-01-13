@@ -69,6 +69,38 @@ div{
   display: inline-block;
   padding:1em;
 }
+.results{
+  position: absolute;
+  background: rgba(255, 255, 255, .95);
+  width: 92%;
+  margin: 0 2%;
+  z-index: 9;
+  padding: 0 2em 2em;
+  font-size: .8em;
+}
+.results .result{
+  max-width: 100px;
+  display: inline-block;
+  margin: .2em .6em;
+}
+.results .result img{
+  max-width: 100%;
+}
+.results h1{
+  font-weight: 300;
+}
+.results .product{
+  max-width: 100px;
+  display: inline-block;
+  margin: .2em .6em;
+}
+.results .clear{
+  float: right;
+  font-size: 1.8em;
+}
+.results .product .details h1{
+  font-size: 1.1em;
+}
 input{
   border: 1px solid transparent;
   padding: .3em;
@@ -143,6 +175,10 @@ border-color: #000 transparent transparent;
   width: 140px;
   font-size: .8em;
 }
+#header ul.mainNav li ul.subnav li:hover{
+  color: #ffcb00;
+  cursor: pointer;
+}
 #header ul.mainNav li ul.subnav.hidden{
   display:none;
 }
@@ -164,6 +200,7 @@ border-color: #000 transparent transparent;
   position: absolute;
   width: 100%;
   height: 100%;
+  z-index: 10;
 }
 .loadingWrapper .holder .left{
   display: inline-block;
@@ -380,7 +417,7 @@ border-color: #000 transparent transparent;
 .manuStep .prev{
   left: 2em;
 }
-#homeBg .lightBox{
+.lightBox{
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, .6);

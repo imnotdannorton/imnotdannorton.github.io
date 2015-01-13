@@ -7,18 +7,19 @@
 // In this case it is a simple value service.
 console.log("services");
 angular.module('vaterDotcom').service('resourcesService', ['$http', '$rootScope', function($http, $rootScope) {
-  	//$rootScope.loading = true;
+    //$rootScope.loading = true;
 
     $rootScope.catAliases = {
-          "hickory": ["American_Hickory", "Eternal_Black", "Gospel", "Nude", "VXD"],
+          "hickory": ["American_Hickory", "Gospel", "Nude", "VXD"],
           "eternalblack": "Eternal_Black",
-          "maple":"Sugar_Maple",
+          "maple":["Sugar_Maple","Cymbal_Sticks"],
           "accessories":["Accessories", "Beaters"],
           "practicepads":["ChopBuilderPads", "NoiseGuard"],
-          "playersdesign":["Players_Design", "Int_Players_Design"],
+          "playersdesign":["Int_Players_Design", "Players_Design"],
           "specialtysticks":"Specialty_Sticks",
           "colorwrap":"ColorWrap",
           "bags":"Bags",
+          "brushes":"Wire_Tap_Brushes",
           "timbale":"Timbale_Sticks",
           "mallets":["Marching_Marimba", "Marching_Vibraphone", "Marching_Xylophone", "Concert_Marimba", "Concert_Vibraphone", "Concert_Xylophone"],
           "marching":["Marching_Sticks", "Multi_Tenor_Mallets", "BassDrum_Mallets"],
@@ -29,15 +30,14 @@ angular.module('vaterDotcom').service('resourcesService', ['$http', '$rootScope'
     this.tagAlias = function(string){
       console.log(string);
       console.log($rootScope.catAliases[string]);
-      if( $rootScope.catAliases[string ]instanceof Array){
-        return $rootScope.catAliases[string][0];
+      if( $rootScope.catAliases[string] instanceof Array){
+        return $rootScope.catAliases[string].join(',');
       }else{
         return $rootScope.catAliases[string];
       }
     };
 
     this.fetchItem = function(type, id){
-
       var urlRequest = "http://lukather.herokuapp.com/";
       $rootScope.loading = true;
       
@@ -48,19 +48,19 @@ angular.module('vaterDotcom').service('resourcesService', ['$http', '$rootScope'
       }else{
         urlRequest = urlRequest+type+'.json';
       }
-  		$http({
-  		method:'GET',
-  		url:urlRequest
-	  	}).success(function(data){
-	  		//console.log(data);
+      $http({
+      method:'GET',
+      url:urlRequest
+      }).success(function(data){
+        //console.log(data);
         $rootScope.loading = false;
-	  		$rootScope.$broadcast(type+'Success', data);
-	  	}).error(function(data, status){
+        $rootScope.$broadcast(type+'Success', data);
+      }).error(function(data, status){
         $rootScope.loading = false;
-	  		//console.log("oops: "+data+"error: "+status);
-	  	});	
-  	};
-    this.fetchByTag = function(type, tags, query){
+        //console.log("oops: "+data+"error: "+status);
+      }); 
+    };
+    this.fetchByTag = function(type, tags, query, global){
       $rootScope.loading = true;
       tags = this.tagAlias(tags);
       var urlRequest = "http://lukather.herokuapp.com/";
@@ -77,15 +77,24 @@ angular.module('vaterDotcom').service('resourcesService', ['$http', '$rootScope'
       url:urlRequest
       }).success(function(data){
         $rootScope.loading = false;
-        $rootScope.$broadcast(type+'Tag Success', data);
+        if(global){
+          $rootScope.$broadcast(type+'Search Success', data);
+        }else{
+          $rootScope.$broadcast(type+'Tag Success', data);
+        }
       }).error(function(data, status){
         $rootScope.loading = false;
       }); 
     };
-    this.fetchByQuery = function(type, query){
+    this.fetchByQuery = function(type, query, params, global){
       $rootScope.loading = true;
       var urlRequest = "http://lukather.herokuapp.com/";
-      urlRequest = urlRequest+type+'.json'+'?q='+query;
+      if(params){
+        urlRequest = urlRequest+type+'.json'+'?'+params+'='+query; 
+        console.log('params')
+      }else{
+        urlRequest = urlRequest+type+'.json'+'?q='+query; 
+      }
       
       console.log(query);
       
@@ -94,7 +103,11 @@ angular.module('vaterDotcom').service('resourcesService', ['$http', '$rootScope'
       url:urlRequest
       }).success(function(data){
         $rootScope.loading = false;
-        $rootScope.$broadcast(type+'Query Success', data);
+        if(global){
+          $rootScope.$broadcast(type+'Search Success', data);
+        }else{
+         $rootScope.$broadcast(type+'Query Success', data);
+        }
       }).error(function(data, status){
         $rootScope.loading = false;
       }); 
@@ -138,26 +151,26 @@ angular.module('vaterDotcom').service('resourcesService', ['$http', '$rootScope'
     Wire_Tap_Brushes
     };*/
   }]).service('instagramService', ['$http', '$rootScope', function($http, $rootScope){
-  	/*
-	 var endPoint = "https://api.instagram.com/v1/media/popular?client_id=642176ece1e7445e99244cec26f4de1f&callback=JSON_CALLBACK";
+    /*
+   var endPoint = "https://api.instagram.com/v1/media/popular?client_id=642176ece1e7445e99244cec26f4de1f&callback=JSON_CALLBACK";
             
             $http.jsonp(endPoint).success(function(response){
                 callback(response.data);
             });
-		}
-	}
-  	*/
+    }
+  }
+    */
 
 
-  	this.fetchInstagrams = function(){
-  	$http.jsonp('https://api.instagram.com/v1/users/214340073/media/recent?access_token=11896865.1fb234f.47a3eeab0ccc448aa966bf77eda87d02&count=1&callback=JSON_CALLBACK'
-  	).success(function(data){
-  		$rootScope.$broadcast('instaSuccess', data);
-  		console.log('IG SUCCESS');
-  	}).error(function(data, status){
-  		console.log('insta fail: '+ data);
-  	});
-  	};
+    this.fetchInstagrams = function(){
+    $http.jsonp('https://api.instagram.com/v1/users/214340073/media/recent?access_token=11896865.1fb234f.47a3eeab0ccc448aa966bf77eda87d02&count=1&callback=JSON_CALLBACK'
+    ).success(function(data){
+      $rootScope.$broadcast('instaSuccess', data);
+      console.log('IG SUCCESS');
+    }).error(function(data, status){
+      console.log('insta fail: '+ data);
+    });
+    };
 
 
   }]).service('youtubeEmbed', ['$document', '$q', '$rootScope', function($document, $q, $rootScope){
@@ -189,3 +202,4 @@ angular.module('vaterDotcom').service('resourcesService', ['$http', '$rootScope'
   };
 
 }]);
+
