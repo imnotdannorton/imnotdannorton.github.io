@@ -202,5 +202,24 @@ angular.module('vaterDotcom').service('resourcesService', ['$http', '$rootScope'
     yt: function(){ return y.promise; }
   };
 
+}]).service('youtubePlaylistService', ['$http', '$rootScope', function($http, $rootScope) {
+  this.fetchPlaylist = function(pl){
+    //https://gdata.youtube.com/feeds/api/playlists/PL218EF530CBB47630?v=2&alt=json-in-script&format=5
+    $http({method:'GET', url:"https://gdata.youtube.com/feeds/api/playlists/"+pl+"?v=2&alt=json-in-script&format=5"}).success(function(data){
+      $rootScope.broadcast('ytPlaylistSuccess', data);
+      console.log(data);
+    }).error(function(data, status){
+      console.log(data, status);
+    });
+  }
+  this.fetchFeed = function(user){
+    $http({method:'GET', url:"http://gdata.youtube.com/feeds/users/"+user+"/uploads?alt=json-in-script&format=5").success(function(data){
+      $rootScope.broadcast('ytUserSuccess', data);
+      console.log(data);
+    }).error(function(data, status){
+       console.log(data, status);
+    });
+    //http://gdata.youtube.com/feeds/users/VaterPercussionUSA/uploads?alt=json-in-script&format=5
+  }
 }]);
 

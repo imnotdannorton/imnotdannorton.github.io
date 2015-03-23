@@ -1,7 +1,8 @@
 'use strict';
-angular.module('vaterDotcom').controller('HomepageCtrl', ['$scope', '$rootScope', 'instagramService', function($scope, $rootScope, instagramService) {
+angular.module('vaterDotcom').controller('HomepageCtrl', ['$scope', '$rootScope', 'instagramService', 'youtubePlaylistService', function($scope, $rootScope, instagramService, youtubePlaylistService) {
     console.log("whoo home");
     instagramService.fetchInstagrams();
+    youtubePlaylistService.fetchFeed('VaterPercussionUSA');
     $scope.activeBillboard = 0;
     $rootScope.$on('instaSuccess', function(event, object){
     	console.log(object);
