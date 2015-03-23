@@ -18,9 +18,9 @@ $( function(){
 	var activeLyric = 0;
 	var activeImage = ""
 	var lyrics = [
-		{"lyric":"flow", "timestamp":0},
+		{"lyric":"flow", "timestamp":1},
 		{"lyric":"pulse", "timestamp":2},
-		{"lyric":"murmur", "timestamp":4},
+		{"lyric":"murmur", "timestamp":5},
 		{"lyric":"build", "timestamp":6, "random":1},
 		{"lyric":"twinkle", "timestamp":8, "random":2},
 		{"lyric":"guitar", "timestamp":10, "random":3},
@@ -111,11 +111,11 @@ $( function(){
 			myTime = parseInt($('#flowPlay')[0].currentTime);
 			if(myTime == 5){ $('#logo').fadeOut();}
 			
-			if(lyrics[activeLyric].timestamp == myTime){
-				activeLyric++;
+			if(lyrics[activeLyric].timestamp == myTime-1){
 				activeImage = imagesList[activeLyric];
 				console.log(activeImage, lyrics[activeLyric].lyric );
 				$('#wrapper').css('background-image', 'url('+activeImage+')');
+				activeLyric++;
 				
 			}
 			if(activeLyric == imagesList.length-1){
