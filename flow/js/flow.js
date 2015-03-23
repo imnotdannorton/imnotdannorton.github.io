@@ -5,11 +5,11 @@ var lyrics = [
 	{"lyric":"flow", "timestamp":0},
 	{"lyric":"pulse", "timestamp":2},
 	{"lyric":"murmur", "timestamp":4},
-	{"lyric":"flow", "timestamp":6, "random":1},
-	{"lyric":"flow", "timestamp":8, "random":2},
-	{"lyric":"flow", "timestamp":10, "random":3},
+	{"lyric":"build", "timestamp":6, "random":1},
+	{"lyric":"twinkle", "timestamp":8, "random":2},
+	{"lyric":"guitar", "timestamp":10, "random":3},
 	{"lyric":"flow", "timestamp":12, "random":4},
-	{"lyric":"flow", "timestamp":14, "random":5},
+	{"lyric":"sky", "timestamp":14, "random":5},
 	{"lyric":"I just want to pack my things and", "timestamp":15},
 	{"lyric":"go", "timestamp":19},
 	{"lyric":"Been standing still for so long that my", "timestamp":20},
@@ -40,10 +40,10 @@ var lyrics = [
 	{"lyric":"how can i go back", "timestamp":173},
 	{"lyric":"knowing i let her", "timestamp":179},
 	{"lyric":"down", "timestamp":181, "random":1},
-	{"lyric":"down", "timestamp":185, "random":2},
-	{"lyric":"down", "timestamp":189, "random":3},
+	{"lyric":"fall", "timestamp":185, "random":2},
+	{"lyric":"bottom", "timestamp":189, "random":3},
 	{"lyric":"down", "timestamp":193, "random":4},
-	{"lyric":"down", "timestamp":195},
+	{"lyric":"fall", "timestamp":195},
 	{"lyric":"she said", "timestamp":210, "random":1},
 	{"lyric":"she's been", "timestamp":211, "random":1},
 	{"lyric":"dreaming", "timestamp":211},
@@ -60,12 +60,12 @@ var lyrics = [
 	{"lyric":"flow", "timestamp":247, "random":5},
 	{"lyric":"and i go", "timestamp":265, "random":3},
 	{"lyric":"and I'm gone", "timestamp":267},
-	{"lyric":"and I'm gone", "timestamp":275, "random":1},
-	{"lyric":"and I'm gone", "timestamp":280, "random":2},
-	{"lyric":"and I'm gone", "timestamp":285, "random":3},
-	{"lyric":"and I'm gone", "timestamp":290, "random":4},
+	{"lyric":"gone", "timestamp":275, "random":1},
+	{"lyric":"over", "timestamp":280, "random":2},
+	{"lyric":"leaving", "timestamp":285, "random":3},
+	{"lyric":"done", "timestamp":290, "random":4},
 ];
-function getPic(query, index){
+var getPic = function(query, index){
 	myPic = ""
 	$.getJSON(
     ANIMATED_IMAGES_URL+escape(query)
@@ -74,11 +74,12 @@ function getPic(query, index){
       if (typeof images.responseData === 'undefined' || !images.responseData || images.responseData.results.length == 0){
       	console.log('no images')
       }else{
-      	console.log(index)
-      	if(lyrics[index].random && images.responseData.results[lyrics[index].random]){
+      	
+       if(lyrics[index].random && (typeof images.responseData.results[lyrics[index].random] !== 'undefined')){
       		lyrics[index].url = images.responseData.results[lyrics[index].random].unescapedUrl;
-      	}else{
+      }else{
       	 lyrics[index].url = images.responseData.results[0].unescapedUrl;	
+      	 console.log(lyrics[index].url );
       	} 
       }
     });
@@ -86,16 +87,14 @@ function getPic(query, index){
     	startPlayback();
     }
 }
-var startPlayback =function(){
+var startPlayback = function(){
 	$('#flowPlay')[0].play();
 	setInterval(function(){
 		myTime = parseInt($('#flowPlay')[0].currentTime);
-		//console.log(myTime, lyrics[activeLyric].url)
 		if(myTime == 5){
 			$('#logo').fadeOut();
 		}
 		if(lyrics[activeLyric].timestamp == myTime+2){
-			//onsole.log("active img", lyrics[activeLyric].url)
 			activeImage = lyrics[activeLyric].url;
 			$('#wrapper').css('background-image', 'url('+activeImage+')');
 			activeLyric++;
@@ -104,23 +103,30 @@ var startPlayback =function(){
 }
 
 var getResults = function(){
+	console.log('getting results');
 	for (var i = lyrics.length - 1; i >= 0; i--) {
 		lyrics[i].url = getPic(lyrics[i].lyric, i)
 		//console.log("url: " lyrics[i].url)
 	};
 }
 
-$(function(){
-	$('#logo').on('click', getResults());
+$( function(){
 	$(document).keydown(function(evt) {
 	    if (evt.keyCode == 32) {
 	      if($('#flowPlay')[0].paused){
 	      	$('#flowPlay')[0].play();
+	      	getResults();
+	      	console.log('keydown')
 	      }else{
 	      	$('#flowPlay')[0].pause();
 	      }
 	    }
-  });
+  	});
+	$("#logo").on('click', function(){
+		console.log('click');
+		getResults();
+	});
+	
 })
 
 /*
