@@ -74,14 +74,15 @@ function getPic(query, index){
       if (typeof images.responseData === 'undefined' || !images.responseData || images.responseData.results.length == 0){
       	console.log('no images')
       }else{
-      	if(lyrics[index].random && images.responseData.results[lyrics[index].random].unescapedUrl){
+      	console.log(index)
+      	if(lyrics[index].random && images.responseData.results[lyrics[index].random]){
       		lyrics[index].url = images.responseData.results[lyrics[index].random].unescapedUrl;
       	}else{
       	 lyrics[index].url = images.responseData.results[0].unescapedUrl;	
       	} 
       }
     });
-    if(index == lyrics.length-1){
+    if(index == 0){
     	startPlayback();
     }
 }
