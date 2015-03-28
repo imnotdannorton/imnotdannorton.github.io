@@ -1,7 +1,33 @@
 var species = [
-  {"name":"Cuddly Woodies", "timeIn":31, "timeOut":32},
+  {"name":"Cuddly Woodies", "timeIn":31, "timeOut":35},
   {"name":"Ebooks", "timeIn":43, "timeOut":44},
   {"name":"Tuckskin Rikers", "timeIn":47, "timeOut":50},
+  {"name":"Jar Jars", "timeIn":50, "timeOut":53},
+  {"name":"Rompers", "timeIn":54, "timeOut":56},
+  {"name":"Bon Bons", "timeIn":58, "timeOut":63},
+  {"name":"Bugnuts", "timeIn":64, "timeOut":65},
+  {"name":"Caboodles", "timeIn":68, "timeOut":71},
+  {"name":"Tiddlywinks", "timeIn":68, "timeOut":74},
+  {"name":"Rock Lobster", "timeIn":74, "timeOut":75},
+  {"name":"Normcores", "timeIn":81, "timeOut":83},
+  {"name":"Pumen", "timeIn":83, "timeOut":88},
+  {"name":"Turduckens", "timeIn":93, "timeOut":98},
+  {"name":"Arugalas", "timeIn":110, "timeOut":111},
+  {"name":"Marsupilamis", "timeIn":119, "timeOut":120},
+  {"name":"Sneaky Pete", "timeIn":121, "timeOut":123},
+  {"name":"Spookems", "timeIn":123, "timeOut":124},
+  {"name":"Sisteractwonians", "timeIn":124, "timeOut":125},
+  {"name":"AWkwardlips", "timeIn":132, "timeOut":133},
+  {"name":"ahhhrealmonsters", "timeIn":140, "timeOut":141},
+  {"name":"nibble nose", "timeIn":142, "timeOut":143},
+  {"name":"paladeens", "timeIn":145, "timeOut":146},
+  {"name":"Suck Pit", "timeIn":153, "timeOut":156},
+  {"name":"Humps", "timeIn":160, "timeOut":163},
+  {"name":"Capuchin Hacker Fucker", "timeIn":165, "timeOut":166},
+  {"name":"Megryans", "timeIn":172, "timeOut":173},
+  {"name":"California Raisins", "timeIn":175, "timeOut":178},
+  {"name":"Memesters", "timeIn":187, "timeOut":188},
+  {"name":"Sybians", "timeIn":194, "timeOut":195},
 ]
 
 
@@ -18,8 +44,8 @@ var player;
 var vidId = '5r-R070qHYw';
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
-    height: '390',
-    width: '640',
+    //height: '390',
+    //width: '640',
     videoId: vidId,
     events: {
       'onReady': onPlayerReady,
@@ -35,6 +61,8 @@ function onPlayerReady(event) {
     var index = $(event.target).attr('trigger');
     playName(index);
   });
+   $('iframe#player').css({'width':'100%', 'height':'100%'});
+   //$('#player').attr('height', $(window).height());
 }
 
 // 5. The API calls this function when the player's state changes.
@@ -67,5 +95,5 @@ var playName = function(index){
 }
 createButtons();
 $(document).ready(function(){
-   
+   $('iframe#player').css({'width':'100%', 'height':'100%'});
 });

@@ -1,37 +1,41 @@
 <!doctype html>
 <html lang="en">
 <head>
+<style type="text/css">
+	#playerWrapper{
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
+	#names{
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		background:rgba(0 , 0, 0, .8);
+	}
+	button{
+		font-size: 2em;
+		margin: 1em;
+		color: yellow;
+		background-color: transparent;
+		border:none;
+		border-radius: 8px;
+		outline: none;
+	}
+	button:hover{
+		background-color: yellow;
+		color: #000;
+	}
+</style>
 </head>
 <body>
-    <div id="player"></div>
+	<div id="playerWrapper">
+    	<div id="player"></div>
+    </div>
     <div id="names"></div>
 
     <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="js/capuchin.js"></script>
-    <script type="text/javascript">
-    	// 2. This code loads the IFrame Player API code asynchronously.
-		var tag = document.createElement('script');
-
-		tag.src = "https://www.youtube.com/iframe_api";
-		var firstScriptTag = document.getElementsByTagName('script')[0];
-		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-		// 3. This function creates an <iframe> (and YouTube player)
-		//    after the API code downloads.
-		var player;
-		var vidId = '5r-R070qHYw';
-		function onYouTubeIframeAPIReady() {
-		  player = new YT.Player('player', {
-		    height: '390',
-		    width: '640',
-		    videoId: vidId,
-		    events: {
-		      'onReady': onPlayerReady,
-		      'onStateChange': onPlayerStateChange
-		    }
-		  });
-		}
-
-    </script>
+   
 </body>
 </html>
