@@ -120,16 +120,18 @@ $( function(){
 	    	startPlayback();
 	    }
 	}
+	$flowPlay = $('#flowPlay')[0];
+	$wrapper = $('#wrapper');
 	var startPlayback = function(){
-		$('#flowPlay')[0].play();
+		$flowPlay.play();
 		setInterval(function(){
-			myTime = parseInt($('#flowPlay')[0].currentTime);
+			myTime = parseInt($flowPlay.currentTime);
 			if(myTime == 5){ $('#logo').fadeOut();}
 			
 			if(lyrics[activeLyric].timestamp == myTime-1){
 				activeImage = imagesList[activeLyric];
 				console.log(activeImage, lyrics[activeLyric].lyric );
-				$('#wrapper').css('background-image', 'url('+activeImage+')');
+				$wrapper.css('background-image', 'url('+activeImage+')');
 				activeLyric++;
 				
 			}
