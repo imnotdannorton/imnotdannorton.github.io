@@ -1,6 +1,3 @@
-<script type="text/javascript">
-    var ANIMATED_IMAGES_URL = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&as_filetype=gif&imgtype=animated&tbs=itp:animated&callback=?&q=";
-</script>
 <?php
 /*
 REQUIREMENTS
@@ -22,18 +19,19 @@ USAGE
 $command = $_POST['command'];
 $text = $_POST['text'];
 $token = $_POST['token'];
+$channel = $_POST['channel_name'];
+$channel_id = $_POST['channel_id'];
+$responseUrl = 'https://hooks.slack.com/services/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';
+$myMsg = 'https://slack.com/api/chat.postMessage';
 # Check the token and make sure the request is from our team 
 if($token != 'mN0cr5i9MFyIgiYzu4slmxpP'){ #replace this with the token from your slash command configuration page
   $msg = "The token for the slash command doesn't match. Check your script.";
   die($msg);
   echo $msg;
 }
-# isitup.org doesn't require you to use API keys, but they do require that any automated script send in a user agent string.
-# You can keep this one, or update it to something that makes more sense for you
-$user_agent = "IsitupForSlack/1.0 (https://github.com/mccreath/istiupforslack; mccreath@gmail.com)";
 # We're just taking the text exactly as it's typed by the user. If it's not a valid domain, isitup.org will respond with a `3`.
 # We want to get the JSON version back (you can also get plain text).
-$url_to_check = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&as_filetype=gif&imgtype=animated&tbs=itp:animated&callback=?&q=".$text;
+$url_to_check = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&as_filetype=gif&imgtype=animated&tbs=itp:animated&q=".urlencode($text);
 # Set up cURL 
 $ch = curl_init($url_to_check);
 # Set up options for cURL 
@@ -46,7 +44,7 @@ $ch_response = curl_exec($ch);
 # Close the connection 
 curl_close($ch);
 # Decode the JSON array sent back by isitup.org
-$response_array = json_decode($ch_response,true);
+$response_array = json_decode($ch_response,false);
 # Build our response 
 # Note that we're using the text equivalent for an emoji at the start of each of the responses.
 # You can use any emoji that is available to your Slack team, including the custom ones.
@@ -54,7 +52,20 @@ if($ch_response === FALSE){
   # isitup.org could not be reached 
   $reply = "Sorry, couldn't find ".$text;
 }else{
-    $reply = $response_array["responseData"]["results"][0]["unescapedUrl"]
+    $reply = $response_array->responseData->results[0]->unescapedUrl;
+    // $payloadURl = $responseUrl.'?payload={"attachments":[{"image_url":'.$reply.'}]}"'; 
+    $data = '{"text":"Your Gif"}';
+    $arrayName = array('attachments' => array(array("image_url" => $reply, "title" => $text)), "channel" => $channel_id);
+    $data_string = json_encode($arrayName);
+    $ch = curl_init($responseUrl);
+    curl_setopt($ch,CURLOPT_URL, $responseUrl);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+    // curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));   
+    curl_exec($ch);
+    // [0]['results']['responseData'][0]['unescapedUrl']
+    // print_r($response_array);
+    // print_r(array_values($response_array));
+    // $response_array["responseData"]["results"][0]["unescapedUrl"];
   // if($response_array["status_code"] == 1){
   //   # Yay, the domain is up! 
   //   $reply = ":thumbsup: I am happy to report that *<http://".$response_array["domain"]."|".$response_array["domain"].">* is *up*!";
@@ -68,4 +79,4 @@ if($ch_response === FALSE){
   // }
 }
 # Send the reply back to the user. 
-echo $reply;
+#echo ':smile: {"attachments":[{"image_url":"'.$reply.'""}]}';
